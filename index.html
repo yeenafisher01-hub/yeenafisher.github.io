@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,31 +8,34 @@
     <!-- Tailwind CSS Engine for Clean Row/Column Formats -->
     <script src="https://tailwindcss.com"></script>
     <style>
-        /* Custom Theme Configurations */
+        /* Keeping your glamorous background color exactly the same */
         body {
             background-color: #F3E8FF;
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
-        /* The Flash Effect Animation applied directly to your Main Center Headshot */
-        @keyframes mainPhotoFlash {
-            0% { opacity: 0; transform: scale(0.95); filter: brightness(1.8); }
-            40% { filter: brightness(1.4); }
-            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+        /* Exotic, impressive, and bold font styling for your name */
+        .exotic-brand-font {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-weight: 900;
+            letter-spacing: 0.07em;
         }
 
-        .main-hero-flash {
-            animation: mainPhotoFlash 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Continuous blend transition effect for your centered slideshow frame */
+        .flash-transition {
+            transition: opacity 0.4s ease-in-out;
         }
     </style>
 </head>
 <body class="text-gray-900 min-h-screen flex flex-col">
 
-    <!-- PURPLE NAVIGATION HEADER -->
+    <!-- TOP NAV BANNER REMANCE THE SAME -->
     <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-purple-200 shadow-md">
-        <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-3xl font-extrabold tracking-wider text-[#4C1D95]">
-                YEENA FISHER
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <!-- Your bold name in dark purple with exotic styling -->
+            <h1 class="text-3xl exotic-brand-font text-[#4C1D95] uppercase">
+                Yeena Fisher
             </h1>
             <nav class="flex gap-6 text-sm font-bold tracking-wider text-purple-900 uppercase">
                 <a href="#theatrical" class="hover:text-purple-600 transition-colors">Theatrical</a>
@@ -43,92 +47,60 @@
         </div>
     </header>
 
-    <!-- MAIN APP HUB -->
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-16">
+    <!-- MAIN PORTFOLIO BODY CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-16">
 
-        <!-- CENTERED MAIN HERO HEADSHOT WITH FLASH LIGHT EFFECT -->
-        <section class="flex justify-center items-center py-4 bg-transparent border-0 shadow-none">
-            <div class="main-hero-flash max-w-md w-full overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-white">
-                <img src="headshot_main.jpg" alt="Yeena Fisher Main Presentation" class="w-full h-auto object-cover block mx-auto">
+        <!-- `headshot_main.jpg` REMAINS SAFELY LOCKED IN THE CENTER -->
+        <section class="flex justify-center items-center py-6 bg-transparent border-0 shadow-none">
+            <div class="max-w-md w-full overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-white aspect-[3/4] relative">
+                <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Slideshow" class="w-full h-full object-cover block mx-auto flash-transition">
             </div>
         </section>
 
-        <!-- THEATRICAL HEDGEHOGS SECTION: ALIGNED IN A WIDE CONTRAST RECTANGLE BOX -->
+        <!-- THEATRICAL CONTAINER: FORCED 6x2 GRID (6 ON TOP, 6 ON BOTTOM) -->
         <section id="theatrical" class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                Theatrical Headshots
-            </h2>
-            <!-- Clean Horizontal Aligned Columns Layout Engine -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_1.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_2.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_3.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_4.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_5.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_6.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_7.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_8.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_9.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_10.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_11.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_12.jpg" alt="Theatrical Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
+            <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Theatrical Headshots</h2>
+            <!-- 6 Column Grid Structure for Wide Desktop Layouts -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                <!-- TOP ROW (FIRST 6 IMAGES) -->
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_1.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_2.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_3.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_4.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_5.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_6.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                
+                <!-- BOTTOM ROW (NEXT 6 IMAGES) -->
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_7.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_8.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_9.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_10.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_11.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_12.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
             </div>
         </section>
 
-        <!-- COMMERCIAL HEADSHOTS RECTANGLE BOX -->
+        <!-- COMMERCIAL CONTAINER: FORCED STRAIGHT 4 COLUMN RECTANGLE ROW -->
         <section id="commercial" class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                Commercial Headshots
-            </h2>
+            <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Commercial Headshots</h2>
+            <!-- Straight 4-Column Layout Frame -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_1.jpg" alt="Commercial Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_2.jpg" alt="Commercial Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_3.jpg" alt="Commercial Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_4.jpg" alt="Commercial Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
-                </div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_1.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_2.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_3.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_4.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
             </div>
         </section>
 
-        <!-- RED CARPET GALLEY & PRESS INTERVIEWS -->
-        <section id="media" class="space-y-8">
+        <!-- RED CARPET GALLERY & SHOWREEL EMBEDS -->
+        <section id="media" class="space-y-8 bg-transparent p-0 border-0 shadow-none">
             <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-                <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                    Red Carpet Gallery
-                </h2>
+                <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Red Carpet Gallery</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)">
-                        <img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover">
-                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover"></div>
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_2.jpg" alt="Appearance" class="w-full h-full object-cover"></div>
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_3.jpg" alt="Press Frame" class="w-full h-full object-cover"></div>
+                </div>
+            </div>
 
         
