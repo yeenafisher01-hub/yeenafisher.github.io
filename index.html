@@ -1,106 +1,365 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
-    <!-- Tailwind CSS Engine for Clean Row/Column Formats -->
-    <script src="https://tailwindcss.com"></script>
     <style>
-        /* Keeping your glamorous background color exactly the same */
+        /* CORE HARDCODED STYLES - NO EXTERNAL SCRIPTS REQUIRED */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: #F3E8FF;
+            background-color: #F3E8FF !important; /* Forces your beautiful lavender background */
             font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #111827;
+            padding-bottom: 60px;
         }
 
-        /* Exotic, impressive, and bold font styling for your name */
-        .exotic-brand-font {
+        /* WHITE BANNER NAVIGATION BAR */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #E9D5FF;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* EXOTIC, IMPRESSIVE BOLD PURPLE NAME */
+        h1 {
+            color: #4C1D95;
             font-family: 'Georgia', serif;
             font-style: italic;
             font-weight: 900;
+            font-size: 28px;
             letter-spacing: 0.07em;
+            text-transform: uppercase;
         }
 
-        /* Continuous blend transition effect for your centered slideshow frame */
-        .flash-transition {
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #5B21B6;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #7C3AED;
+        }
+
+        /* LAYOUT AND STRUCTURAL WRAPPERS */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* RECTANGLE CONTAINER BOXES */
+        .content-section {
+            background-color: #ffffff;
+            border: 1px solid #E9D5FF;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #4C1D95;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #F3E8FF;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* CENTERED SLIDESHOW HERO MAIN CONTAINER */
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-frame {
+            max-width: 400px;
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: #ffffff;
+            border: 4px solid #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
             transition: opacity 0.4s ease-in-out;
+        }
+
+        /* THEATRICAL HEADSHOT RECTANGLE BOX GRID (FORCED 6 COLUMNS ACROSS) */
+        .grid-theatrical {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 columns side-by-side */
+            gap: 16px;
+        }
+
+        /* COMMERCIAL HEADSHOT RECTANGLE BOX GRID (FORCED 4 COLUMNS ACROSS) */
+        .grid-commercial {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns side-by-side */
+            gap: 16px;
+        }
+
+        .grid-carpet {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .grid-videos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        /* SQUARE/RECTANGLE THUMBNAIL CARDS */
+        .photo-card {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            background-color: #F9FAFB;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.03);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carpet-card {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            cursor: pointer;
+        }
+
+        .carpet-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-box {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        .video-box iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* BUTTON DETAILS */
+        .resume-btn {
+            display: inline-block;
+            background-color: #4C1D95;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 40px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 10px rgba(76,29,149,0.3);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .resume-btn:hover {
+            background-color: #6D28D9;
+            transform: translateY(-1px);
+        }
+
+        /* INPUT CONTACT FORM SYSTEM */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4B5563;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #E9D5FF;
+            border-radius: 8px;
+            background-color: #FAF5FF;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #A78BFA;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #4C1D95;
+            color: #ffffff;
+            border: 0;
+            padding: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #6D28D9;
+        }
+
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #E9D5FF;
+            padding: 32px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #4C1D95;
+        }
+
+        .copyright {
+            color: #9CA3AF;
+            font-size: 12px;
+        }
+
+        /* LIGHTBOX PREVIEW OVERLAY SCREEN */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border-radius: 4px;
+        }
+
+        /* RESPONSIVE LAYOUT FOR MOBILE SCREENS */
+        @media (max-width: 900px) {
+            .grid-theatrical { grid-template-columns: repeat(3, 1fr); }
+            .grid-commercial { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; gap: 16px; }
+            .grid-theatrical { grid-template-columns: repeat(2, 1fr); }
+            .grid-carpet, .grid-videos, .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="text-gray-900 min-h-screen flex flex-col">
+<body>
 
-    <!-- TOP NAV BANNER REMANCE THE SAME -->
-    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-purple-200 shadow-md">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <!-- Your bold name in dark purple with exotic styling -->
-            <h1 class="text-3xl exotic-brand-font text-[#4C1D95] uppercase">
-                Yeena Fisher
-            </h1>
-            <nav class="flex gap-6 text-sm font-bold tracking-wider text-purple-900 uppercase">
-                <a href="#theatrical" class="hover:text-purple-600 transition-colors">Theatrical</a>
-                <a href="#commercial" class="hover:text-purple-600 transition-colors">Commercial</a>
-                <a href="#media" class="hover:text-purple-600 transition-colors">Red Carpets</a>
-                <a href="#resume" class="hover:text-purple-600 transition-colors">Resume</a>
-                <a href="#contact" class="hover:text-purple-600 transition-colors">Contact</a>
+    <!-- SECURED NAVIGATION HEADER BANNER BAR -->
+    <header>
+        <div class="header-container">
+            <h1>Yeena Fisher</h1>
+            <nav>
+                <a href="#theatrical">Theatrical</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#media">Red Carpets</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- MAIN PORTFOLIO BODY CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-16">
+    <main>
 
-        <!-- `headshot_main.jpg` REMAINS SAFELY LOCKED IN THE CENTER -->
-        <section class="flex justify-center items-center py-6 bg-transparent border-0 shadow-none">
-            <div class="max-w-md w-full overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-white aspect-[3/4] relative">
-                <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Slideshow" class="w-full h-full object-cover block mx-auto flash-transition">
+        <!-- CENTERED LIVE FLASHLIGHT REEL HERO FRAME -->
+        <div class="hero-section">
+            <div class="hero-frame">
+                <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Presentation Frame">
             </div>
-        </section>
+        </div>
 
-        <!-- THEATRICAL CONTAINER: FORCED 6x2 GRID (6 ON TOP, 6 ON BOTTOM) -->
-        <section id="theatrical" class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-            <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Theatrical Headshots</h2>
-            <!-- 6 Column Grid Structure for Wide Desktop Layouts -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-                <!-- TOP ROW (FIRST 6 IMAGES) -->
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_1.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_2.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_3.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_4.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_5.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_6.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                
-                <!-- BOTTOM ROW (NEXT 6 IMAGES) -->
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_7.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_8.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_9.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_10.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_11.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="theatrical_12.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-            </div>
-        </section>
-
-        <!-- COMMERCIAL CONTAINER: FORCED STRAIGHT 4 COLUMN RECTANGLE ROW -->
-        <section id="commercial" class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-            <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Commercial Headshots</h2>
-            <!-- Straight 4-Column Layout Frame -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_1.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_2.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_3.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-50 border cursor-pointer group" onclick="expandImage(this.querySelector('img').src)"><img src="commercial_4.jpg" alt="Look" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"></div>
-            </div>
-        </section>
-
-        <!-- RED CARPET GALLERY & SHOWREEL EMBEDS -->
-        <section id="media" class="space-y-8 bg-transparent p-0 border-0 shadow-none">
-            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-purple-100">
-                <h2 class="text-xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">Red Carpet Gallery</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover"></div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_2.jpg" alt="Appearance" class="w-full h-full object-cover"></div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1" onclick="expandImage(this.querySelector('img').src)"><img src="red_carpet_3.jpg" alt="Press Frame" class="w-full h-full object-cover"></div>
-                </div>
-            </div>
-
-        
+        <!-- RECTANGLE THEATRICAL GRID (6 COLUMNS ACROSS, 2 ROWS HIGH) -->
