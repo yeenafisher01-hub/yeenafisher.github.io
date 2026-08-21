@@ -1,149 +1,341 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeena Fisher | Official Actress & Filmmaker Portfolio</title>
-    <!-- Modern Tailwind CSS Framework -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Premium Google Fonts: Importing Exotic and Stylish Editorial Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Yeena Fisher | Official Portfolio</title>
     <style>
+        /* SECURED INDEPENDENT ENGINE - PREVENTS STYLING LOSS */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            /* Enhanced to a deeper, luxury Midnight Plum-Lavender tone (#675AA9) for striking screen contrast */
-            background-color: #675AA9;
+            background-color: #F3E8FF !important; /* Locks your beautiful lavender background color */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #111827;
+            padding-bottom: 60px;
         }
-        .exotic-serif {
-            font-family: 'Cinzel Decorative', serif;
+
+        /* WHITE TOP BANNER NAVIGATION BAR */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #E9D5FF;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
-        .editorial-sub {
-            font-family: 'Playfair Display', serif;
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        /* Locked into your exact color asset: Nauseous Blue #493DB4 with a crisp white core shadow overlay to stand out elegantly */
-        .purple-exotic {
-            color: #493DB4;
-            font-weight: 900;
-            letter-spacing: -0.01em;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.45);
+
+        .branding-group {
+            display: flex;
+            flex-direction: column;
         }
-        .glam-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+
+        /* EXOTIC CURSIVE FONT BOLD LETTERS IN PURPLE COLOR */
+        h1 {
+            color: #4C1D95 !important;
+            font-family: 'Brush Script MT', 'Comic Sans MS', 'Georgia', cursive, serif;
+            font-weight: bold;
+            font-size: 38px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
         }
-        .glam-card:hover {
-            transform: translateY(-6px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 25px 50px rgba(73, 61, 180, 0.2);
+
+        /* TAGLINE DIRECTLY UNDER THE NAME */
+        .tagline {
+            color: #6D28D9;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 4px;
         }
-        html {
-            scroll-behavior: smooth;
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #5B21B6;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: #7C3AED; }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* CONTRAST RECTANGLE BOX CONTAINERS */
+        .content-section {
+            background-color: #ffffff;
+            border: 1px solid #E9D5FF;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #4C1D95;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid #F3E8FF;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* MAIN HERO PRESENTATION FRAME SETUP */
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-frame {
+            max-width: 380px;
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: #ffffff;
+            border: 4px solid #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        /* THEATRICAL: WIDE RECTANGLE 6 SECTIONS TOP / 6 SECTIONS BOTTOM */
+        .grid-theatrical {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 side-by-side columns */
+            gap: 16px;
+        }
+
+        /* COMMERCIAL: WIDE RECTANGLE WITH 4 SECTIONS */
+        .grid-commercial {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 side-by-side columns */
+            gap: 16px;
+        }
+
+        .grid-carpet {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .grid-videos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .photo-card {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            background-color: #F9FAFB;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .photo-card:hover { transform: scale(1.03); }
+        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .carpet-card {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            cursor: pointer;
+        }
+        .carpet-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .video-box {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        .video-box iframe { width: 100%; height: 100%; border: 0; }
+
+        .resume-btn {
+            display: inline-block;
+            background-color: #4C1D95;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 40px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 10px rgba(76,29,149,0.3);
+            transition: background-color 0.2s;
+        }
+        .resume-btn:hover { background-color: #6D28D9; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4B5563;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #E9D5FF;
+            border-radius: 8px;
+            background-color: #FAF5FF;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #4C1D95;
+            color: #ffffff;
+            border: 0;
+            padding: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover { background-color: #6D28D9; }
+
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #E9D5FF;
+            padding: 32px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-links a:hover { color: #4C1D95; }
+        .copyright { color: #9CA3AF; font-size: 12px; }
+
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border-radius: 4px;
+        }
+
+        /* SCREEN RESPONSIVENESS ADAPTATIONS FOR TABLETS AND MOBILE */
+        @media (max-width: 950px) {
+            .grid-theatrical { grid-template-columns: repeat(3, 1fr); }
+            .grid-commercial { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; gap: 12px; text-align: center; }
+            .grid-theatrical { grid-template-columns: repeat(2, 1fr); }
+            .grid-carpet, .grid-videos, .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="text-neutral-800 antialiased selection:bg-purple-900 selection:text-white">
+<body>
 
-    <!-- Fixed Glassmorphism Top Header Menu Layout -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-md border-b border-purple-400/20 px-6 py-4 md:px-12 flex justify-between items-center shadow-sm">
-        <span class="exotic-serif text-base tracking-widest text-purple-950 font-bold">YF</span>
-        <nav class="hidden md:flex space-x-6 text-[11px] tracking-widest uppercase text-purple-950 font-bold">
-            <a href="#home" class="hover:text-purple-900 transition-colors">Home</a>
-            <a href="#reel" class="hover:text-purple-900 transition-colors">Showreel</a>
-            <a href="#theatrical-gallery" class="hover:text-purple-900 transition-colors">Theatrical Headshots</a>
-            <a href="#commercial-gallery" class="hover:text-purple-900 transition-colors">Commercial Headshots</a>
-            <a href="#media-press" class="hover:text-purple-900 transition-colors">Red Carpets & Media</a>
-            <a href="#resume" class="hover:text-purple-900 transition-colors">Resume</a>
-            <a href="#contact" class="hover:text-purple-900 transition-colors">Contact</a>
-        </nav>
+    <!-- SECURED WHITE HEADER NAVIGATION BANNER -->
+    <header>
+        <div class="header-container">
+            <div class="branding-group">
+                <h1>Yeena Fisher</h1>
+                <div class="tagline">Actress Filmmaker and Dancer</div>
+            </div>
+            <nav>
+                <a href="#theatrical">Theatrical</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#media">Red Carpets</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Master Centered Hero Spotlight Area -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
-        <div class="max-w-4xl w-full text-center space-y-6 relative z-10 flex flex-col items-center">
-            
-            <!-- STYLISH EXOTIC BRANDING NAME BANNER - SET TO EXACT CUSTOM HEX COLOR CODE #493DB4 -->
-            <div class="space-y-2">
-                <h1 class="exotic-serif text-5xl md:text-7xl lg:text-8xl leading-none uppercase text-center tracking-tight">
-                    <span class="purple-exotic">Yeena Fisher</span>
-                </h1>
-                <h2 class="editorial-sub text-base md:text-lg italic tracking-wider text-purple-950 font-bold block">
-                    Actor &bull; Filmmaker &bull; Dancer
-                </h2>
-            </div>
+    <main>
 
-            <!-- Centered Main Portrait Canvas Box (Completely clean text-free viewport image layer) -->
-            <div class="w-64 md:w-72 aspect-[3/4] bg-white/50 border border-white/70 rounded-sm shadow-2xl p-2.5 backdrop-blur-sm glam-card">
-                <img src="headshot_main.jpg" alt="Yeena Fisher Centered Portrait" class="w-full h-full object-cover object-top rounded-sm shadow-inner">
-            </div>
-            
-            <p class="text-sm md:text-base text-purple-950 max-w-2xl mx-auto font-semibold leading-relaxed text-center">
-                Working film actress and dynamic filmmaker based in Los Angeles. Delivering versatile, emotionally grounded principal performances across major feature films, network television, and complex dramatic narratives.
-            </p>
-
-            <!-- Direct Casting Profiles Row -->
-            <div class="pt-2 flex flex-wrap justify-center gap-3 text-[10px] tracking-widest uppercase font-bold">
-                <a href="https://www.imdb.com/name/nm2391329/?ref_=ext_shr_lnk" target="_blank" class="px-6 py-3.5 bg-purple-950 text-white hover:bg-white hover:text-purple-950 transition-all shadow-md rounded-none">
-                    Official IMDb Profile
-                </a>
-                <a href="https://resumes.actorsaccess.com/yeenafisher" target="_blank" class="px-6 py-3.5 bg-purple-950 text-white hover:bg-white hover:text-purple-950 transition-all shadow-md rounded-none">
-                    Actors Access Resume
-                </a>
-                <a href="https://linktr.ee/yeenafisher1" target="_blank" class="px-6 py-3.5 bg-white text-purple-950 border border-purple-400 hover:bg-purple-100 transition-all rounded-none shadow-sm">
-                    Linktree Hub
-                </a>
+        <!-- CENTERED LIVE SLIDESHOW ROTATOR PANEL WITH FLASH EFFECT OVERLAY -->
+        <div class="hero-section">
+            <div class="hero-frame">
+                <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Presentation Frame">
             </div>
         </div>
-    </section>
 
-    <!-- Principal Acting Video Showcase -->
-    <section id="reel" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/20">
-        <div class="mb-12 text-center">
-            <span class="text-xs uppercase tracking-[0.3em] text-purple-950 font-bold block mb-2">Screen Presence</span>
-            <h2 class="editorial-sub text-3xl md:text-4xl text-purple-950 font-bold italic">Principal Demo Reel</h2>
-        </div>
-        
-        <div class="w-full aspect-video bg-white/40 border border-white/60 relative overflow-hidden rounded-sm shadow-xl p-2 backdrop-blur-sm">
-            <div class="absolute inset-0 flex flex-col items-center justify-center space-y-2 px-4 bg-purple-900/5">
-                <span class="text-xs tracking-widest text-purple-950 uppercase font-bold tracking-[0.2em]">Reel Player Frame Container</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ROW 1: Dedicated Isolated Theatrical Headshot Grid Layout (Exactly 9 files) -->
-    <section id="theatrical-gallery" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/20">
-        <div class="mb-12">
-            <span class="text-xs uppercase tracking-[0.3em] text-purple-950 font-bold block mb-2">Portfolio</span>
-            <h2 class="editorial-sub text-3xl md:text-4xl text-purple-950 font-bold italic">Theatrical Headshots</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_1.jpg" alt="Theatrical 1" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_2.jpg" alt="Theatrical 2" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_3.jpg" alt="Theatrical 3" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_4.jpg" alt="Theatrical 4" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_5.jpg" alt="Theatrical 5" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_6.jpg" alt="Theatrical 6" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_7.jpg" alt="Theatrical 7" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
-                <img src="look_theatrical_8.jpg" alt="Theatrical 8" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
-            </div>
-
+        <!-- RECTANGLE THEATRICAL GRID (6 SECTIONS ON TOP, 6 SECTIONS ON BOTTOM) -->
+        <section id="theatrical" class="content-section">
+            <h2>Theatrical Headshots</h2>
 
