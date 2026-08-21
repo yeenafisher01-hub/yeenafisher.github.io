@@ -4,83 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
-    <!-- Tailwind CSS Engine for Base Layout Configurations -->
-    <script src="https://tailwindcss.com"></script>
     <style>
-        /* SECURED INTERNAL LAYOUT ENGINE - PREVENTS BACKGROUND LOOPS */
+        /* SECURED INDEPENDENT ENGINE - PREVENTS STYLING LOSS */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+       
         body {
-            /* Smooth background transition: light lavender fading into a slightly darker lavender shade at the bottom */
-            background: linear-gradient(180deg, #F3E8FF 0%, #D8B4FE 100%) !important;
+            background-color: #F3E8FF !important; /* Locks your beautiful lavender background color */
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: #111827;
             padding-bottom: 60px;
-            min-height: 100vh;
         }
 
-        /* EXOTIC PURPLE CURSIVE BRANDING TEXT */
-        .exotic-brand-name {
-            color: #4C1D95 !important;
-            font-family: 'Brush Script MT', 'Comic Sans MS', 'Georgia', cursive, serif !important;
-            font-weight: bold !important;
-            font-size: 40px !important;
-            letter-spacing: 0.02em;
-            line-height: 1.1;
-            margin: 0;
-        }
-
-        .tagline-subtext {
-            color: #6D28D9 !important;
-            font-size: 14px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.15em !important;
-            margin-top: 5px;
-        }
-
-        /* WHITE BANNER TOP NAVIGATION HEADER */
+        /* WHITE TOP BANNER NAVIGATION BAR */
         header {
-            background-color: #ffffff !important;
-            border-bottom: 2px solid #C084FC !important;
+            background-color: #ffffff;
+            border-bottom: 1px solid #E9D5FF;
             position: -webkit-sticky;
             position: sticky;
             top: 0;
-            z-index: 10000;
-            padding: 20px 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            width: 100%;
+            z-index: 1000;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        /* PURPLE CONTENT BOX CONTRAST CONTAINER RECTANGLES */
-        .portfolio-box-container {
-            background-color: #ffffff !important;
-            border: 2px solid #C084FC !important;
-            border-radius: 16px !important;
-            padding: 32px !important;
-            margin-bottom: 45px !important;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
-            width: 100%;
-            display: block;
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        /* DEFINED DARK PURPLE ROW LABELS */
-        .section-purple-label {
-            color: #3B0764 !important;
-            font-size: 22px !important;
-            font-weight: 800 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.08em !important;
-            border-bottom: 2px solid #F3E8FF !important;
-            padding-bottom: 12px !important;
-            margin-bottom: 24px !important;
+        .branding-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        /* CENTERED SLIDESHOW PANEL HOUSINGS */
+        /* EXOTIC CURSIVE FONT BOLD LETTERS IN PURPLE COLOR */
+        h1 {
+            color: #4C1D95 !important;
+            font-family: 'Brush Script MT', 'Comic Sans MS', 'Georgia', cursive, serif;
+            font-weight: bold;
+            font-size: 38px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+
+        /* TAGLINE DIRECTLY UNDER THE NAME */
+        .tagline {
+            color: #6D28D9;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #5B21B6;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: #7C3AED; }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* CONTRAST RECTANGLE BOX CONTAINERS */
+        .content-section {
+            background-color: #ffffff;
+            border: 1px solid #E9D5FF;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #4C1D95;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid #F3E8FF;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* MAIN HERO PRESENTATION FRAME SETUP */
         .hero-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 50px;
-            width: 100%;
+            margin-bottom: 40px;
         }
 
         .hero-frame {
@@ -90,7 +120,7 @@
             background-color: #ffffff;
             border: 4px solid #ffffff;
             border-radius: 16px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
             overflow: hidden;
             position: relative;
         }
@@ -100,199 +130,214 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 1;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
 
-        /* Modern layout sweep reflection for the dynamic flashlight effect */
-        .hero-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            z-index: 50;
+        /* THEATRICAL: WIDE RECTANGLE 6 SECTIONS TOP / 6 SECTIONS BOTTOM */
+        .grid-theatrical {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 side-by-side columns */
+            gap: 16px;
         }
 
-        .hero-frame.trigger-flash::after {
-            animation: sweepFlashBeam 0.5s ease-out;
+        /* COMMERCIAL: WIDE RECTANGLE WITH 4 SECTIONS */
+        .grid-commercial {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 side-by-side columns */
+            gap: 16px;
         }
 
-        @keyframes sweepFlashBeam {
-            100% { left: 150%; }
+        .grid-carpet {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
         }
 
-        /* SQUARE/RECTANGLE THUMBNAIL HOUSINGS WITH HOVER POP ACTION */
-        .compact-photo-card {
-            aspect-ratio: 3/4 !important;
-            overflow: hidden !important;
-            border-radius: 8px !important;
-            border: 1px solid #E5E7EB !important;
-            background-color: #F9FAFB !important;
-            cursor: pointer !important;
-            width: 100%;
-            transition: transform 0.2s ease-in-out;
+        .grid-videos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
 
-        .compact-photo-card:hover {
-            transform: scale(1.04);
+        .photo-card {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            background-color: #F9FAFB;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        .compact-photo-card img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            display: block !important;
-        }
-
-        /* FORCED RECTANGLE ALIGNED COLUMNS GRID SYSTEMS */
-        .grid-theatrical-6x2 {
-            display: grid !important;
-            grid-template-columns: repeat(6, 1fr) !important; /* Forces 6 side-by-side columns across the box */
-            gap: 16px !important;
-        }
-
-        .grid-commercial-4x1 {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important; /* Forces 4 side-by-side columns across the box */
-            gap: 16px !important;
-        }
-
-        .grid-carpet-3x1 {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 16px !important;
-        }
-
-        .grid-videos-2x1 {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 24px !important;
-        }
+        .photo-card:hover { transform: scale(1.03); }
+        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
 
         .carpet-card {
-            aspect-ratio: 1/1 !important;
-            overflow: hidden !important;
-            border-radius: 8px !important;
-            border: 1px solid #E5E7EB !important;
-            cursor: pointer !important;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            cursor: pointer;
+        }
+        .carpet-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .video-box {
+            aspect-ratio: 16/9;
             width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000000;
         }
+        .video-box iframe { width: 100%; height: 100%; border: 0; }
 
-        .carpet-card img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            display: block !important;
-        }
-
-        .video-wrapper-box {
-            aspect-ratio: 16/9 !important;
-            width: 100% !important;
-            border-radius: 12px !important;
-            overflow: hidden !important;
-            background-color: #000000 !important;
-        }
-
-        .video-wrapper-box iframe {
-            width: 100% !important;
-            height: 100% !important;
-            border: 0 !important;
-        }
-
-        .resume-download-btn {
-            display: inline-block !important;
-            background-color: #4C1D95 !important;
-            color: #ffffff !important;
-            font-weight: 700 !important;
-            text-decoration: none !important;
-            padding: 14px 45px !important;
-            border-radius: 9999px !important;
-            box-shadow: 0 4px 12px rgba(76,29,149,0.3) !important;
+        .resume-btn {
+            display: inline-block;
+            background-color: #4C1D95;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 40px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 10px rgba(76,29,149,0.3);
             transition: background-color 0.2s;
         }
+        .resume-btn:hover { background-color: #6D28D9; }
 
-        .resume-download-btn:hover { background-color: #6D28D9 !important; }
-
-        .form-row-split {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 16px !important;
-            margin-bottom: 16px !important;
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
         }
 
-        .form-input-group {
-            display: flex !important;
-            flex-direction: column !important;
-            margin-bottom: 16px !important;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4B5563;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #E9D5FF;
+            border-radius: 8px;
+            background-color: #FAF5FF;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .submit-btn {
             width: 100%;
-        }
-
-        .form-input-group label {
-            font-size: 11px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            color: #4B5563 !important;
-            margin-bottom: 6px !important;
-        }
-
-        .form-input-group input, .form-input-group textarea {
-            padding: 12px !important;
-            border: 1px solid #E9D5FF !important;
-            border-radius: 8px !important;
-            background-color: #FAF5FF !important;
-            font-size: 14px !important;
-            outline: none !important;
-            width: 100% !important;
-        }
-
-        .form-submit-btn {
-            width: 100% !important;
-            background-color: #4C1D95 !important;
-            color: #ffffff !important;
-            border: 0 !important;
-            padding: 14px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-            border-radius: 8px !important;
-            cursor: pointer !important;
+            background-color: #4C1D95;
+            color: #ffffff;
+            border: 0;
+            padding: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            cursor: pointer;
             transition: background-color 0.2s;
         }
-
-        .form-submit-btn:hover { background-color: #6D28D9 !important; }
+        .submit-btn:hover { background-color: #6D28D9; }
 
         footer {
-            background-color: #ffffff !important;
-            border-top: 1px solid #E9D5FF !important;
-            padding: 35px 20px !important;
-            text-align: center !important;
-            margin-top: 50px;
+            background-color: #ffffff;
+            border-top: 1px solid #E9D5FF;
+            padding: 32px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-links a:hover { color: #4C1D95; }
+        .copyright { color: #9CA3AF; font-size: 12px; }
+
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
         }
 
-        .footer-links-row a {
-            color: #6B7280 !important;
-            text-decoration: none !important;
-            font-size: 14px !important;
-            font-weight: 600 !important;
-            margin: 0 12px;
+        #lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border-radius: 4px;
         }
 
-        .footer-links-row a:hover { color: #4C1D95 !important; }
-        .copyright-text { color: #9CA3AF !important; font-size: 12px !important; }
+        /* SCREEN RESPONSIVENESS ADAPTATIONS FOR TABLETS AND MOBILE */
+        @media (max-width: 950px) {
+            .grid-theatrical { grid-template-columns: repeat(3, 1fr); }
+            .grid-commercial { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; gap: 12px; text-align: center; }
+            .grid-theatrical { grid-template-columns: repeat(2, 1fr); }
+            .grid-carpet, .grid-videos, .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
 
-        /* FULL INTERACTIVE MODAL EXPANSION POPUP PREVIEW */
-        #lightbox-overlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background-color: rgba(0,0,0,0.96) !important;
+    <!-- SECURED WHITE HEADER NAVIGATION BANNER -->
+    <header>
+        <div class="header-container">
+            <div class="branding-group">
+                <h1>Yeena Fisher</h1>
+                <div class="tagline">Actress Filmmaker and Dancer</div>
+            </div>
+            <nav>
+                <a href="#theatrical">Theatrical</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#media">Red Carpets</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- CENTERED LIVE SLIDESHOW ROTATOR PANEL WITH FLASH EFFECT OVERLAY -->
+        <div class="hero-section">
+            <div class="hero-frame">
+                <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Presentation Frame">
+            </div>
+        </div>
+
+        <!-- RECTANGLE THEATRICAL GRID (6 SECTIONS ON TOP, 6 SECTIONS ON BOTTOM) -->
+        <section id="theatrical" class="content-section">
+            <h2>Theatrical Headshots</h2>
+
+
+
