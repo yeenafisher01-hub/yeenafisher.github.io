@@ -1,48 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
+    <!-- Tailwind CSS Engine for Layout Architecture -->
+    <script src="https://tailwindcss.com"></script>
     <style>
-        /* SECURED INDEPENDENT ENGINE - PREVENTS STYLING LOSS */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        /* SECURED HARDCODED LAYER CONFIGURATIONS */
         body {
-            background-color: #F3E8FF !important; /* Locks your beautiful lavender background color */
+            /* Smooth background transition: light lavender gradient fading into a darker lavender at the bottom body */
+            background: linear-gradient(180deg, #F3E8FF 0%, #E9D5FF 100%) !important;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: #111827;
             padding-bottom: 60px;
+            min-height: 100vh;
         }
 
-        /* WHITE TOP BANNER NAVIGATION BAR */
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #E9D5FF;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 30px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .branding-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* EXOTIC CURSIVE FONT BOLD LETTERS IN PURPLE COLOR */
-        h1 {
+        /* EXOTIC PURPLE CURSIVE BRANDING FONT */
+        .exotic-cursive-name {
             color: #4C1D95 !important;
             font-family: 'Brush Script MT', 'Comic Sans MS', 'Georgia', cursive, serif;
             font-weight: bold;
@@ -51,8 +28,7 @@
             line-height: 1.1;
         }
 
-        /* TAGLINE DIRECTLY UNDER THE NAME */
-        .tagline {
+        .tagline-subtext {
             color: #6D28D9;
             font-size: 14px;
             font-weight: 600;
@@ -61,51 +37,38 @@
             margin-top: 4px;
         }
 
-        nav {
-            display: flex;
-            gap: 24px;
-        }
-
-        nav a {
-            color: #5B21B6;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: color 0.2s;
-        }
-
-        nav a:hover { color: #7C3AED; }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* CONTRAST RECTANGLE BOX CONTAINERS */
-        .content-section {
+        header {
             background-color: #ffffff;
-            border: 1px solid #E9D5FF;
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 40px;
+            border-bottom: 1px solid #D8B4FE;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 30px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        h2 {
-            color: #4C1D95;
-            font-size: 18px;
-            font-weight: 700;
+        .portfolio-rectangle-container {
+            background-color: #ffffff;
+            border: 2px solid #C084FC;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+
+        .darker-purple-label {
+            color: #3B0764 !important;
+            font-size: 20px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            border-bottom: 1px solid #F3E8FF;
+            letter-spacing: 0.1em;
+            border-bottom: 2px solid #E9D5FF;
             padding-bottom: 12px;
             margin-bottom: 24px;
         }
 
-        /* MAIN HERO PRESENTATION FRAME SETUP */
+        /* EXOTIC FLASH EFFECTS SYSTEM HOUSINGS */
         .hero-section {
             display: flex;
             justify-content: center;
@@ -120,7 +83,7 @@
             background-color: #ffffff;
             border: 4px solid #ffffff;
             border-radius: 16px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
             overflow: hidden;
             position: relative;
         }
@@ -130,212 +93,139 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: opacity 0.4s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        /* THEATRICAL: WIDE RECTANGLE 6 SECTIONS TOP / 6 SECTIONS BOTTOM */
-        .grid-theatrical {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr); /* 6 side-by-side columns */
-            gap: 16px;
+        /* The dynamic lightning slice element that sweeps across your look */
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            z-index: 50;
         }
 
-        /* COMMERCIAL: WIDE RECTANGLE WITH 4 SECTIONS */
-        .grid-commercial {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 side-by-side columns */
-            gap: 16px;
+        /* Triggers the dynamic Flash beam via JavaScript sync pulses */
+        .hero-frame.trigger-flash::after {
+            animation: sweepFlashBeam 0.5s ease-out;
         }
 
-        .grid-carpet {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+        @keyframes sweepFlashBeam {
+            100% { left: 150%; }
         }
 
-        .grid-videos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .photo-card {
+        /* PHOTO THUMBNAIL GRIDS SYSTEM */
+        .compact-photo-card {
             aspect-ratio: 3/4;
             overflow: hidden;
             border-radius: 8px;
             border: 1px solid #E5E7EB;
             background-color: #F9FAFB;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
-        .photo-card:hover { transform: scale(1.03); }
-        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
-
-        .carpet-card {
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid #E5E7EB;
-            cursor: pointer;
-        }
-        .carpet-card img { width: 100%; height: 100%; object-fit: cover; }
-
-        .video-box {
-            aspect-ratio: 16/9;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: #000000;
-        }
-        .video-box iframe { width: 100%; height: 100%; border: 0; }
-
-        .resume-btn {
-            display: inline-block;
-            background-color: #4C1D95;
-            color: #ffffff;
-            font-weight: 700;
-            text-decoration: none;
-            padding: 14px 40px;
-            border-radius: 9999px;
-            box-shadow: 0 4px 10px rgba(76,29,149,0.3);
-            transition: background-color 0.2s;
-        }
-        .resume-btn:hover { background-color: #6D28D9; }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
+        .compact-photo-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 10px 15px -3px rgba(76,29,149,0.2);
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #4B5563;
-            margin-bottom: 6px;
-            letter-spacing: 0.05em;
-        }
-
-        .form-group input, .form-group textarea {
-            padding: 12px;
-            border: 1px solid #E9D5FF;
-            border-radius: 8px;
-            background-color: #FAF5FF;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background-color: #4C1D95;
-            color: #ffffff;
-            border: 0;
-            padding: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .submit-btn:hover { background-color: #6D28D9; }
-
-        footer {
-            background-color: #ffffff;
-            border-top: 1px solid #E9D5FF;
-            padding: 32px 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 16px;
-        }
-
-        .footer-links a {
-            color: #6B7280;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .footer-links a:hover { color: #4C1D95; }
-        .copyright { color: #9CA3AF; font-size: 12px; }
-
-        #lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .compact-photo-card img {
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            z-index: 10000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            cursor: zoom-out;
+            object-fit: cover;
         }
 
-        #lightbox img {
-            max-width: 95%;
-            max-height: 90vh;
-            object-fit: contain;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-            border-radius: 4px;
+        .theatrical-6x2-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* Clean 6 Columns Wide Matrix */
+            gap: 16px;
         }
 
-        /* SCREEN RESPONSIVENESS ADAPTATIONS FOR TABLETS AND MOBILE */
-        @media (max-width: 950px) {
-            .grid-theatrical { grid-template-columns: repeat(3, 1fr); }
-            .grid-commercial { grid-template-columns: repeat(2, 1fr); }
+        .commercial-4x1-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Clean 4 Columns Wide Matrix */
+            gap: 16px;
         }
-        @media (max-width: 600px) {
-            .header-container { flex-direction: column; gap: 12px; text-align: center; }
-            .grid-theatrical { grid-template-columns: repeat(2, 1fr); }
-            .grid-carpet, .grid-videos, .form-row { grid-template-columns: 1fr; }
+
+        .grid-carpet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .grid-videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+        @media (max-width: 1024px) { .theatrical-6x2-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px) {
+            .theatrical-6x2-grid { grid-template-columns: repeat(2, 1fr); }
+            .commercial-4x1-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <!-- SECURED WHITE HEADER NAVIGATION BANNER -->
+    <!-- TOP HEADER NAVBAR BANNER -->
     <header>
-        <div class="header-container">
-            <div class="branding-group">
-                <h1>Yeena Fisher</h1>
-                <div class="tagline">Actress Filmmaker and Dancer</div>
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
+            <div class="brading-group flex flex-col">
+                <h1 class="exotic-cursive-name">Yeena Fisher</h1>
+                <div class="tagline-subtext">Actress Filmmaker and Dancer</div>
             </div>
-            <nav>
-                <a href="#theatrical">Theatrical</a>
-                <a href="#commercial">Commercial</a>
-                <a href="#media">Red Carpets</a>
-                <a href="#resume">Resume</a>
-                <a href="#contact">Contact</a>
+            <nav class="flex gap-6 text-sm font-bold tracking-wider text-purple-950 uppercase">
+                <a href="#theatrical" class="hover:text-purple-600 transition-colors">Theatrical</a>
+                <a href="#commercial" class="hover:text-purple-600 transition-colors">Commercial</a>
+                <a href="#media" class="hover:text-purple-600 transition-colors">Red Carpets</a>
+                <a href="#resume" class="hover:text-purple-600 transition-colors">Resume</a>
+                <a href="#contact" class="hover:text-purple-600 transition-colors">Contact</a>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-12">
 
-        <!-- CENTERED LIVE SLIDESHOW ROTATOR PANEL WITH FLASH EFFECT OVERLAY -->
+        <!-- CENTERED LIVE SLIDESHOW ROTATOR PANEL WITH ADVANCED FLASH SWEEP EFFECTS -->
         <div class="hero-section">
-            <div class="hero-frame">
+            <div id="hero-flash-container" class="hero-frame">
                 <img id="main-slideshow-reel" src="headshot_main.jpg" alt="Yeena Fisher Presentation Frame">
             </div>
         </div>
 
         <!-- RECTANGLE THEATRICAL GRID (6 SECTIONS ON TOP, 6 SECTIONS ON BOTTOM) -->
-        <section id="theatrical" class="content-section">
-            <h2>Theatrical Headshots</h2>
+        <section id="theatrical" class="portfolio-rectangle-container">
+            <h2 class="darker-purple-label">Theatrical Headshots</h2>
+            <div class="theatrical-6x2-grid">
+                <div class="compact-photo-card" onclick="expandImage('theatrical_1.jpg')"><img src="theatrical_1.jpg" alt="Look 1"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_2.jpg')"><img src="theatrical_2.jpg" alt="Look 2"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_3.jpg')"><img src="theatrical_3.jpg" alt="Look 3"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_4.jpg')"><img src="theatrical_4.jpg" alt="Look 4"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_5.jpg')"><img src="theatrical_5.jpg" alt="Look 5"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_6.jpg')"><img src="theatrical_6.jpg" alt="Look 6"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_7.jpg')"><img src="theatrical_7.jpg" alt="Look 7"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_8.jpg')"><img src="theatrical_8.jpg" alt="Look 8"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_9.jpg')"><img src="theatrical_9.jpg" alt="Look 9"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_10.jpg')"><img src="theatrical_10.jpg" alt="Look 10"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_11.jpg')"><img src="theatrical_11.jpg" alt="Look 11"></div>
+                <div class="compact-photo-card" onclick="expandImage('theatrical_12.jpg')"><img src="theatrical_12.jpg" alt="Look 12"></div>
+            </div>
+        </section>
 
+        <!-- RECTANGLE COMMERCIAL GRID (1 RECTANGLE BOX WITH 4 SECTIONS) -->
+        <section id="commercial" class="portfolio-rectangle-container">
+            <h2>Commercial Headshots</h2>
+            <div class="commercial-4x1-grid">
+                <div class="compact-photo-card" onclick="expandImage('commercial_1.jpg')"><img src="commercial_1.jpg" alt="Look 1"></div>
+                <div class="compact-photo-card" onclick="expandImage('commercial_2.jpg')"><img src="commercial_2.jpg" alt="Look 2"></div>
+                <div class="compact-photo-card" onclick="expandImage('commercial_3.jpg')"><img src="commercial_3.jpg" alt="Look 3"></div>
+                <div class="compact-photo-card" onclick="expandImage('commercial_4.jpg')"><img src="commercial_4.jpg" alt="Look 4"></div>
+            </div>
+        </section>
+
+        <!-- RED CARPETS AND VIDEO REELS ROW -->
+        <div class="portfolio-rectangle-container" id="media">
+            <div style="margin-bottom: 40px;">
+                <h2 class="darker-purple-label">Red Carpet Gallery</h2>
+                <div class="grid-carpet">
