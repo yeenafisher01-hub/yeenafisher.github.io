@@ -1,149 +1,164 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeena Fisher | Official Portfolio</title>
-    <!-- Tailwind CSS for modern, smooth styling -->
-    <script src="https://tailwindcss.com"></script>
+    <title>Yeena Fisher | Official Actress & Filmmaker Portfolio</title>
+    <!-- Modern Tailwind CSS Framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Premium Google Fonts: Exotic and Stylish Editorial Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Custom Glamorous Lavender & Dark Purple Theme Colors */
-        :root {
-            --bg-lavender: #F3E8FF;
-            --text-dark-purple: #4C1D95;
-        }
-       
         body {
-            background-color: var(--bg-lavender);
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            /* Artistic abstract cloud texture blend background matching your requested color theme */
+            background: radial-gradient(circle at 20% 30%, #F3E5F5 0%, #E6E6FA 40%, #D1C4E9 80%, #C5CAE9 100%);
         }
-
-        /* Staggered entry flash animation for your headshot images */
-        @keyframes photoFlash {
-            0% { opacity: 0; transform: scale(0.9) translateY(15px); filter: brightness(1.5); }
-            50% { filter: brightness(1.2); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
+        .exotic-serif {
+            font-family: 'Cinzel Decorative', serif;
         }
-
-        .headshot-animate {
-            opacity: 0;
-            animation: photoFlash 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .editorial-sub {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Heavy Bold Lemon Yellow text outline filter mimicking high-end custom branding logo plates */
+        .lemon-exotic {
+            color: #FFF700;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-shadow: 
+                3px 4px 8px rgba(75, 0, 130, 0.4), 
+                -2px -2px 0px #000, 
+                2px -2px 0px #000, 
+                -2px 2px 0px #000, 
+                2px 2px 0px #000;
+        }
+        .glam-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .glam-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 25px 50px rgba(103, 58, 183, 0.15);
+        }
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="text-gray-900 min-h-screen flex flex-col">
+<body class="text-neutral-800 antialiased selection:bg-yellow-300 selection:text-black">
 
-    <!-- NAVIGATION HEADER -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-purple-100 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-3xl font-extrabold tracking-wide text-[#4C1D95] hover:opacity-90 transition-opacity">
-                YEENA FISHER
-            </h1>
-            <nav class="flex gap-6 text-sm font-semibold tracking-wider text-purple-900 uppercase">
-                <a href="#theatrical" class="hover:text-purple-600 transition-colors">Theatrical</a>
-                <a href="#commercial" class="hover:text-purple-600 transition-colors">Commercial</a>
-                <a href="#media" class="hover:text-purple-600 transition-colors">Red Carpets</a>
-                <a href="#resume" class="hover:text-purple-600 transition-colors">Resume</a>
-                <a href="#contact" class="hover:text-purple-600 transition-colors">Contact</a>
-            </nav>
-        </div>
+    <!-- Fixed Glassmorphism Top Header Menu Layout -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/50 backdrop-blur-md border-b border-purple-300/30 px-6 py-4 md:px-12 flex justify-between items-center shadow-sm">
+        <span class="exotic-serif text-base tracking-widest text-purple-950 font-bold">YF</span>
+        <nav class="hidden md:flex space-x-6 text-[11px] tracking-widest uppercase text-purple-900 font-bold">
+            <a href="#home" class="hover:text-purple-600 transition-colors">Home</a>
+            <a href="#reel" class="hover:text-purple-600 transition-colors">Showreel</a>
+            <a href="#theatrical-gallery" class="hover:text-purple-600 transition-colors">Theatrical Headshots</a>
+            <a href="#commercial-gallery" class="hover:text-purple-600 transition-colors">Commercial Headshots</a>
+            <a href="#media-press" class="hover:text-purple-600 transition-colors">Red Carpets & Media</a>
+            <a href="#resume" class="hover:text-purple-600 transition-colors">Resume</a>
+            <a href="#contact" class="hover:text-purple-600 transition-colors">Contact</a>
+        </nav>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-16">
-
-        <!-- SECTION 1: HERO / MAIN HEADSHOT -->
-        <section class="flex justify-center items-center py-6">
-            <div class="max-w-md w-full overflow-hidden rounded-2xl shadow-xl border-4 border-white bg-white">
-                <img src="headshot_main.jpg" alt="Yeena Fisher Headshot" class="w-full h-auto object-cover block mx-auto">
+    <!-- Master Centered Exotic Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
+        <div class="max-w-4xl w-full text-center space-y-8 relative z-10 flex flex-col items-center">
+            
+            <!-- Centered Portrait Asset Box (Completely clean of text or labels) -->
+            <div class="w-64 md:w-72 aspect-[3/4] bg-white/40 border border-white/60 rounded-sm shadow-2xl p-2.5 backdrop-blur-sm glam-card">
+                <img src="headshot_main.jpg" alt="Yeena Fisher Centered Portrait" class="w-full h-full object-cover object-top rounded-sm shadow-inner">
             </div>
-        </section>
 
-        <!-- SECTION 2: THEATRICAL HEADSHOTS ROW -->
-        <section id="theatrical" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
-            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                Theatrical Headshots
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_1.jpg" alt="Theatrical Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.2s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_2.jpg" alt="Theatrical Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.3s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_3.jpg" alt="Theatrical Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="theatrical_5.jpg" alt="Theatrical Look 5" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: COMMERCIAL HEADSHOTS RECTANGLE -->
-        <section id="commercial" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
-            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                Commercial Headshots
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_1.jpg" alt="Commercial Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.25s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_2.jpg" alt="Commercial Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;" onclick="expandImage(this.querySelector('img').src)">
-                    <img src="commercial_3.jpg" alt="Commercial Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                </div>
-            </div>
-            <p class="text-xs text-gray-400 mt-3 text-right italic">Click any image to view full screen</p>
-        </section>
-
-        <!-- SECTION 4: RED CARPETS & MEDIA -->
-        <section id="media" class="space-y-8">
-            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
-                <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                    Red Carpet Gallery
+            <!-- Stylish Impressive Bold Lemon Yellow Branding Header -->
+            <div class="space-y-4">
+                <h1 class="exotic-serif text-5xl md:text-7xl lg:text-8xl leading-none uppercase text-center tracking-tight">
+                    <span class="lemon-exotic">Yeena Fisher</span>
+                </h1>
+                <h2 class="editorial-sub text-base md:text-lg italic tracking-wider text-purple-950 font-semibold block pt-1">
+                    Actor &bull; Filmmaker &bull; Dancer
                 </h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)">
-                        <img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)">
-                        <img src="red_carpet_2.jpg" alt="Press Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1" onclick="expandImage(this.querySelector('img').src)">
-                        <img src="red_carpet_3.jpg" alt="Appearances" class="w-full h-full object-cover">
-                    </div>
-                </div>
             </div>
+            
+            <p class="text-sm md:text-base text-purple-950/80 max-w-2xl mx-auto font-normal leading-relaxed text-center">
+                Working film actress and dynamic filmmaker based in Los Angeles. Delivering versatile, emotionally grounded principal performances across major feature films, network television, and complex dramatic narratives.
+            </p>
 
-            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
-                <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
-                    Interviews & Media Presence
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wider">Performance Reel</h3>
-                        <div class="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
-                            <iframe class="w-full h-full" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wider">Social Media & Press Interview</h3>
-                        <div class="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
-                            <iframe class="w-full h-full" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
+            <!-- Direct Casting Profiles Row -->
+            <div class="pt-2 flex flex-wrap justify-center gap-3 text-[10px] tracking-widest uppercase font-bold">
+                <a href="https://www.imdb.com/name/nm2391329/?ref_=ext_shr_lnk" target="_blank" class="px-6 py-3.5 bg-purple-950 text-white hover:bg-yellow-400 hover:text-black transition-all shadow-md rounded-none">
+                    Official IMDb Profile
+                </a>
+                <a href="https://resumes.actorsaccess.com/yeenafisher" target="_blank" class="px-6 py-3.5 bg-purple-950 text-white hover:bg-yellow-400 hover:text-black transition-all shadow-md rounded-none">
+                    Actors Access Resume
+                </a>
+                <a href="https://linktr.ee/yeenafisher1" target="_blank" class="px-6 py-3.5 bg-white text-purple-950 border border-purple-300 hover:bg-purple-100 transition-all rounded-none shadow-sm">
+                    Linktree Hub
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- SECTION 5: RESUME DOWNLOAD -->
-        <section id="resume" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100 text-center space-y-6">
-            <div class="text-left border-b border-purple-100 pb-3">
-                <h2 class="text-2xl font-bold text-[#4C1D95] uppercase tracking-wider">Professional Resume</h2>
+    <!-- Principal Acting Video Showcase -->
+    <section id="reel" class="py-24 px-6 max-w-6xl mx-auto border-t border-purple-300/40">
+        <div class="mb-12 text-center">
+            <span class="text-xs uppercase tracking-[0.3em] text-purple-950 font-bold block mb-2">Screen Presence</span>
+            <h2 class="editorial-sub text-3xl md:text-4xl text-purple-950 font-bold italic">Principal Demo Reel</h2>
+        </div>
+        
+        <div class="w-full aspect-video bg-white/40 border border-white/60 relative overflow-hidden rounded-sm shadow-xl p-2 backdrop-blur-sm">
+            <!-- PASTE YOUR MAIN YOUTUBE/VIMEO PERFORMANCE REEL EMBED IFRAME LINK HERE -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center space-y-2 px-4 bg-purple-500/5">
+                <span class="text-xs tracking-widest text-purple-950 uppercase font-bold tracking-[0.2em]">Reel Player Frame Container</span>
             </div>
+        </div>
+    </section>
+
+    <!-- ROW 1: Dedicated Isolated Theatrical Headshot Portfolio Gallery -->
+    <section id="theatrical-gallery" class="py-24 px-6 max-w-6xl mx-auto border-t border-purple-300/40">
+        <div class="mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-purple-950 font-bold block mb-2">Portfolio</span>
+            <h2 class="editorial-sub text-3xl md:text-4xl text-purple-950 font-bold italic">Theatrical Headshots</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+                <img src="look_dramatic.jpg" alt="Theatrical Look 1" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
+            </div>
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+                <img src="look_procedural.jpg" alt="Theatrical Look 2" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
+            </div>
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+                <img src="look_period.jpg" alt="Theatrical Look 3" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
+            </div>
+        </div>
+    </section>
+
+    <!-- ROW 2: Dedicated Isolated Commercial Headshot Portfolio Gallery -->
+    <section id="commercial-gallery" class="py-24 px-6 max-w-6xl mx-auto border-t border-purple-300/40">
+        <div class="mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-purple-700 font-bold block mb-2">Portfolio</span>
+            <h2 class="editorial-sub text-3xl md:text-4xl text-purple-950 font-bold italic">Commercial Headshots</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+                <img src="look_commercial.jpg" alt="Commercial Look 1" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
+            </div>
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+                <img src="look_casual.jpg" alt="Commercial Look 2" class="w-full h-full object-cover object-top rounded-sm" onerror="this.style.display='none';">
+            </div>
+            <div class="aspect-[3/4] p-2 bg-white/40 border border-white/60 relative overflow-hidden group glam-card rounded-sm shadow-md">
+
+
+
+         
+
 
 
 
