@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
     <style>
-        /* 100% NATIVE STYLE BLUEPRINTS - ABSOLUTELY ZERO TAILWIND DEPENDENCY */
+        /* 100% NATIVE CSS LAYOUT BLUEPRINT - ZERO EXTERNAL SCRIPT DEPENDENCY */
         :root {
-            --bg-lavender-base: #FDF9FF;
-            --dark-mauve-purple: #4A2E5B; /* Your exact deep mauve shaded purple color */
-            --card-border: #E9D5FF;
+            --bg-butter-darker: #F7F2E4; /* Your rich, warm darker butter main body background */
+            --light-lavender: #EFE5FF;   /* Your exact light lavender banner color */
+            --plush-purple: #3A1F4C;      /* Your exact deep, plush dark purple name color */
+            --border-purple: #D6BCFA;
         }
        
         body {
-            background-color: var(--bg-lavender-base);
+            background-color: var(--bg-butter-darker);
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -23,60 +24,59 @@
             flex-direction: column;
         }
 
-        /* NAVIGATION HEADER WITH WHITE BANNER BASE */
+        /* 1. LIGHT LAVENDER TOP NAVIGATION BANNER */
         header {
-            background-color: #ffffff;
+            background-color: var(--light-lavender);
             position: sticky;
             top: 0;
-            z-index: 40;
-            border-bottom: 1px solid var(--card-border);
-            box-shadow: 0 2px 10px rgba(74, 46, 91, 0.08);
+            z-index: 50;
+            border-bottom: 2px solid var(--border-purple);
+            box-shadow: 0 4px 10px rgba(58, 31, 76, 0.05);
         }
 
         .header-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 20px 24px;
+            padding: 16px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            justify-content: space-between;
+            gap: 12px;
         }
 
         @media (min-width: 768px) {
             .header-container {
                 flex-direction: row;
-                justify-content: space-between;
+                gap: 0;
             }
         }
 
-        /* YOUR STYLISH EXOTIC MAUVE SHADED NAME TITLE */
-        .exotic-name {
-            color: var(--dark-mauve-purple);
+        /* STYLISH LOGO ABBREVIATION IN CAPITAL LETTERS */
+        .logo-abbreviation {
+            color: var(--plush-purple);
             font-family: 'Georgia', serif;
             font-weight: 900;
-            font-size: 36px;
-            letter-spacing: 3px;
+            font-size: 22px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin: 0;
-            text-shadow: 1px 1px 3px rgba(74, 46, 91, 0.15);
         }
 
         header nav {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 24px;
+            gap: 20px;
         }
 
         header nav a {
-            color: var(--dark-mauve-purple);
+            color: var(--plush-purple);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: color 0.2s ease, transform 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         header nav a:hover {
@@ -84,50 +84,60 @@
             transform: translateY(-1px);
         }
 
-        /* MAIN CONTENT ROW CONSTRAINTS */
+        /* MAIN CONTENT WRAPPER */
         main {
             flex-grow: 1;
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
             margin: 0 auto;
             box-sizing: border-box;
             padding: 40px 24px;
         }
 
-        .section-wrapper {
-            background-color: #ffffff;
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 64px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        /* 2. EXOTIC NAME TITLE CONTEXT IN A SHADE DARKER THAN THE TOP BANNER */
+        .exotic-title-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 24px 20px;
+            background-color: #E6DAFF; /* Distinctly darker shade background than the top lavender menu */
+            border-radius: 12px;
+            border: 1px solid var(--border-purple);
         }
 
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark-mauve-purple);
-            margin-top: 0;
-            margin-bottom: 24px;
+        .exotic-name {
+            color: var(--plush-purple);
+            font-family: 'Georgia', serif;
+            font-weight: 900;
+            font-size: 42px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--card-border);
-            padding-bottom: 12px;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(58, 31, 76, 0.15);
         }
 
-        /* HERO PROFILE IMAGE LAYOUT */
+        .exotic-subtitle {
+            margin: 10px 0 0 0;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--plush-purple);
+            opacity: 0.9;
+        }
+
+        /* 3. CENTERED MAIN HERO PROFILE HEADSHOT BLOCK */
         .hero-section {
             display: flex;
             justify-content: center;
-            margin-bottom: 64px;
+            margin-bottom: 40px;
         }
 
         .hero-card {
-            max-width: 340px;
+            max-width: 320px;
             width: 100%;
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(74, 46, 91, 0.15);
+            box-shadow: 0 20px 25px -5px rgba(58, 31, 76, 0.12);
             border: 4px solid #ffffff;
             background-color: #ffffff;
         }
@@ -138,19 +148,90 @@
             display: block;
         }
 
-        /* SOLID BLACK BOX FOR THEATRICAL GRID (6 TOP / 6 BOTTOM) */
+        /* CONTENT SECTION PANELS BLOCK */
+        .section-wrapper {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 48px;
+            border: 1px solid var(--border-purple);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--plush-purple);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #F3E8FF;
+            padding-bottom: 10px;
+        }
+
+        /* 4. BIOGRAPHY TEXT FIELD DETAIL WITH THEATRICAL & EMOTIONAL DEPTH OF EXCELLENCE */
+        .bio-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #374151;
+            margin: 0;
+            text-align: justify;
+        }
+
+        /* 5. PERFECT SQUARE CONTAINER FOR PROMINENT DEMO REEL */
+        .square-reel-box {
+            max-width: 600px;
+            margin: 0 auto 48px auto;
+            background-color: #000000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            border: 4px solid #ffffff;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .square-reel-box iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* SOLID BLACK STATEMENT KEYWORDS BLOCK */
+        .black-statement-block {
+            background-color: #000000;
+            border-radius: 12px;
+            padding: 24px;
+            color: #ffffff;
+            margin-top: 24px;
+        }
+
+        .black-statement-block ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .black-statement-block li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* SOLID BLACK RECTANGLE BOX CONSTRAINTS FOR THEATRICAL GRID */
         .theatrical-rectangle-box {
             border: 4px solid #000000;
             padding: 24px;
             background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .theatrical-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 12px;
         }
 
         @media (min-width: 640px) {
@@ -165,7 +246,7 @@
             }
         }
 
-        /* COMMERCIAL GRID (4 COLUMNS TRACKS) */
+        /* COMMERCIAL GRID DISPLAY */
         .commercial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -178,20 +259,25 @@
             }
         }
 
+        /* RED CARPET LAYOUT CONSTRAINTS */
+        .red-carpet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
         .headshot-card {
             aspect-ratio: 3 / 4;
             overflow: hidden;
             border-radius: 8px;
-            background-color: #fcf8ff;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            background-color: #ffffff;
+            border: 1px solid var(--border-purple);
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .headshot-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(74, 46, 91, 0.12);
+            transform: scale(1.03);
         }
 
         .headshot-card img {
@@ -201,161 +287,66 @@
             display: block;
         }
 
-        /* EXPANDED PROMINENT GALLERY GRID FOR RED CARPETS */
-        .red-carpet-expanded-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 640px) {
-            .red-carpet-expanded-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .red-carpet-card {
-            aspect-ratio: 16 / 10; /* Sleek cinematic landscape profile */
-            overflow: hidden;
-            border-radius: 12px;
-            background-color: #fcf8ff;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .red-carpet-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(74, 46, 91, 0.1);
-        }
-
-        .red-carpet-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* MEDIA INTERVIEWS PLATFORM */
-        .interviews-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 768px) {
-            .interviews-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .video-box {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .video-box h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #4b5563;
-            text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 1px;
-        }
-
-        .video-container {
-            aspect-ratio: 16 / 9;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 12px;
-            background-color: #000000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* SOLID BLACK STATEMENT RECTANGLE BLOCK WIRED BELOW REELS */
-        .black-statement-block {
-            background-color: #000000;
-            border: 4px solid #000000;
-            border-radius: 12px;
-            padding: 32px;
-            color: #ffffff;
-            margin-top: 40px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .black-statement-block h4 {
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333333;
-            padding-bottom: 10px;
+        /* FOOTER MODULE AT THE VERY BOTTOM WITH SOCIAL MEDIA LINKS */
+        footer {
+            background-color: var(--plush-purple);
+            border-top: 3px solid var(--border-purple);
+            padding: 32px 24px;
             text-align: center;
+            margin-top: auto;
         }
 
-        .statement-list {
-            margin: 0;
-            padding-left: 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 20px;
         }
 
-        @media (min-width: 768px) {
-            .statement-list {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px 40px;
-            }
-        }
-
-        .statement-list li {
+        .social-links a {
             color: #ffffff;
+            text-decoration: none;
             font-size: 14px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
         }
 
-        /* LIGHTBOX EXPANSION ENGINE */
-        .lightbox-modal {
+        .social-links a:hover {
+            color: var(--light-lavender);
+        }
+
+        footer p {
+            margin: 0;
+            color: #D6BCFA;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* LIGHTBOX EXPANSION SYSTEM */
+        .lightbox {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 100;
             padding: 20px;
-            box-sizing: border-box;
         }
 
-        .lightbox-modal img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
+        .lightbox img {
+            max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION HEADER WITH EXOTIC MAUVE NAME ROW AND CONNECTED TABS -->
+    <!-- 1. LIGHT LAVENDER TOP BANNER MENU WITH STYLISH LOGO ABBREVIATION -->
     <header>
         <div class="header-container">
-            <h1 class="exotic-name">Yeena Fisher</h1>
+            <div class="logo-abbreviation">Y. FISHER</div>
             <nav>
-                <a href="#theatrical">Theatrical</a>
+                <a href="#">Home</a>
+                <a href="#showreels">Show Reels</a>
