@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
-    <!-- Tailwind CSS for modern, smooth styling -->
+    <!-- Corrected Live Tailwind CSS Play CDN Framework Engine -->
     <script src="https://tailwindcss.com"></script>
     <style>
         /* Custom Glamorous Lavender & Dark Purple Theme Colors */
@@ -34,17 +34,17 @@
 <body class="text-gray-900 min-h-screen flex flex-col">
 
     <!-- NAVIGATION HEADER -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-purple-100 shadow-sm">
+    <header class="bg-black sticky top-0 z-40 border-b border-purple-900 shadow-md">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-3xl font-extrabold tracking-wide text-[#4C1D95] hover:opacity-90 transition-opacity">
+            <h1 class="text-3xl font-extrabold tracking-wide text-white hover:opacity-90 transition-opacity">
                 YEENA FISHER
             </h1>
-            <nav class="flex gap-6 text-sm font-semibold tracking-wider text-purple-900 uppercase">
-                <a href="#theatrical" class="hover:text-purple-600 transition-colors">Theatrical</a>
-                <a href="#commercial" class="hover:text-purple-600 transition-colors">Commercial</a>
-                <a href="#media" class="hover:text-purple-600 transition-colors">Red Carpets</a>
-                <a href="#resume" class="hover:text-purple-600 transition-colors">Resume</a>
-                <a href="#contact" class="hover:text-purple-600 transition-colors">Contact</a>
+            <nav class="flex gap-6 text-sm font-semibold tracking-wider text-white uppercase">
+                <a href="#theatrical" class="hover:text-purple-300 transition-colors">Theatrical</a>
+                <a href="#commercial" class="hover:text-purple-300 transition-colors">Commercial</a>
+                <a href="#media" class="hover:text-purple-300 transition-colors">Red Carpets</a>
+                <a href="#resume" class="hover:text-purple-300 transition-colors">Resume</a>
+                <a href="#contact" class="hover:text-purple-300 transition-colors">Contact</a>
             </nav>
         </div>
     </header>
@@ -59,44 +59,43 @@
             </div>
         </section>
 
-        <!-- SECTION 2: THEATRICAL HEADSHOTS ROW -->
+        <!-- SECTION 2: THEATRICAL HEADSHOTS (ALL EXTRA EMPTY BOXES REMOVED) -->
         <section id="theatrical" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
             <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
                 Theatrical Headshots
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;">
                     <img src="theatrical_1.jpg" alt="Theatrical Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.2s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.2s;">
                     <img src="theatrical_2.jpg" alt="Theatrical Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.3s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.3s;">
                     <img src="theatrical_3.jpg" alt="Theatrical Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;">
                     <img src="theatrical_5.jpg" alt="Theatrical Look 5" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: COMMERCIAL HEADSHOTS RECTANGLE -->
+        <!-- SECTION 3: COMMERCIAL HEADSHOTS -->
         <section id="commercial" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
             <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
                 Commercial Headshots
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;">
                     <img src="commercial_1.jpg" alt="Commercial Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.25s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.25s;">
                     <img src="commercial_2.jpg" alt="Commercial Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;" onclick="expandImage(this.querySelector('img').src)">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;">
                     <img src="commercial_3.jpg" alt="Commercial Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
             </div>
-            <p class="text-xs text-gray-400 mt-3 text-right italic">Click any image to view full screen</p>
         </section>
 
         <!-- SECTION 4: RED CARPETS & MEDIA -->
@@ -106,13 +105,13 @@
                     Red Carpet Gallery
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)">
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer">
                         <img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover">
                     </div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer" onclick="expandImage(this.querySelector('img').src)">
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer">
                         <img src="red_carpet_2.jpg" alt="Press Event" class="w-full h-full object-cover">
                     </div>
-                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1" onclick="expandImage(this.querySelector('img').src)">
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1">
                         <img src="red_carpet_3.jpg" alt="Appearances" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -139,19 +138,14 @@
             </div>
         </section>
 
-        <!-- SECTION 5: RESUME DOWNLOAD -->
+        <!-- SECTION 5: RESUME -->
         <section id="resume" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100 text-center space-y-6">
             <div class="text-left border-b border-purple-100 pb-3">
                 <h2 class="text-2xl font-bold text-[#4C1D95] uppercase tracking-wider">Professional Resume</h2>
             </div>
+        </section>
 
+    </main>
 
-
-
-
-
-
-
-
-
-         
+</body>
+</html>
