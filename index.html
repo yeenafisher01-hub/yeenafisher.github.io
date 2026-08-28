@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
     <style>
-        /* PURE NATIVE EMBEDDED STYLING SHEET */
+        /* 100% NATIVE STYLE BLUEPRINTS - ABSOLUTELY ZERO TAILWIND DEPENDENCY */
         :root {
-            --bg-lavender-light: #FDF9FF;
-            --text-dark-purple: #4C1D95;
+            --bg-lavender-base: #FDF9FF;
+            --dark-mauve-purple: #4A2E5B; /* Your exact deep mauve shaded purple color */
             --card-border: #E9D5FF;
         }
        
         body {
-            background-color: var(--bg-lavender-light);
+            background-color: var(--bg-lavender-base);
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -23,71 +23,68 @@
             flex-direction: column;
         }
 
-        /* GLAMOROUS BANNER WITH BIG EXOTIC BOLD TYPOGRAPHY */
-        .exotic-purple-banner {
-            background: linear-gradient(to right, #E9D5FF, #F3E8FF, #D8B4FE);
-            border-bottom: 4px solid #000000;
-            padding: 40px 24px;
-            text-align: center;
-        }
-
-        .exotic-purple-banner h1 {
-            margin: 0;
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #000000;
-            line-height: 1.1;
-        }
-
-        .exotic-purple-banner p {
-            margin: 10px 0 0 0;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-dark-purple);
-        }
-
-        /* STYLISH PURPLE COLOR NAVIGATION BAR */
+        /* NAVIGATION HEADER WITH WHITE BANNER BASE */
         header {
-            background-color: var(--text-dark-purple);
+            background-color: #ffffff;
             position: sticky;
             top: 0;
             z-index: 40;
-            border-bottom: 2px solid #000000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 2px 10px rgba(74, 46, 91, 0.08);
         }
 
         .header-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 16px 24px;
+            padding: 20px 24px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        /* YOUR STYLISH EXOTIC MAUVE SHADED NAME TITLE */
+        .exotic-name {
+            color: var(--dark-mauve-purple);
+            font-family: 'Georgia', serif;
+            font-weight: 900;
+            font-size: 36px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(74, 46, 91, 0.15);
         }
 
         header nav {
             display: flex;
-            gap: 28px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
         }
 
         header nav a {
-            color: #ffffff;
+            color: var(--dark-mauve-purple);
             text-decoration: none;
             font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         header nav a:hover {
-            color: #E9D5FF;
+            color: #8B5CF6;
+            transform: translateY(-1px);
         }
 
-        /* CONTENT CONTAINERS */
+        /* MAIN CONTENT ROW CONSTRAINTS */
         main {
             flex-grow: 1;
             max-width: 1100px;
@@ -103,13 +100,13 @@
             border-radius: 16px;
             margin-bottom: 64px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         .section-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            color: var(--text-dark-purple);
+            color: var(--dark-mauve-purple);
             margin-top: 0;
             margin-bottom: 24px;
             text-transform: uppercase;
@@ -118,6 +115,7 @@
             padding-bottom: 12px;
         }
 
+        /* HERO PROFILE IMAGE LAYOUT */
         .hero-section {
             display: flex;
             justify-content: center;
@@ -125,12 +123,13 @@
         }
 
         .hero-card {
-            max-width: 360px;
+            max-width: 340px;
             width: 100%;
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px -5px rgba(74, 46, 91, 0.15);
             border: 4px solid #ffffff;
+            background-color: #ffffff;
         }
 
         .hero-card img {
@@ -139,27 +138,34 @@
             display: block;
         }
 
-        /* 6x2 GRID RECTANGLE BOX CONSTRAINTS */
+        /* SOLID BLACK BOX FOR THEATRICAL GRID (6 TOP / 6 BOTTOM) */
         .theatrical-rectangle-box {
-            border: 3px solid #000000;
+            border: 4px solid #000000;
             padding: 24px;
-            border-radius: 12px;
             background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .theatrical-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 640px) {
+            .theatrical-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
             .theatrical-grid {
                 grid-template-columns: repeat(6, 1fr);
             }
         }
 
-        /* 4-COLUMN COMMERCIAL GRID */
+        /* COMMERCIAL GRID (4 COLUMNS TRACKS) */
         .commercial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -176,9 +182,16 @@
             aspect-ratio: 3 / 4;
             overflow: hidden;
             border-radius: 8px;
-            background-color: #f7f7f7;
+            background-color: #fcf8ff;
             border: 1px solid var(--card-border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .headshot-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(74, 46, 91, 0.12);
         }
 
         .headshot-card img {
@@ -188,22 +201,68 @@
             display: block;
         }
 
-        .red-carpet-grid {
+        /* EXPANDED PROMINENT GALLERY GRID FOR RED CARPETS */
+        .red-carpet-expanded-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        .media-grid {
+        @media (min-width: 640px) {
+            .red-carpet-expanded-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .red-carpet-card {
+            aspect-ratio: 16 / 10; /* Sleek cinematic landscape profile */
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #fcf8ff;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .red-carpet-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(74, 46, 91, 0.1);
+        }
+
+        .red-carpet-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* MEDIA INTERVIEWS PLATFORM */
+        .interviews-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 24px;
         }
 
         @media (min-width: 768px) {
-            .media-grid {
+            .interviews-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+        }
+
+        .video-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .video-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4b5563;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
         }
 
         .video-container {
@@ -212,6 +271,7 @@
             overflow: hidden;
             border-radius: 12px;
             background-color: #000000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .video-container iframe {
@@ -219,87 +279,83 @@
             height: 100%;
             border: 0;
         }
+
+        /* SOLID BLACK STATEMENT RECTANGLE BLOCK WIRED BELOW REELS */
+        .black-statement-block {
+            background-color: #000000;
+            border: 4px solid #000000;
+            border-radius: 12px;
+            padding: 32px;
+            color: #ffffff;
+            margin-top: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .black-statement-block h4 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .statement-list {
+            margin: 0;
+            padding-left: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .statement-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px 40px;
+            }
+        }
+
+        .statement-list li {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+        /* LIGHTBOX EXPANSION ENGINE */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- EXOTIC STYLE TOP BANNER -->
-    <div class="exotic-purple-banner">
-        <h1>Yeena Fisher</h1>
-        <p>Actress & Filmmaker</p>
-    </div>
-
-    <!-- PURPLE NAVIGATION MENU (RESUME LINKS DIRECTLY TO PDF PAGE) -->
+    <!-- NAVIGATION HEADER WITH EXOTIC MAUVE NAME ROW AND CONNECTED TABS -->
     <header>
         <div class="header-container">
+            <h1 class="exotic-name">Yeena Fisher</h1>
             <nav>
                 <a href="#theatrical">Theatrical</a>
-                <a href="#commercial">Commercial</a>
-                <a href="#media">Red Carpets</a>
-                <a href="Fisher_resume.pdf" target="_blank">Resume</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-
-        <!-- MAIN HERO HEADSHOT -->
-        <section class="hero-section">
-            <div class="hero-card">
-                <img src="headshot_main.jpg" alt="Yeena Fisher Headshot">
-            </div>
-        </section>
-
-        <!-- THEATRICAL GRID IN A RECTANGLE BOX (6 TOP / 6 BOTTOM) -->
-        <section id="theatrical" class="section-wrapper">
-            <div class="section-title">Theatrical Headshots</div>
-            <div class="theatrical-rectangle-box">
-                <div class="theatrical-grid">
-                    <div class="headshot-card"><img src="theatrical_1.jpg" alt="Look 1"></div>
-                    <div class="headshot-card"><img src="theatrical_2.jpg" alt="Look 2"></div>
-                    <div class="headshot-card"><img src="theatrical_3.jpg" alt="Look 3"></div>
-                    <div class="headshot-card"><img src="theatrical_4.jpg" alt="Look 4"></div>
-                    <div class="headshot-card"><img src="theatrical_5.jpg" alt="Look 5"></div>
-                    <div class="headshot-card"><img src="theatrical_6.jpg" alt="Look 6"></div>
-                    <div class="headshot-card"><img src="theatrical_7.jpg" alt="Look 7"></div>
-                    <div class="headshot-card"><img src="theatrical_8.jpg" alt="Look 8"></div>
-                    <div class="headshot-card"><img src="theatrical_9.jpg" alt="Look 9"></div>
-                    <div class="headshot-card"><img src="theatrical_10.jpg" alt="Look 10"></div>
-                    <div class="headshot-card"><img src="theatrical_11.jpg" alt="Look 11"></div>
-                    <div class="headshot-card"><img src="theatrical_12.jpg" alt="Look 12"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- COMMERCIAL HEADSHOTS (4-COLUMN GRID SECTIONS) -->
-        <section id="commercial" class="section-wrapper">
-            <div class="section-title">Commercial Headshots</div>
-            <div class="commercial-grid">
-                <div class="headshot-card"><img src="commercial_1.jpg" alt="Commercial 1"></div>
-                <div class="headshot-card"><img src="commercial_2.jpg" alt="Commercial 2"></div>
-                <div class="headshot-card"><img src="commercial_3.jpg" alt="Commercial 3"></div>
-                <div class="headshot-card"><img src="commercial_4.jpg" alt="Commercial 4"></div>
-            </div>
-        </section>
-
-        <!-- RED CARPETS SECTION -->
-        <section id="media" style="display: flex; flex-direction: column; gap: 32px;">
-            <div class="section-wrapper" style="margin-bottom: 0;">
-                <div class="section-title">Red Carpet Gallery</div>
-                <div class="red-carpet-grid">
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_1.jpg" alt="Red Carpet 1"></div>
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_2.jpg" alt="Press Event 2"></div>
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_3.jpg" alt="Appearances 3"></div>
-                </div>
-            </div>
-
-            <div class="section-wrapper">
-                <div class="section-title">Interviews & Media Presence</div>
-                <div class="media-grid">
-                    <div class="video-container"><iframe src="https://youtube.com"></iframe></div>
-                    <div class="video-container"><iframe src="https://youtube.com"></iframe></div>
-                </div>
-            </div>
-        </section>
-
