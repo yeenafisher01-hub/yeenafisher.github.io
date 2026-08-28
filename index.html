@@ -170,7 +170,7 @@
             padding-bottom: 10px;
         }
 
-        /* 4. BIOGRAPHY TEXT FIELD DETAIL WITH THEATRICAL & EMOTIONAL DEPTH OF EXCELLENCE */
+        /* 4. BIOGRAPHY TEXT FIELD */
         .bio-text {
             font-size: 16px;
             line-height: 1.8;
@@ -182,7 +182,7 @@
         /* 5. PERFECT SQUARE CONTAINER FOR PROMINENT DEMO REEL */
         .square-reel-box {
             max-width: 600px;
-            margin: 0 auto 48px auto;
+            margin: 0 auto 24px auto;
             background-color: #000000;
             border-radius: 16px;
             overflow: hidden;
@@ -198,6 +198,43 @@
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+        /* RESTORED: STRATEGIC DARK PURPLE SHADED PROFILE BADGE INTERFACE ROWS */
+        .badge-link-container {
+            max-width: 600px;
+            margin: 0 auto 48px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 500px) {
+            .badge-link-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .dark-purple-badge {
+            background-color: var(--plush-purple);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(58, 31, 76, 0.15);
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-purple);
+        }
+
+        .dark-purple-badge:hover {
+            background-color: #4C1D95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(58, 31, 76, 0.25);
         }
 
         /* SOLID BLACK STATEMENT KEYWORDS BLOCK */
@@ -287,7 +324,7 @@
             display: block;
         }
 
-        /* FOOTER MODULE AT THE VERY BOTTOM WITH SOCIAL MEDIA LINKS */
+        /* FOOTER MODULE */
         footer {
             background-color: var(--plush-purple);
             border-top: 3px solid var(--border-purple);
@@ -313,40 +350,3 @@
             transition: color 0.2s ease;
         }
 
-        .social-links a:hover {
-            color: var(--light-lavender);
-        }
-
-        footer p {
-            margin: 0;
-            color: #D6BCFA;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        /* LIGHTBOX EXPANSION SYSTEM */
-        .lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
-        }
-
-        .lightbox img {
-            max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 1. LIGHT LAVENDER TOP BANNER MENU WITH STYLISH LOGO ABBREVIATION -->
-    <header>
-        <div class="header-container">
-            <div class="logo-abbreviation">Y. FISHER</div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#showreels">Show Reels</a>
