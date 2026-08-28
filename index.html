@@ -4,349 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
+    <!-- Corrected Live Tailwind CSS Play CDN Framework Engine -->
+    <script src="https://tailwindcss.com"></script>
     <style>
-        /* 100% NATIVE CSS LAYOUT BLUEPRINT - ZERO EXTERNAL SCRIPT DEPENDENCY */
+        /* Custom Glamorous Lavender & Dark Purple Theme Colors */
         :root {
-            --bg-butter-darker: #F7F2E4; /* Your rich, warm darker butter main body background */
-            --light-lavender: #EFE5FF;   /* Your exact light lavender banner color */
-            --plush-purple: #3A1F4C;      /* Your exact deep, plush dark purple name color */
-            --border-purple: #D6BCFA;
+            --bg-lavender: #F3E8FF;
+            --text-dark-purple: #4C1D95;
         }
        
         body {
-            background-color: var(--bg-butter-darker);
+            background-color: var(--bg-lavender);
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #1a1a1a;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* 1. LIGHT LAVENDER TOP NAVIGATION BANNER */
-        header {
-            background-color: var(--light-lavender);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            border-bottom: 2px solid var(--border-purple);
-            box-shadow: 0 4px 10px rgba(58, 31, 76, 0.05);
+        /* Staggered entry flash animation for your headshot images */
+        @keyframes photoFlash {
+            0% { opacity: 0; transform: scale(0.9) translateY(15px); filter: brightness(1.5); }
+            50% { filter: brightness(1.2); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
         }
 
-        .header-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 16px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        @media (min-width: 768px) {
-            .header-container {
-                flex-direction: row;
-                gap: 0;
-            }
-        }
-
-        /* STYLISH LOGO ABBREVIATION IN CAPITAL LETTERS */
-        .logo-abbreviation {
-            color: var(--plush-purple);
-            font-family: 'Georgia', serif;
-            font-weight: 900;
-            font-size: 22px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        header nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        header nav a {
-            color: var(--plush-purple);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
-        }
-
-        header nav a:hover {
-            color: #8B5CF6;
-            transform: translateY(-1px);
-        }
-
-        /* MAIN CONTENT WRAPPER */
-        main {
-            flex-grow: 1;
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            box-sizing: border-box;
-            padding: 40px 24px;
-        }
-
-        /* 2. EXOTIC NAME TITLE CONTEXT IN A SHADE DARKER THAN THE TOP BANNER */
-        .exotic-title-container {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: #E6DAFF; /* Distinctly darker shade background than the top lavender menu */
-            border-radius: 12px;
-            border: 1px solid var(--border-purple);
-        }
-
-        .exotic-name {
-            color: var(--plush-purple);
-            font-family: 'Georgia', serif;
-            font-weight: 900;
-            font-size: 42px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin: 0;
-            text-shadow: 1px 1px 3px rgba(58, 31, 76, 0.15);
-        }
-
-        .exotic-subtitle {
-            margin: 8px 0 0 0;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--plush-purple);
-            opacity: 0.8;
-        }
-
-        /* 3. CENTERED MAIN HERO PROFILE HEADSHOT BLOCK */
-        .hero-section {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .hero-card {
-            max-width: 320px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(58, 31, 76, 0.12);
-            border: 4px solid #ffffff;
-            background-color: #ffffff;
-        }
-
-        .hero-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* CONTENT SECTION PANELS BLOCK */
-        .section-wrapper {
-            background-color: #ffffff;
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 48px;
-            border: 1px solid var(--border-purple);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--plush-purple);
-            margin-top: 0;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #F3E8FF;
-            padding-bottom: 10px;
-        }
-
-        /* 4. BIOGRAPHY TEXT FIELD DETAILING THEATRICAL & EMOTIONAL DEPTH */
-        .bio-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #374151;
-            margin: 0;
-            text-align: justify;
-        }
-
-        /* 5. PERFECT SQUARE CONTAINER FOR PROMINENT DEMO REEL */
-        .square-reel-box {
-            max-width: 600px;
-            margin: 0 auto 48px auto;
-            background-color: #000000;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-            border: 4px solid #ffffff;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .square-reel-box iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* SOLID BLACK STATEMENT KEYWORDS BLOCK */
-        .black-statement-block {
-            background-color: #000000;
-            border-radius: 12px;
-            padding: 24px;
-            color: #ffffff;
-            margin-top: 24px;
-        }
-
-        .black-statement-block ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .black-statement-block li {
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        /* SOLID BLACK RECTANGLE BOX CONSTRAINTS FOR THEATRICAL GRID */
-        .theatrical-rectangle-box {
-            border: 4px solid #000000;
-            padding: 24px;
-            background-color: #ffffff;
-            border-radius: 12px;
-        }
-
-        .theatrical-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        @media (min-width: 640px) {
-            .theatrical-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .theatrical-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        /* COMMERCIAL GRID DISPLAY */
-        .commercial-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        @media (min-width: 768px) {
-            .commercial-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* RED CARPET LAYOUT CONSTRAINTS */
-        .red-carpet-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .headshot-card {
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            border-radius: 8px;
-            background-color: #ffffff;
-            border: 1px solid var(--border-purple);
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .headshot-card:hover {
-            transform: scale(1.03);
-        }
-
-        .headshot-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* FOOTER MODULE AT THE VERY BOTTOM WITH SOCIAL MEDIA LINKS */
-        footer {
-            background-color: var(--plush-purple);
-            border-top: 3px solid var(--border-purple);
-            padding: 32px 24px;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.2s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--light-lavender);
-        }
-
-        footer p {
-            margin: 0;
-            color: #D6BCFA;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        /* LIGHTBOX POPUP SYSTEM */
-        .lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
-        }
-
-        .lightbox img {
-            max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px;
+        .headshot-animate {
+            opacity: 0;
+            animation: photoFlash 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
-<body>
+<body class="text-gray-900 min-h-screen flex flex-col">
 
-    <!-- 1. LIGHT LAVENDER TOP BANNER MENU WITH STYLISH LOGO ABBREVIATION -->
-    <header>
-        <div class="header-container">
-            <div class="logo-abbreviation">Y.F</div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#showreels">Show Reels</a>
+    <!-- NAVIGATION HEADER -->
+    <header class="bg-black sticky top-0 z-40 border-b border-purple-900 shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-3xl font-extrabold tracking-wide text-white hover:opacity-90 transition-opacity">
+                YEENA FISHER
+            </h1>
+            <nav class="flex gap-6 text-sm font-semibold tracking-wider text-white uppercase">
+                <a href="#theatrical" class="hover:text-purple-300 transition-colors">Theatrical</a>
+                <a href="#commercial" class="hover:text-purple-300 transition-colors">Commercial</a>
+                <a href="#media" class="hover:text-purple-300 transition-colors">Red Carpets</a>
+                <a href="#resume" class="hover:text-purple-300 transition-colors">Resume</a>
+                <a href="#contact" class="hover:text-purple-300 transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-16">
+
+        <!-- SECTION 1: HERO / MAIN HEADSHOT -->
+        <section class="flex justify-center items-center py-6">
+            <div class="max-w-md w-full overflow-hidden rounded-2xl shadow-xl border-4 border-white bg-white">
+                <img src="headshot_main.jpg" alt="Yeena Fisher Headshot" class="w-full h-auto object-cover block mx-auto">
+            </div>
+        </section>
+
+        <!-- SECTION 2: THEATRICAL HEADSHOTS (ALL EXTRA EMPTY BOXES REMOVED) -->
+        <section id="theatrical" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
+            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
+                Theatrical Headshots
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;">
+                    <img src="theatrical_1.jpg" alt="Theatrical Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.2s;">
+                    <img src="theatrical_2.jpg" alt="Theatrical Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.3s;">
+                    <img src="theatrical_3.jpg" alt="Theatrical Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;">
+                    <img src="theatrical_5.jpg" alt="Theatrical Look 5" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: COMMERCIAL HEADSHOTS -->
+        <section id="commercial" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
+            <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
+                Commercial Headshots
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.1s;">
+                    <img src="commercial_1.jpg" alt="Commercial Look 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.25s;">
+                    <img src="commercial_2.jpg" alt="Commercial Look 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <div class="headshot-animate aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 cursor-pointer shadow-sm border border-purple-50 group" style="animation-delay: 0.4s;">
+                    <img src="commercial_3.jpg" alt="Commercial Look 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: RED CARPETS & MEDIA -->
+        <section id="media" class="space-y-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
+                <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
+                    Red Carpet Gallery
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer">
+                        <img src="red_carpet_1.jpg" alt="Red Carpet" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer">
+                        <img src="red_carpet_2.jpg" alt="Press Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg bg-gray-50 border cursor-pointer col-span-2 sm:col-span-1">
+                        <img src="red_carpet_3.jpg" alt="Appearances" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100">
+                <h2 class="text-2xl font-bold text-[#4C1D95] mb-6 uppercase tracking-wider border-b border-purple-100 pb-3">
+                    Interviews & Media Presence
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wider">Performance Reel</h3>
+                        <div class="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
+                            <iframe class="w-full h-full" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wider">Social Media & Press Interview</h3>
+                        <div class="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
+                            <iframe class="w-full h-full" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: RESUME -->
+        <section id="resume" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-purple-100 text-center space-y-6">
+            <div class="text-left border-b border-purple-100 pb-3">
+                <h2 class="text-2xl font-bold text-[#4C1D95] uppercase tracking-wider">Professional Resume</h2>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
