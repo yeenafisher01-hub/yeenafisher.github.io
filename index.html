@@ -5,31 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeena Fisher | Official Portfolio</title>
     <style>
-        /* PURE NATIVE STYLING - NO OUTSIDE SCRIPTS OR TAILWIND REQUIRED */
+        /* PURE NATIVE EMBEDDED STYLING SHEET */
         :root {
-            --bg-lavender: #F3E8FF;
+            --bg-lavender-light: #FDF9FF;
             --text-dark-purple: #4C1D95;
             --card-border: #E9D5FF;
         }
        
         body {
-            background-color: var(--bg-lavender);
+            background-color: var(--bg-lavender-light);
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #1a1a1a;
-            min-h-screen: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* NAVIGATION HEADER - SLEEK BLACK BACKGROUND */
+        /* GLAMOROUS BANNER WITH BIG EXOTIC BOLD TYPOGRAPHY */
+        .exotic-purple-banner {
+            background: linear-gradient(to right, #E9D5FF, #F3E8FF, #D8B4FE);
+            border-bottom: 4px solid #000000;
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .exotic-purple-banner h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #000000;
+            line-height: 1.1;
+        }
+
+        .exotic-purple-banner p {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dark-purple);
+        }
+
+        /* STYLISH PURPLE COLOR NAVIGATION BAR */
         header {
-            background-color: #000000;
+            background-color: var(--text-dark-purple);
             position: sticky;
             top: 0;
             z-index: 40;
-            border-bottom: 2px solid var(--text-dark-purple);
+            border-bottom: 2px solid #000000;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
@@ -38,46 +65,29 @@
             margin: 0 auto;
             padding: 16px 24px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        @media (min-width: 640px) {
-            .header-container {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-
-        header h1 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            justify-content: center;
         }
 
         header nav {
             display: flex;
-            gap: 24px;
+            gap: 28px;
         }
 
         header nav a {
             color: #ffffff;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.2s ease;
         }
 
         header nav a:hover {
-            color: #D6BCFA;
+            color: #E9D5FF;
         }
 
-        /* MAIN CONTENT LAYOUT CONTAINER */
+        /* CONTENT CONTAINERS */
         main {
             flex-grow: 1;
             max-width: 1100px;
@@ -93,7 +103,7 @@
             border-radius: 16px;
             margin-bottom: 64px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
         .section-title {
@@ -104,11 +114,10 @@
             margin-bottom: 24px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 1px solid var(--card-border);
+            border-bottom: 2px solid var(--card-border);
             padding-bottom: 12px;
         }
 
-        /* MAIN HERO PHOTO LAYOUT */
         .hero-section {
             display: flex;
             justify-content: center;
@@ -116,13 +125,12 @@
         }
 
         .hero-card {
-            max-width: 400px;
+            max-width: 360px;
             width: 100%;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 20px;
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
             border: 4px solid #ffffff;
-            background-color: #ffffff;
         }
 
         .hero-card img {
@@ -131,15 +139,35 @@
             display: block;
         }
 
-        /* NATIVE IMAGES COLUMNS GRID - ABSOLUTELY ZERO GHOST BOXES */
-        .headshot-grid {
+        /* 6x2 GRID RECTANGLE BOX CONSTRAINTS */
+        .theatrical-rectangle-box {
+            border: 3px solid #000000;
+            padding: 24px;
+            border-radius: 12px;
+            background-color: #ffffff;
+        }
+
+        .theatrical-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .theatrical-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* 4-COLUMN COMMERCIAL GRID */
+        .commercial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
 
         @media (min-width: 768px) {
-            .headshot-grid {
+            .commercial-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
@@ -150,12 +178,7 @@
             border-radius: 8px;
             background-color: #f7f7f7;
             border: 1px solid var(--card-border);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .headshot-card:hover {
-            transform: scale(1.03);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .headshot-card img {
@@ -165,7 +188,12 @@
             display: block;
         }
 
-        /* INTERVIEWS & MEDIA ROWS */
+        .red-carpet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
         .media-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -176,21 +204,6 @@
             .media-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
-
-        .video-box {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .video-box h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #4b5563;
-            text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 1px;
         }
 
         .video-container {
@@ -210,98 +223,83 @@
 </head>
 <body>
 
-    <!-- NAVIGATION HEADER -->
+    <!-- EXOTIC STYLE TOP BANNER -->
+    <div class="exotic-purple-banner">
+        <h1>Yeena Fisher</h1>
+        <p>Actress & Filmmaker</p>
+    </div>
+
+    <!-- PURPLE NAVIGATION MENU (RESUME LINKS DIRECTLY TO PDF PAGE) -->
     <header>
         <div class="header-container">
-            <h1>YEENA FISHER</h1>
             <nav>
                 <a href="#theatrical">Theatrical</a>
                 <a href="#commercial">Commercial</a>
                 <a href="#media">Red Carpets</a>
-                <a href="#resume">Resume</a>
+                <a href="Fisher_resume.pdf" target="_blank">Resume</a>
                 <a href="#contact">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
     <main>
 
-        <!-- SECTION 1: HERO IMAGE -->
+        <!-- MAIN HERO HEADSHOT -->
         <section class="hero-section">
             <div class="hero-card">
                 <img src="headshot_main.jpg" alt="Yeena Fisher Headshot">
             </div>
         </section>
 
-        <!-- SECTION 2: THEATRICAL HEADSHOTS (ALL BROKEN BLANK BOXES VANISHED) -->
+        <!-- THEATRICAL GRID IN A RECTANGLE BOX (6 TOP / 6 BOTTOM) -->
         <section id="theatrical" class="section-wrapper">
             <div class="section-title">Theatrical Headshots</div>
-            <div class="headshot-grid">
-                <div class="headshot-card">
-                    <img src="theatrical_1.jpg" alt="Theatrical Look 1">
-                </div>
-                <div class="headshot-card">
-                    <img src="theatrical_2.jpg" alt="Theatrical Look 2">
-                </div>
-                <div class="headshot-card">
-                    <img src="theatrical_3.jpg" alt="Theatrical Look 3">
-                </div>
-                <div class="headshot-card">
-                    <img src="theatrical_5.jpg" alt="Theatrical Look 5">
+            <div class="theatrical-rectangle-box">
+                <div class="theatrical-grid">
+                    <div class="headshot-card"><img src="theatrical_1.jpg" alt="Look 1"></div>
+                    <div class="headshot-card"><img src="theatrical_2.jpg" alt="Look 2"></div>
+                    <div class="headshot-card"><img src="theatrical_3.jpg" alt="Look 3"></div>
+                    <div class="headshot-card"><img src="theatrical_4.jpg" alt="Look 4"></div>
+                    <div class="headshot-card"><img src="theatrical_5.jpg" alt="Look 5"></div>
+                    <div class="headshot-card"><img src="theatrical_6.jpg" alt="Look 6"></div>
+                    <div class="headshot-card"><img src="theatrical_7.jpg" alt="Look 7"></div>
+                    <div class="headshot-card"><img src="theatrical_8.jpg" alt="Look 8"></div>
+                    <div class="headshot-card"><img src="theatrical_9.jpg" alt="Look 9"></div>
+                    <div class="headshot-card"><img src="theatrical_10.jpg" alt="Look 10"></div>
+                    <div class="headshot-card"><img src="theatrical_11.jpg" alt="Look 11"></div>
+                    <div class="headshot-card"><img src="theatrical_12.jpg" alt="Look 12"></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: COMMERCIAL HEADSHOTS -->
+        <!-- COMMERCIAL HEADSHOTS (4-COLUMN GRID SECTIONS) -->
         <section id="commercial" class="section-wrapper">
             <div class="section-title">Commercial Headshots</div>
-            <div class="headshot-grid" style="grid-template-columns: 1fr;">
-                <!-- Auto-adjust column styles natively for commercial row -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%;">
-                    <div class="headshot-card"><img src="commercial_1.jpg" alt="Commercial Look 1"></div>
-                    <div class="headshot-card"><img src="commercial_2.jpg" alt="Commercial Look 2"></div>
-                    <div class="headshot-card"><img src="commercial_3.jpg" alt="Commercial Look 3"></div>
-                </div>
+            <div class="commercial-grid">
+                <div class="headshot-card"><img src="commercial_1.jpg" alt="Commercial 1"></div>
+                <div class="headshot-card"><img src="commercial_2.jpg" alt="Commercial 2"></div>
+                <div class="headshot-card"><img src="commercial_3.jpg" alt="Commercial 3"></div>
+                <div class="headshot-card"><img src="commercial_4.jpg" alt="Commercial 4"></div>
             </div>
         </section>
 
-        <!-- SECTION 4: RED CARPETS & MEDIA -->
+        <!-- RED CARPETS SECTION -->
         <section id="media" style="display: flex; flex-direction: column; gap: 32px;">
             <div class="section-wrapper" style="margin-bottom: 0;">
                 <div class="section-title">Red Carpet Gallery</div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_1.jpg" alt="Red Carpet"></div>
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_2.jpg" alt="Press Event"></div>
-                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_3.jpg" alt="Appearances"></div>
+                <div class="red-carpet-grid">
+                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_1.jpg" alt="Red Carpet 1"></div>
+                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_2.jpg" alt="Press Event 2"></div>
+                    <div class="headshot-card" style="aspect-ratio: 1/1;"><img src="red_carpet_3.jpg" alt="Appearances 3"></div>
                 </div>
             </div>
 
             <div class="section-wrapper">
                 <div class="section-title">Interviews & Media Presence</div>
                 <div class="media-grid">
-                    <div class="video-box">
-                        <h3>Performance Reel</h3>
-                        <div class="video-container">
-                            <iframe src="https://youtube.com"></iframe>
-                        </div>
-                    </div>
-                    <div class="video-box">
-                        <h3>Social Media & Press Interview</h3>
-                        <div class="video-container">
-                            <iframe src="https://youtube.com"></iframe>
-                        </div>
-                    </div>
+                    <div class="video-container"><iframe src="https://youtube.com"></iframe></div>
+                    <div class="video-container"><iframe src="https://youtube.com"></iframe></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: RESUME -->
-        <section id="resume" class="section-wrapper" style="text-align: center;">
-            <div class="section-title" style="text-align: left;">Professional Resume</div>
-        </section>
-
-    </main>
-
-</body>
-</html>
