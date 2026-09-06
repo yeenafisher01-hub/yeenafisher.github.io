@@ -1,42 +1,106 @@
-// Yeena Fisher website — minimal vanilla JS
-// Handles the mobile hamburger menu and footer year.
-
-document.addEventListener('DOMContentLoaded', function () {
-  var toggle = document.getElementById('menuToggle');
-  var nav = document.getElementById('primaryNav');
-
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var isOpen = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-
-  var yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  initReelPlayers();
-});
+// Yeena Fisher website — shared vanilla JS
+// Handles: mobile dropdown nav, footer year, click-to-play video facades
+// (Demo Reel / Show Reels / Media interviews), the photo-gallery lightbox
+// (Red Carpets & Media / Headshots), and the Contact form submission.
 
 /* ==========================================================================
-   SHOW REELS — click-to-play video facades.
-   Videos never autoplay; they load only once the visitor clicks the play
-   button (this also keeps the page fast, since nothing is fetched from
-   YouTube/Vimeo until requested). Starting a new reel pauses any other
-   reel already playing on the page.
+   PAGE ROUTER — this is now a single-page site. Every tab lives in one
+   index.html as a <section class="page">; clicking a nav link (or any link
+   with a #hash matching a page id) shows that section and hides the rest,
+   with no full page reload. Supports deep links like "#headshots/theatrical"
+   to open a page AND scroll to an anchor inside it (used by the homepage
+   headshot preview cards).
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  initRouter();
+  initMobileNav();
+  initFooterYear();
+  initReelPlayers();
+  initLightbox();
+  initContactForm();
+});
 
-   To add a working reel, replace the placeholder value of data-embed on the
-   .reel-video element in showreels.html with the reel's real YouTube or
-   Vimeo URL (either the normal share URL or an embed URL both work).
+function initRouter() {
+  var pages = document.querySelectorAll('.page');
+  if (!pages.length) return;
+
+  var validPageIds = Array.prototype.map.call(pages, function (p) {
+    return p.id.replace('page-', '');
+  });
+
+  function showPage(pageId, anchorId) {
+    if (validPageIds.indexOf(pageId) === -1) pageId = 'home';
+
+    pages.forEach(function (p) { p.classList.remove('active'); });
+    document.getElementById('page-' + pageId).classList.add('active');
+
+    document.querySelectorAll('.primary-nav a, .logo-mark').forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-page') === pageId);
+    });
+
+    if (anchorId) {
+      var target = document.getElementById(anchorId);
+      if (target) {
+        // Wait a tick so the section is visible before measuring its position.
+        setTimeout(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 30);
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function routeFromHash() {
+    var hash = location.hash.replace('#', '');
+    if (!hash) hash = 'home';
+    var parts = hash.split('/');
+    showPage(parts[0], parts[1]);
+  }
+
+  window.addEventListener('hashchange', routeFromHash);
+  routeFromHash();
+}
+
+/* ==========================================================================
+   MOBILE NAV — "MENU ☰" toggle opens a vertical dropdown directly beneath
+   the header banner (not a side drawer), per the FINAL COMPLETE spec.
+   ========================================================================== */
+function initMobileNav() {
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('primaryNav');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', function () {
+    var isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+function initFooterYear() {
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+/* ==========================================================================
+   CLICK-TO-PLAY VIDEO FACADES
+   Videos never autoplay; they load only once the visitor clicks the play
+   button. Starting a new video pauses any other video already playing
+   on the page. Works for the Demo Reel, Show Reels cards, and Media &
+   Interviews cards — anything with class "reel-video" and a data-embed
+   attribute.
+
+   To add or change a video, edit the data-embed value on the matching
+   .reel-video element in the page's HTML. Either a normal YouTube share
+   URL or an embed URL works; start-time parameters (start=7, start=9,
+   etc.) are preserved automatically.
    ========================================================================== */
 function initReelPlayers() {
   var reelVideos = document.querySelectorAll('.reel-video[data-embed]');
@@ -45,27 +109,32 @@ function initReelPlayers() {
   function toEmbedUrl(url) {
     if (!url) return null;
 
-    // YouTube: https://www.youtube.com/watch?v=ID  or  https://youtu.be/ID
-    var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{6,})/);
+    // Already a youtube.com/embed/ URL (may include ?start=N) — use as-is.
+    if (/youtube\.com\/embed\//.test(url)) return url;
+
+    // YouTube watch URL, possibly with &t=7s / &t=9s start-time params.
+    var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
     if (ytMatch) {
-      return 'https://www.youtube.com/embed/' + ytMatch[1] + '?autoplay=1&rel=0';
+      var id = ytMatch[1];
+      var embed = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      var tMatch = url.match(/[?&]t=(\d+)s?/);
+      if (tMatch) embed += '&start=' + tMatch[1];
+      return embed;
     }
 
-    // Vimeo: https://vimeo.com/ID
+    // Vimeo
     var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
     if (vimeoMatch) {
       return 'https://player.vimeo.com/video/' + vimeoMatch[1] + '?autoplay=1';
     }
 
-    // Already an embed-style URL or another host: use as-is.
     return url;
   }
 
   function playReel(container) {
     var rawUrl = container.getAttribute('data-embed');
-    if (!rawUrl || rawUrl.indexOf('PLACEHOLDER_') === 0) return; // no real link yet
+    if (!rawUrl || rawUrl.indexOf('PLACEHOLDER_') === 0) return;
 
-    // Pause/reset any other reel currently playing.
     reelVideos.forEach(function (other) {
       if (other !== container && other.classList.contains('is-playing')) {
         stopReel(other);
@@ -73,6 +142,11 @@ function initReelPlayers() {
     });
 
     var embedUrl = toEmbedUrl(rawUrl);
+    // If the embed URL already has query params, add autoplay with '&', else '?'.
+    if (embedUrl.indexOf('autoplay=1') === -1) {
+      embedUrl += (embedUrl.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+    }
+
     var iframe = document.createElement('iframe');
     iframe.src = embedUrl;
     iframe.title = container.getAttribute('aria-label') || 'Video';
@@ -91,14 +165,142 @@ function initReelPlayers() {
   }
 
   reelVideos.forEach(function (container) {
-    container.addEventListener('click', function () {
-      playReel(container);
-    });
+    container.addEventListener('click', function () { playReel(container); });
     container.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         playReel(container);
       }
+    });
+  });
+}
+
+/* ==========================================================================
+   PHOTO GALLERY LIGHTBOX
+   Used by the Red Carpets & Media gallery and the Headshots page. Any
+   <button> inside a ".photo-grid" wrapping an <img> becomes clickable;
+   clicking opens a full-size lightbox with close / prev / next, keyboard
+   arrow + Escape support, and click-outside-to-close. Background page
+   scroll is locked while open.
+   ========================================================================== */
+function initLightbox() {
+  var grids = document.querySelectorAll('.photo-grid');
+  if (!grids.length) return;
+
+  var lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  var lightboxImg = lightbox.querySelector('img');
+  var closeBtn = lightbox.querySelector('.lightbox-close');
+  var prevBtn = lightbox.querySelector('.lightbox-prev');
+  var nextBtn = lightbox.querySelector('.lightbox-next');
+
+  // Each .photo-grid (Theatrical, Commercial, Red Carpet, etc.) is its own
+  // gallery — prev/next stays within the grid the visitor opened, rather
+  // than wandering into a different gallery elsewhere on the page.
+  var currentItems = [];
+  var currentIndex = -1;
+
+  function openAt(items, index) {
+    if (index < 0 || index >= items.length) return;
+    currentItems = items;
+    currentIndex = index;
+    var img = currentItems[currentIndex].querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+    if (currentIndex >= 0 && currentItems[currentIndex]) currentItems[currentIndex].focus();
+    currentIndex = -1;
+  }
+
+  function showNext() { openAt(currentItems, (currentIndex + 1) % currentItems.length); }
+  function showPrev() { openAt(currentItems, (currentIndex - 1 + currentItems.length) % currentItems.length); }
+
+  grids.forEach(function (grid) {
+    var items = Array.prototype.slice.call(grid.querySelectorAll('button'));
+    items.forEach(function (btn, index) {
+      btn.addEventListener('click', function () { openAt(items, index); });
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+}
+
+/* ==========================================================================
+   CONTACT FORM
+   Submits via fetch to a Formspree endpoint (or any compatible static-site
+   form service) so no email credentials ever live in this file. Replace
+   FORMSPREE_ENDPOINT in contact.html with the real endpoint URL.
+   ========================================================================== */
+function initContactForm() {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  var statusEl = document.getElementById('formStatus');
+  var submitBtn = form.querySelector('.submit-button');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Honeypot anti-spam check — if filled, silently drop the submission.
+    var honeypot = form.querySelector('input[name="_gotcha"]');
+    if (honeypot && honeypot.value) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var endpoint = form.getAttribute('action');
+    if (!endpoint || endpoint.indexOf('FORMSPREE_ENDPOINT') !== -1) {
+      statusEl.textContent = 'Form is not connected yet — add your Formspree endpoint in contact.html.';
+      statusEl.className = 'form-status error';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    statusEl.textContent = '';
+    statusEl.className = 'form-status';
+
+    fetch(endpoint, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        statusEl.textContent = 'Thank you. Your message has been sent successfully.';
+        statusEl.className = 'form-status success';
+        form.reset();
+      } else {
+        statusEl.textContent = 'Your message could not be sent. Please try again.';
+        statusEl.className = 'form-status error';
+      }
+    }).catch(function () {
+      statusEl.textContent = 'Your message could not be sent. Please try again.';
+      statusEl.className = 'form-status error';
+    }).finally(function () {
+      submitBtn.disabled = false;
     });
   });
 }

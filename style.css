@@ -1,13 +1,16 @@
 /* ==========================================================================
    YEENA FISHER — Portfolio Website
-   style.css
-   Color system, typography and layout per Master Website Instructions.
+   style.css — shared across every page
+   Reflects: Homepage Revision FINAL COMPLETE, Show Reels FINAL,
+   Red Carpets & Media FINAL, Bio & Resume, Contact Page instructions.
    ========================================================================== */
 
 :root{
   --main-background: #EFE5FF;
-  --header-background: #F3E8FF;
-  --header-border: #D8C6EE;
+
+  /* header — darker lavender per FINAL COMPLETE revision */
+  --header-background: #E4D3F4;
+  --header-border: #C9B2E3;
 
   --deep-plum: #3A1F4C;
   --title-purple: #4C1D95;
@@ -28,7 +31,7 @@
   --btn-grad-mid: #D7C3EE;
   --btn-grad-bottom: #B99AD9;
 
-  /* gallery button */
+  /* gallery / card button */
   --gallery-btn-top: #684090;
   --gallery-btn-bottom: #3A1F4C;
 }
@@ -53,7 +56,6 @@ button{font-family:inherit;cursor:pointer;}
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
 }
 
-/* visible keyboard focus everywhere */
 a:focus-visible,
 button:focus-visible{
   outline:2px solid var(--title-purple);
@@ -68,7 +70,33 @@ button:focus-visible{
 }
 
 /* ==========================================================================
+   SINGLE-PAGE ROUTING — one index.html, seven tabs. Only the active
+   section is shown; script.js toggles this class based on the URL hash.
+   ========================================================================== */
+.page{display:none;}
+.page.active{display:block;}
+
+.page-title{
+  font-family:'Montserrat', sans-serif;
+  font-size:48px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--deep-plum);
+  text-transform:uppercase;
+  text-align:center;
+  padding-top:64px;
+  margin-bottom:28px;
+}
+
+@media (max-width:700px){
+  .page-title{font-size:32px;letter-spacing:2px;padding-top:44px;}
+}
+
+/* ==========================================================================
    HEADER / NAVIGATION
+   Desktop: full horizontal row inside the banner (never a hamburger).
+   Mobile: cursive YF left, "MENU ☰" right, vertical dropdown directly
+   beneath the banner (never a side drawer).
    ========================================================================== */
 
 .site-header{
@@ -77,7 +105,7 @@ button:focus-visible{
   z-index:200;
   background:var(--header-background);
   border-bottom:2px solid var(--header-border);
-  box-shadow:0 2px 10px rgba(58,31,76,0.08);
+  box-shadow:0 2px 10px rgba(58,31,76,0.10);
 }
 
 .nav-wrap{
@@ -87,22 +115,21 @@ button:focus-visible{
   gap:24px;
   max-width:1280px;
   margin:0 auto;
-  padding:20px 48px;
+  padding:16px 48px;
 }
 
 .logo-mark{
-  font-family:'Montserrat', sans-serif;
-  font-weight:800;
-  font-size:30px;
-  letter-spacing:1px;
+  font-family:'Great Vibes', cursive;
+  font-size:40px;
   color:var(--deep-plum);
   flex-shrink:0;
+  line-height:1;
 }
 
 .primary-nav ul{
   display:flex;
   align-items:center;
-  gap:36px;
+  gap:30px;
   flex-wrap:wrap;
 }
 
@@ -132,10 +159,11 @@ button:focus-visible{
   transition:transform .25s ease;
 }
 
-.primary-nav a:hover{color:#4C1D95;}
-.primary-nav a:hover::after{transform:scaleX(1);}
+.primary-nav a:hover,
+.primary-nav a:focus-visible{color:#4C1D95;}
+.primary-nav a:hover::after,
+.primary-nav a:focus-visible::after{transform:scaleX(1);}
 
-/* HOME underline when visitor is on the homepage */
 .primary-nav a.active::after{
   transform:scaleX(1);
   background:var(--title-purple);
@@ -145,61 +173,84 @@ button:focus-visible{
   .primary-nav a{font-size:22px;}
 }
 
+/* Mobile "MENU ☰" toggle */
 .menu-toggle{
   display:none;
+  align-items:center;
+  gap:8px;
   background:none;
   border:none;
-  padding:8px;
+  padding:10px 4px;
+  font-family:'Montserrat', sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  color:var(--deep-plum);
+  text-transform:uppercase;
+  min-height:44px;
 }
-.menu-toggle span{
-  display:block;
-  width:28px;
-  height:3px;
-  background:var(--deep-plum);
-  margin:5px 0;
-  border-radius:2px;
-}
+.menu-toggle .bars{font-size:22px;line-height:1;}
 
 @media (max-width:960px){
-  .nav-wrap{padding:18px 24px;}
+  .nav-wrap{padding:14px 22px;}
+
+  .menu-toggle{display:flex;}
+
+  /* vertical dropdown directly beneath the banner — not a side drawer */
   .primary-nav{
-    position:fixed;
-    top:0;right:-100%;
-    height:100vh;
-    width:80%;
-    max-width:340px;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
     background:var(--header-background);
-    box-shadow:-10px 0 30px rgba(58,31,76,0.18);
-    padding:100px 36px;
-    transition:right .3s ease;
+    border-bottom:2px solid var(--header-border);
+    box-shadow:0 12px 24px rgba(58,31,76,0.16);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
   }
-  .primary-nav.open{right:0;}
-  .primary-nav ul{flex-direction:column;align-items:flex-start;gap:26px;}
-  .menu-toggle{display:block;}
+  .primary-nav.open{max-height:600px;}
+
+  .primary-nav ul{
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:8px 22px 18px;
+  }
+  .primary-nav li{border-top:1px solid rgba(58,31,76,0.08);}
+  .primary-nav li:first-child{border-top:none;}
+  .primary-nav a{
+    display:block;
+    padding:14px 4px;
+    min-height:44px;
+    font-size:17px;
+  }
+  .primary-nav a::after{display:none;}
 }
 
 /* ==========================================================================
-   HERO / MAIN TITLE
+   HERO — NAME, ROLE LINE, BIO
    ========================================================================== */
 
 .hero{
-  padding:72px 0 60px;
+  padding:0 0 40px;
   text-align:center;
 }
 
 .hero-title{
   font-family:'Great Vibes', cursive;
-  font-size:clamp(90px, 10vw, 144px);
+  font-size:clamp(120px, 13vw, 190px);
   font-weight:700;
+  line-height:0.88;
   color:var(--title-purple);
-  -webkit-text-stroke:1.5px var(--title-purple);
+  -webkit-text-stroke:1.7px var(--title-purple);
   text-shadow:
     1px 1px 0 rgba(224,140,182,0.65),
     2px 2.5px 0 rgba(214,118,166,0.5),
     3px 4px 3px rgba(90,14,50,0.35),
     4px 7px 10px rgba(90,14,50,0.30);
-  line-height:1;
-  margin-bottom:8px;
+  margin:0;
+  padding:0;
 }
 
 .role-line{
@@ -209,6 +260,7 @@ button:focus-visible{
   letter-spacing:3px;
   color:var(--deep-plum);
   text-transform:uppercase;
+  margin-top:10px;
   margin-bottom:16px;
 }
 
@@ -221,7 +273,7 @@ button:focus-visible{
 
 .hero-bio{
   max-width:850px;
-  margin:0 auto 56px;
+  margin:0 auto 40px;
   font-family:'Montserrat', sans-serif;
   font-size:20px;
   line-height:1.65;
@@ -230,29 +282,90 @@ button:focus-visible{
 }
 
 @media (max-width:600px){
+  .hero-title{font-size:clamp(72px, 22vw, 120px);}
   .role-line{font-size:16px;letter-spacing:2px;}
   .hero-bio{font-size:17px;}
+}
+
+/* ==========================================================================
+   HOLLYWOOD/CINEMATIC ATMOSPHERE AROUND THE PORTRAIT
+   Restores the approved reference: flanking text left/right of the
+   portrait, plus a subtle cinematic backdrop (film-strip edges, faint
+   skyline/palm silhouettes) that blends into the lavender halo rather
+   than competing with the photograph.
+   ========================================================================== */
+
+.portrait-section{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:36px;
+  flex-wrap:wrap;
+  padding:12px 24px 64px;
+  overflow:hidden;
+}
+
+/* wide atmospheric backdrop, sits behind everything in this section */
+.hollywood-backdrop{
+  position:absolute;
+  inset:-10% -6% -6%;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.35;
+}
+.hollywood-backdrop svg{width:100%;height:100%;}
+
+.hero-flank{
+  position:relative;
+  z-index:1;
+  width:190px;
+  flex-shrink:0;
+}
+
+.hero-flank-left{
+  text-align:right;
+  font-family:'Montserrat', sans-serif;
+  font-weight:700;
+  font-size:19px;
+  line-height:1.4;
+  letter-spacing:1px;
+  color:var(--title-purple);
+  text-transform:uppercase;
+}
+.hero-flank-left .rule-mini{margin-left:auto;}
+
+.hero-flank-right{
+  text-align:left;
+  font-family:'Great Vibes', cursive;
+  font-size:38px;
+  line-height:1.15;
+  color:var(--title-purple);
+}
+
+.rule-mini{
+  width:44px;
+  height:1px;
+  background:var(--medium-lavender);
+  margin-top:14px;
+}
+
+@media (max-width:900px){
+  .hero-flank{display:none;}
 }
 
 /* ==========================================================================
    MAIN PORTRAIT — soft diffused halo, no hard circle
    ========================================================================== */
 
-.portrait-section{
-  position:relative;
-  display:flex;
-  justify-content:center;
-  padding:0 0 70px;
-}
-
 .portrait-stage{
   position:relative;
-  width:min(480px, 86vw);
+  z-index:1;
+  width:min(480px, 78vw);
   aspect-ratio:4 / 5;
+  flex-shrink:0;
 }
 
-/* atmospheric halo — soft, no visible edge, a shade richer than the page
-   background so the portrait glows forward instead of blending flat into it */
 .portrait-halo{
   position:absolute;
   inset:-34%;
@@ -267,8 +380,6 @@ button:focus-visible{
     );
   pointer-events:none;
 }
-
-/* second, wider, even softer wash behind the halo above for extra depth */
 .portrait-halo::before{
   content:"";
   position:absolute;
@@ -280,23 +391,6 @@ button:focus-visible{
   );
 }
 
-/* extremely subtle cinematic motifs behind portrait: soft filmstrip curve + faint bokeh */
-.portrait-motif{
-  position:absolute;
-  inset:-10%;
-  z-index:0;
-  pointer-events:none;
-  opacity:0.16;
-}
-.portrait-motif svg{width:100%;height:100%;}
-
-/*
-  PLACE YOUR MAIN PORTRAIT HERE (img src below).
-  For the smoothest atmospheric blend, a transparent PNG cutout of you
-  (background removed) will look best sitting directly in the halo.
-  A normal rectangular photo also works — the mask below feathers its
-  edges so it still blends softly into the lavender glow with no hard edge.
-*/
 .portrait-stage img{
   position:relative;
   z-index:1;
@@ -309,14 +403,12 @@ button:focus-visible{
 }
 
 /* ==========================================================================
-   HOME PAGE — EMBEDDED DEMO REEL
-   Reuses the same .reel-video / .play-btn click-to-play pattern as the
-   Show Reels page (defined further down), just at a larger, single-video size.
+   DEMO REEL — luxurious layered 3D frame, cover image, click-to-play
    ========================================================================== */
 
 .demo-reel-section{
   text-align:center;
-  padding:0 24px 64px;
+  padding:0 24px 56px;
 }
 
 .demo-reel-heading{
@@ -326,13 +418,80 @@ button:focus-visible{
   letter-spacing:2px;
   text-transform:uppercase;
   color:var(--deep-plum);
-  margin-bottom:22px;
+  margin-bottom:18px;
 }
 
-.demo-reel-frame{
-  max-width:800px;
+.demo-reel-wrapper{
+  width:min(80vw, 690px);
   margin:0 auto;
+  padding:16px;
+  position:relative;
+  background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 52%, #C9AFE5 100%);
+  border:1px solid #B99AD9;
+  border-radius:16px;
+  box-shadow:
+    0 16px 32px rgba(58,31,76,0.22),
+    0 7px 0 #B99AD9,
+    inset 0 2px 2px rgba(255,255,255,0.90),
+    inset 0 -2px 4px rgba(76,29,149,0.10);
 }
+
+.demo-reel-video{
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  border-radius:10px;
+  background:#000;
+  border:1px solid rgba(58,31,76,0.25);
+  box-shadow:0 7px 16px rgba(58,31,76,0.22);
+  position:relative;
+  cursor:pointer;
+  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('Headshot_main.jpg');
+  background-size:cover;
+  background-position:top center;
+}
+
+/* ==========================================================================
+   GENERIC CLICK-TO-PLAY VIDEO FACADE (reused by demo reel, show reels,
+   and media/interview cards)
+   ========================================================================== */
+
+.reel-video{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  border-radius:9px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 6px 16px rgba(58,31,76,0.20);
+  cursor:pointer;
+}
+
+.reel-video iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+.play-btn{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:64px;height:64px;
+  border-radius:50%;
+  background:rgba(76,29,149,0.85);
+  color:var(--white);
+  border:2px solid rgba(255,255,255,0.85);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s ease, transform .2s ease;
+}
+.reel-video:hover .play-btn,
+.reel-video:focus-visible .play-btn{
+  background:var(--title-purple);
+  transform:translate(-50%,-50%) scale(1.06);
+}
+.reel-video.is-playing .play-btn{display:none;}
 
 /* ==========================================================================
    PROFESSIONAL PROFILE BUTTONS
@@ -365,7 +524,6 @@ button:focus-visible{
   overflow:hidden;
 }
 
-/* glossy top highlight, like light catching a raised glass/metal surface */
 .profile-btn::before{
   content:"";
   position:absolute;
@@ -482,55 +640,54 @@ button:focus-visible{
 }
 
 /* ==========================================================================
-   HEADSHOT GALLERY SECTION
+   HOMEPAGE HEADSHOT PREVIEWS — vertical, small preview + View Gallery
    ========================================================================== */
 
-.gallery-section{
-  padding:80px 0;
+.headshot-preview-section{
+  padding:80px 0 20px;
+  text-align:center;
 }
 
-.gallery-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:36px;
+.preview-title{
+  font-family:'Montserrat', sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--deep-plum);
+  text-transform:uppercase;
+  margin-bottom:22px;
 }
 
-@media (max-width:840px){
-  .gallery-grid{grid-template-columns:1fr;}
-}
-
-.gallery-card{
+.preview-card{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
   background:var(--gallery-lavender);
   border:1px solid var(--gallery-border);
   outline:1px solid rgba(58,31,76,0.06);
-  border-radius:12px;
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+  border-radius:14px;
+  padding:22px;
+  box-shadow:
+    0 14px 30px rgba(58,31,76,0.16),
+    inset 0 1px 1px rgba(255,255,255,0.85);
+  margin-bottom:56px;
 }
 
-.gallery-card .preview{
-  width:100%;
-  aspect-ratio:4/3;
-  overflow:hidden;
+.preview-card img{
+  width:220px;
+  height:270px;
+  object-fit:cover;
   border-radius:8px;
-}
-.gallery-card .preview img{
-  width:100%;height:100%;object-fit:cover;
+  box-shadow:0 8px 18px rgba(26,10,46,0.25);
 }
 
-.gallery-card h2{
-  font-family:'Montserrat', sans-serif;
-  font-size:26px;
-  font-weight:700;
-  color:var(--deep-plum);
-  text-transform:uppercase;
-  letter-spacing:.5px;
-}
+/* ==========================================================================
+   VIEW GALLERY / CARD-LEVEL BUTTON
+   ========================================================================== */
 
 .gallery-btn{
-  align-self:flex-start;
+  align-self:center;
   position:relative;
   display:inline-block;
   background:linear-gradient(180deg, var(--gallery-btn-top), var(--gallery-btn-bottom));
@@ -593,20 +750,6 @@ button:focus-visible{
    SHOW REELS PAGE
    ========================================================================== */
 
-.reels-hero{
-  padding:64px 0 26px;
-  text-align:center;
-}
-
-.reels-title{
-  font-family:'Montserrat', sans-serif;
-  font-size:48px;
-  font-weight:700;
-  letter-spacing:3px;
-  color:var(--deep-plum);
-  text-transform:uppercase;
-}
-
 .reels-intro{
   font-family:'Montserrat', sans-serif;
   font-size:20px;
@@ -614,7 +757,7 @@ button:focus-visible{
   line-height:1.65;
   color:var(--deep-plum);
   max-width:850px;
-  margin:24px auto 50px;
+  margin:0 auto 50px;
   text-align:center;
 }
 
@@ -632,13 +775,13 @@ button:focus-visible{
 .reel-card{
   width:100%;
   max-width:590px;
-  min-height:485px;
   padding:20px 20px 24px;
   background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 58%, #D4C1EC 100%);
   border:1px solid var(--medium-lavender);
   border-radius:14px;
   box-shadow:
     0 14px 30px rgba(58,31,76,0.17),
+    0 6px 0 rgba(185,154,217,0.75),
     inset 0 1px 1px rgba(255,255,255,0.90);
   transition:transform .25s ease, box-shadow .25s ease;
   display:flex;
@@ -650,46 +793,17 @@ button:focus-visible{
     transform:translateY(-4px);
     box-shadow:
       0 18px 36px rgba(58,31,76,0.22),
+      0 6px 0 rgba(185,154,217,0.75),
       inset 0 1px 1px rgba(255,255,255,0.90);
   }
 }
 
-.reel-video{
-  position:relative;
-  width:100%;
-  aspect-ratio:16 / 9;
-  border-radius:9px;
-  overflow:hidden;
-  background:#000;
-  box-shadow:0 6px 16px rgba(58,31,76,0.20);
-  cursor:pointer;
+/* balance an odd final card by centering it in its own row */
+.reel-card.center-last{
+  grid-column:1 / -1;
+  max-width:590px;
+  justify-self:center;
 }
-
-.reel-video iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-
-.play-btn{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:64px;height:64px;
-  border-radius:50%;
-  background:rgba(76,29,149,0.85);
-  color:var(--white);
-  border:2px solid rgba(255,255,255,0.85);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s ease, transform .2s ease;
-}
-.reel-video:hover .play-btn,
-.reel-video:focus-visible .play-btn{
-  background:var(--title-purple);
-  transform:translate(-50%,-50%) scale(1.06);
-}
-.reel-video.is-playing .play-btn{display:none;}
 
 .reel-title{
   font-family:'Montserrat', sans-serif;
@@ -713,31 +827,372 @@ button:focus-visible{
   margin:0 auto;
 }
 
-.reel-meta{
-  font-family:'Montserrat', sans-serif;
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:1.2px;
-  color:var(--title-purple);
-  text-transform:uppercase;
-  text-align:center;
-  margin-top:10px;
-}
-
 @media (max-width:900px){
-  .reels-title{font-size:34px;}
   .reels-grid{
     grid-template-columns:1fr;
     max-width:650px;
     row-gap:34px;
-    padding:0 20px 70px;
+    padding:0 18px 56px;
   }
   .reel-card{max-width:100%;}
+  .reel-card.center-last{max-width:100%;}
 }
 
 @media (max-width:480px){
-  .reels-title{font-size:28px;letter-spacing:2px;}
   .reels-intro{font-size:17px;}
+}
+
+/* ==========================================================================
+   RED CARPETS & MEDIA PAGE — gallery frame + lightbox + interview cards
+   Also reused generically by the Headshots page.
+   ========================================================================== */
+
+.section-heading{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--deep-plum);
+  text-align:center;
+  margin:60px 0 26px;
+}
+.section-heading:first-of-type{margin-top:0;}
+
+.photo-gallery-frame{
+  max-width:1320px;
+  margin:0 auto;
+  padding:26px;
+  background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 58%, #D4C1EC 100%);
+  border:1px solid #C3B1E1;
+  border-radius:16px;
+  box-shadow:
+    0 16px 34px rgba(58,31,76,0.18),
+    0 7px 0 rgba(185,154,217,0.72),
+    inset 0 2px 2px rgba(255,255,255,0.90),
+    inset 0 -2px 4px rgba(76,29,149,0.08);
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(6, minmax(0,1fr));
+  gap:16px;
+}
+
+.photo-grid.cols-4{grid-template-columns:repeat(4, minmax(0,1fr));}
+
+.photo-grid button{
+  display:block;
+  width:100%;
+  padding:0;
+  border:1px solid rgba(58,31,76,0.15);
+  border-radius:9px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 6px 14px rgba(58,31,76,0.18);
+  transition:transform .2s ease, box-shadow .2s ease;
+  aspect-ratio:3/4;
+}
+.photo-grid img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+@media (hover:hover){
+  .photo-grid button:hover{
+    transform:scale(1.025);
+    box-shadow:0 10px 20px rgba(58,31,76,0.28);
+  }
+}
+
+@media (max-width:1000px){
+  .photo-grid{grid-template-columns:repeat(3, minmax(0,1fr));}
+}
+@media (max-width:640px){
+  .photo-gallery-frame{padding:14px;}
+  .photo-grid{grid-template-columns:repeat(2, minmax(0,1fr));gap:10px;}
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(20,8,32,0.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+.lightbox.open{display:flex;}
+
+.lightbox img{
+  max-width:90vw;
+  max-height:85vh;
+  width:auto;
+  height:auto;
+  border-radius:6px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next{
+  position:absolute;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  border-radius:50%;
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover{background:rgba(255,255,255,0.28);}
+
+.lightbox-close{top:24px;right:24px;}
+.lightbox-prev{left:24px;top:50%;transform:translateY(-50%);}
+.lightbox-next{right:24px;top:50%;transform:translateY(-50%);}
+
+@media (max-width:600px){
+  .lightbox{padding:16px;}
+  .lightbox-close{top:10px;right:10px;width:40px;height:40px;}
+  .lightbox-prev{left:6px;width:40px;height:40px;}
+  .lightbox-next{right:6px;width:40px;height:40px;}
+}
+
+/* Media / interview cards */
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:32px;
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.media-card{
+  padding:16px 16px 20px;
+  background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 58%, #D4C1EC 100%);
+  border:1px solid #C3B1E1;
+  border-radius:14px;
+  box-shadow:
+    0 13px 28px rgba(58,31,76,0.17),
+    0 6px 0 rgba(185,154,217,0.68),
+    inset 0 1px 1px rgba(255,255,255,0.90);
+}
+.media-title{
+  font-family:'Montserrat', sans-serif;
+  font-size:19px;
+  font-weight:700;
+  color:#3A1F4C;
+  text-align:center;
+  margin-top:14px;
+}
+@media (max-width:950px){
+  .media-grid{grid-template-columns:repeat(2, minmax(0,1fr));}
+}
+@media (max-width:620px){
+  .media-grid{grid-template-columns:1fr;}
+}
+
+/* ==========================================================================
+   BIO / RESUME PDF PAGES
+   ========================================================================== */
+
+.pdf-actions{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+
+.pdf-action{
+  padding:12px 22px;
+  font-family:'Montserrat', sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:#3A1F4C;
+  background:linear-gradient(145deg, #F5ECFF 0%, #D7C3EE 55%, #B99AD9 100%);
+  border:1px solid #8E68B8;
+  border-radius:8px;
+  box-shadow:
+    0 7px 15px rgba(58,31,76,0.18),
+    inset 0 1px 1px rgba(255,255,255,0.80);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.pdf-action:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 11px 20px rgba(58,31,76,0.24),
+    inset 0 1px 1px rgba(255,255,255,0.80);
+}
+
+.pdf-frame{
+  width:min(1100px, calc(100% - 40px));
+  margin:28px auto 24px;
+  padding:14px;
+  background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 60%, #D4C1EC 100%);
+  border:1px solid #C3B1E1;
+  border-radius:14px;
+  box-shadow:
+    0 14px 30px rgba(58,31,76,0.17),
+    inset 0 1px 1px rgba(255,255,255,0.90);
+}
+.pdf-frame iframe{
+  display:block;
+  width:100%;
+  min-height:850px;
+  border:0;
+  border-radius:7px;
+  background:#FFFFFF;
+}
+
+.pdf-fallback{
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:14px;
+  color:var(--deep-plum);
+  opacity:.75;
+  margin:0 auto 80px;
+  max-width:600px;
+  padding:0 20px;
+}
+
+@media (max-width:760px){
+  .pdf-frame iframe{min-height:600px;}
+  .pdf-actions{flex-direction:column;align-items:center;}
+}
+
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+
+.contact-section{
+  padding:0 20px 90px;
+}
+
+.contact-box{
+  width:100%;
+  max-width:760px;
+  margin:0 auto;
+  padding:42px 46px;
+  background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 58%, #D4C1EC 100%);
+  border:1px solid #C3B1E1;
+  border-radius:16px;
+  box-shadow:
+    0 16px 34px rgba(58,31,76,0.18),
+    inset 0 1px 1px rgba(255,255,255,0.90);
+}
+
+.name-row{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  margin-bottom:22px;
+}
+
+.form-field{margin-bottom:22px;}
+.form-field:last-of-type{margin-bottom:0;}
+
+.contact-box label{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:0.6px;
+  color:#3A1F4C;
+  margin-bottom:8px;
+}
+
+.contact-box input,
+.contact-box textarea{
+  width:100%;
+  font-family:'Montserrat', sans-serif;
+  font-size:16px;
+  font-weight:400;
+  color:#3A1F4C;
+  background:rgba(255,255,255,0.76);
+  border:1px solid #C3B1E1;
+  border-radius:9px;
+  padding:14px 16px;
+  box-shadow:inset 0 2px 5px rgba(58,31,76,0.07);
+}
+
+.contact-box textarea{
+  min-height:190px;
+  resize:vertical;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus{
+  outline:none;
+  border-color:#4C1D95;
+  box-shadow:0 0 0 3px rgba(76,29,149,0.10), inset 0 2px 5px rgba(58,31,76,0.07);
+}
+
+.honeypot-field{
+  position:absolute;
+  left:-9999px;
+  width:1px;height:1px;
+  overflow:hidden;
+}
+
+.submit-row{
+  text-align:center;
+  margin-top:28px;
+}
+
+.submit-button{
+  min-width:180px;
+  padding:15px 34px;
+  font-family:'Montserrat', sans-serif;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#FFFFFF;
+  background:linear-gradient(145deg, #6B3AA3 0%, #4C1D95 100%);
+  border:1px solid #3A1F4C;
+  border-radius:8px;
+  box-shadow:
+    0 8px 16px rgba(58,31,76,0.28),
+    inset 0 1px 1px rgba(255,255,255,0.25);
+  cursor:pointer;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, opacity .2s ease;
+}
+.submit-button:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 11px 20px rgba(58,31,76,0.32),
+    inset 0 1px 1px rgba(255,255,255,0.25);
+}
+.submit-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.form-status{
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:15px;
+  font-weight:600;
+  margin-top:20px;
+  min-height:22px;
+}
+.form-status.success{color:#2E6B3E;}
+.form-status.error{color:#8E2A2A;}
+
+@media (max-width:640px){
+  .contact-box{padding:30px 24px;}
+  .name-row{grid-template-columns:1fr;gap:0;}
+  .name-row .form-field{margin-bottom:22px;}
 }
 
 /* ==========================================================================
@@ -805,20 +1260,16 @@ button:focus-visible{
 .footer-copy a{text-decoration:underline;}
 .footer-copy a:hover{color:#4C1D95;}
 
-/* Tablet: keep one row as long as it stays comfortable */
 @media (max-width:900px){
   .social-row{gap:22px;}
   .social-link span{font-size:13px;}
 }
 
-/* Mobile: wrap only if it must, keep icons/labels full size, no page scroll */
 @media (max-width:640px){
   .social-row{
     flex-wrap:wrap;
     row-gap:20px;
     column-gap:26px;
   }
-  .social-link{
-    min-height:44px; /* comfortable touch target */
-  }
+  .social-link{min-height:44px;}
 }
