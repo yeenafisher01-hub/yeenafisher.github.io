@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initFooterYear();
   initReelPlayers();
   initLightbox();
+  initPdfLightbox();
   initContactForm();
 });
 
@@ -113,39 +114,57 @@ function initReelPlayers() {
   // blank/black box until clicked. Fix: pull each video's own official
   // YouTube thumbnail (img.youtube.com — a public static image, no
   // youtube.com page load and no sign-in required) and show it behind the
-  // Play button. The Home Demo Reel keeps its own dedicated poster image
-  // set in CSS (.demo-reel-video), so it's skipped here.
+  // Play button. This now includes the Home Demo Reel too, so it shows an
+  // actual frame of Yeena from that video instead of a generic photo.
   // ------------------------------------------------------------------------
   function extractYouTubeId(url) {
     if (!url) return null;
-    var m = url.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{6,})/);
+    var m = url.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{6,})/);
     return m ? m[1] : null;
   }
 
-  reelVideos.forEach(function (container) {
-    if (container.classList.contains('demo-reel-video')) return;
+  function applyPoster(container, url) {
+    container.style.backgroundImage =
+      'linear-gradient(rgba(20,8,32,0.30), rgba(20,8,32,0.55)), url("' + url + '")';
+    container.style.backgroundSize = 'cover';
+    container.style.backgroundPosition = 'center';
+  }
 
+  // Local, always-available photo of Yeena used only if a video's YouTube
+  // thumbnail fails to load (blocked network, deleted/restricted video,
+  // etc.) — so a card can never end up showing a plain black box.
+  var FALLBACK_POSTER = 'theaterical_1.jpg';
+
+  reelVideos.forEach(function (container) {
     // Optional manual override: <div class="reel-video" data-poster="file.jpg" ...>
     var poster = container.getAttribute('data-poster');
     if (!poster) {
       var id = extractYouTubeId(container.getAttribute('data-embed'));
       if (id) poster = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
     }
-    if (poster) {
-      container.style.backgroundImage =
-        'linear-gradient(rgba(20,8,32,0.30), rgba(20,8,32,0.55)), url("' + poster + '")';
-      container.style.backgroundSize = 'cover';
-      container.style.backgroundPosition = 'center';
+    if (!poster) {
+      applyPoster(container, FALLBACK_POSTER);
+      return;
     }
+    // Preload before committing to it as the background — if the YouTube
+    // thumbnail 404s or is blocked, fall back to the local photo instead
+    // of leaving the card blank.
+    var probe = new Image();
+    probe.onload = function () { applyPoster(container, poster); };
+    probe.onerror = function () { applyPoster(container, FALLBACK_POSTER); };
+    probe.src = poster;
   });
 
   function toEmbedUrl(url) {
     if (!url) return null;
 
-    // Already a youtube.com/embed/ URL (may include ?start=N) — use as-is.
-    if (/youtube\.com\/embed\//.test(url)) return url;
+    // Already a youtube.com or youtube-nocookie.com /embed/ URL (may include
+    // ?start=N) — use as-is.
+    if (/youtube(?:-nocookie)?\.com\/embed\//.test(url)) return url;
 
     // YouTube watch URL, possibly with &t=7s / &t=9s start-time params.
+    // Converted to the standard youtube.com/embed/VIDEO_ID form — never a
+    // raw watch?v= URL inside the iframe.
     var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
     if (ytMatch) {
       var id = ytMatch[1];
@@ -189,11 +208,29 @@ function initReelPlayers() {
 
     container.appendChild(iframe);
     container.classList.add('is-playing');
+
+    // Explicit close button — lets a visitor stop the video and return to
+    // its poster/thumbnail without needing to play a different video first.
+    var closeBtn = container.querySelector('.reel-close');
+    if (!closeBtn) {
+      closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'reel-close';
+      closeBtn.setAttribute('aria-label', 'Close video');
+      closeBtn.innerHTML = '&times;';
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        stopReel(container);
+      });
+      container.appendChild(closeBtn);
+    }
   }
 
   function stopReel(container) {
     var iframe = container.querySelector('iframe');
     if (iframe) iframe.remove();
+    var closeBtn = container.querySelector('.reel-close');
+    if (closeBtn) closeBtn.remove();
     container.classList.remove('is-playing');
   }
 
@@ -242,12 +279,14 @@ function initLightbox() {
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt || '';
     lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
   }
 
   function close() {
     lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
     lightboxImg.src = '';
     document.body.style.overflow = '';
     if (currentIndex >= 0 && currentItems[currentIndex]) currentItems[currentIndex].focus();
@@ -277,6 +316,58 @@ function initLightbox() {
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
+  });
+}
+
+/* ==========================================================================
+   PDF FULL-SCREEN VIEWER (Bio / Resume "View Full Screen")
+   Opens the PDF in an in-page overlay instead of a new browser tab, with an
+   explicit close (X) button, Escape-key support, and click-outside-to-close
+   — so a visitor always has an obvious way back to the Bio/Resume page
+   underneath, without needing to close or switch browser tabs themselves.
+   ========================================================================== */
+function initPdfLightbox() {
+  var triggers = document.querySelectorAll('.pdf-action[data-pdf]');
+  if (!triggers.length) return;
+
+  var pdfLightbox = document.getElementById('pdfLightbox');
+  if (!pdfLightbox) return;
+
+  var frame = document.getElementById('pdfLightboxFrame');
+  var closeBtn = pdfLightbox.querySelector('.pdf-lightbox-close');
+  var lastTrigger = null;
+
+  function open(trigger) {
+    lastTrigger = trigger;
+    frame.src = trigger.getAttribute('data-pdf');
+    frame.title = trigger.getAttribute('data-pdf-title') || 'PDF preview';
+    pdfLightbox.classList.add('open');
+    pdfLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close() {
+    pdfLightbox.classList.remove('open');
+    pdfLightbox.setAttribute('aria-hidden', 'true');
+    frame.src = ''; // stop loading/playing the PDF once closed
+    document.body.style.overflow = '';
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  triggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () { open(trigger); });
+  });
+
+  closeBtn.addEventListener('click', close);
+
+  pdfLightbox.addEventListener('click', function (e) {
+    if (e.target === pdfLightbox) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!pdfLightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
   });
 }
 

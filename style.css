@@ -108,6 +108,27 @@ button:focus-visible{
   box-shadow:0 2px 10px rgba(58,31,76,0.10);
 }
 
+/* Decorative cursive tagline, top-right of the banner. Absolutely positioned
+   so it sits outside the .nav-wrap flex row entirely and can never affect
+   the nav's own layout or wrapping. Desktop only — hidden below 1300px so
+   it never collides with the scaled-down laptop nav or the mobile menu. */
+.header-tagline{
+  position:absolute;
+  top:6px;
+  right:24px;
+  z-index:1;
+  font-family:'Allura', cursive;
+  font-size:15px;
+  line-height:1.2;
+  color:#5B2E86;
+  text-align:center;
+  pointer-events:none;
+}
+
+@media (max-width:1300px){
+  .header-tagline{display:none;}
+}
+
 .nav-wrap{
   display:flex;
   align-items:center;
@@ -245,6 +266,8 @@ button:focus-visible{
    ========================================================================== */
 
 .hero{
+  position:relative;
+  z-index:1;
   padding:0 0 40px;
   text-align:center;
 }
@@ -308,8 +331,40 @@ button:focus-visible{
    than competing with the photograph.
    ========================================================================== */
 
+/* Shared Hollywood-Hills/sunset/palm-tree scene behind BOTH the name/bio
+   (.hero) and the portrait (.portrait-section), so it reads as one
+   continuous backdrop instead of being boxed around the photo only. */
+.home-atmosphere{
+  position:relative;
+  overflow:hidden;
+}
+
+.home-atmosphere-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+.home-atmosphere-bg svg{width:100%;height:100%;display:block;}
+
+.atmosphere-tagline{
+  position:relative;
+  z-index:2;
+  font-family:'Allura', cursive;
+  font-size:26px;
+  line-height:1.15;
+  color:#5B2E86;
+  text-align:left;
+  margin:18px 0 0 32px;
+}
+
+@media (max-width:900px){
+  .atmosphere-tagline{display:none;}
+}
+
 .portrait-section{
   position:relative;
+  z-index:1;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -318,16 +373,6 @@ button:focus-visible{
   padding:12px 24px 64px;
   overflow:hidden;
 }
-
-/* wide atmospheric backdrop, sits behind everything in this section */
-.hollywood-backdrop{
-  position:absolute;
-  inset:-10% -6% -6%;
-  z-index:0;
-  pointer-events:none;
-  opacity:0.35;
-}
-.hollywood-backdrop svg{width:100%;height:100%;}
 
 .hero-flank{
   position:relative;
@@ -338,13 +383,13 @@ button:focus-visible{
 
 .hero-flank-left{
   text-align:right;
-  font-family:'Cormorant Garamond', serif;
-  font-weight:600;
-  font-size:23px;
-  line-height:1.55;
-  letter-spacing:2px;
+  font-family:'Allura', cursive;
+  font-weight:400;
+  font-size:34px;
+  line-height:1.35;
+  letter-spacing:1px;
   color:#7B4BC4;
-  text-transform:uppercase;
+  text-transform:capitalize;
 }
 .hero-flank-left .rule-mini{margin-left:auto;}
 
@@ -384,26 +429,51 @@ button:focus-visible{
    sits on top of this glow. */
 .portrait-halo{
   position:absolute;
-  inset:-30%;
+  inset:-42%;
   z-index:0;
   background:
+    radial-gradient(circle at center, rgba(255,244,220,0.55) 0%, rgba(255,244,220,0) 26%),
+    radial-gradient(circle at center, rgba(216,178,92,0.35) 0%, rgba(216,178,92,0) 42%),
     radial-gradient(
       circle at center,
-      rgba(185,154,217,0.60) 0%,
-      rgba(195,177,225,0.35) 35%,
-      rgba(239,229,255,0) 72%
+      rgba(185,154,217,0.62) 0%,
+      rgba(195,177,225,0.38) 38%,
+      rgba(239,229,255,0) 74%
     );
   pointer-events:none;
 }
+
+/* Soft radiating light rays — classic glamour-portrait spotlight effect —
+   fading out from the figure via a mask so it never becomes a hard sunburst. */
 .portrait-halo::before{
   content:"";
   position:absolute;
-  inset:-20%;
+  inset:-35%;
+  background:repeating-conic-gradient(
+    from 0deg,
+    rgba(255,244,214,0.22) 0deg 3deg,
+    rgba(255,244,214,0) 3deg 16deg
+  );
+  -webkit-mask-image:radial-gradient(circle at center, #000 0%, transparent 68%);
+  mask-image:radial-gradient(circle at center, #000 0%, transparent 68%);
+  pointer-events:none;
+}
+
+/* Slightly darker plum/wine vignette hugging the portrait edges — reads as
+   glamorous studio-light falloff around the figure rather than a flat glow.
+   Sits behind the photo (img is z-index:1) and blends into the halo above. */
+.portrait-halo::after{
+  content:"";
+  position:absolute;
+  inset:-5%;
   background:radial-gradient(
     circle at center,
-    rgba(139,90,191,0.18) 0%,
-    rgba(139,90,191,0) 70%
+    rgba(58,31,76,0) 38%,
+    rgba(58,31,76,0.34) 64%,
+    var(--wine-shadow) 80%,
+    rgba(58,31,76,0) 100%
   );
+  pointer-events:none;
 }
 
 /* Headshot_main_transparent.png already has its background removed, so no
@@ -415,7 +485,10 @@ button:focus-visible{
   height:100%;
   object-fit:contain;
   object-position:bottom center;
-  filter:drop-shadow(0 18px 26px rgba(43,7,61,0.35));
+  filter:
+    drop-shadow(0 18px 26px rgba(43,7,61,0.35))
+    drop-shadow(0 0 28px rgba(255,244,214,0.45))
+    drop-shadow(0 0 48px rgba(214,180,110,0.35));
 }
 
 /* ==========================================================================
@@ -425,6 +498,7 @@ button:focus-visible{
 .demo-reel-section{
   text-align:center;
   padding:0 24px 56px;
+  perspective:1400px;
 }
 
 .demo-reel-heading{
@@ -445,11 +519,66 @@ button:focus-visible{
   background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 52%, #C9AFE5 100%);
   border:1px solid #B99AD9;
   border-radius:16px;
+  transform-style:preserve-3d;
+  transform:rotateX(3deg) rotateY(-2deg) translateZ(0);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
   box-shadow:
-    0 16px 32px rgba(58,31,76,0.22),
-    0 7px 0 #B99AD9,
+    0 3px 0 #C9AFE5,
+    0 6px 0 #B99AD9,
+    0 26px 44px rgba(58,31,76,0.35),
+    0 10px 20px rgba(58,31,76,0.22),
+    0 0 0 1px rgba(216,178,92,0.6),
+    0 0 46px rgba(216,178,92,0.32),
     inset 0 2px 2px rgba(255,255,255,0.90),
-    inset 0 -2px 4px rgba(76,29,149,0.10);
+    inset 0 -3px 6px rgba(76,29,149,0.14);
+}
+
+/* Luxurious hover lift — the whole frame tilts toward the viewer and the
+   shadow deepens, like a card lifting off a velvet backdrop. */
+.demo-reel-wrapper:hover,
+.demo-reel-wrapper:focus-within{
+  transform:rotateX(0deg) rotateY(0deg) translateZ(28px) translateY(-6px);
+  box-shadow:
+    0 3px 0 #C9AFE5,
+    0 8px 0 #B99AD9,
+    0 40px 60px rgba(58,31,76,0.42),
+    0 14px 28px rgba(58,31,76,0.26),
+    0 0 0 1px rgba(216,178,92,0.75),
+    0 0 64px rgba(216,178,92,0.45),
+    inset 0 2px 2px rgba(255,255,255,0.95),
+    inset 0 -3px 6px rgba(76,29,149,0.14);
+}
+
+/* Thin gold hairline just inside the frame — a touch of old-Hollywood
+   glamour around the demo reel without altering its layout. */
+.demo-reel-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(216,178,92,0.55);
+  border-radius:11px;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* Gold corner brackets — a small luxury-frame flourish at each corner. */
+.demo-reel-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:9px;
+  pointer-events:none;
+  z-index:2;
+  background:
+    linear-gradient(#D8B25C,#D8B25C) top left / 22px 2px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) top left / 2px 22px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) top right / 22px 2px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) top right / 2px 22px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) bottom left / 22px 2px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) bottom left / 2px 22px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) bottom right / 22px 2px no-repeat,
+    linear-gradient(#D8B25C,#D8B25C) bottom right / 2px 22px no-repeat;
+  opacity:0.85;
 }
 
 .demo-reel-video{
@@ -459,13 +588,40 @@ button:focus-visible{
   border-radius:10px;
   background:#000;
   border:1px solid rgba(58,31,76,0.25);
-  box-shadow:0 7px 16px rgba(58,31,76,0.22);
+  box-shadow:
+    0 7px 16px rgba(58,31,76,0.22),
+    inset 0 0 0 1px rgba(216,178,92,0.35),
+    inset 0 40px 60px rgba(20,8,32,0.35);
   position:relative;
   cursor:pointer;
-  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('theaterical_1.jpg');
+  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('Headshot_main.jpg');
   background-size:cover;
   background-position:top center;
 }
+
+/* Animated gold light-sweep across the thumbnail on hover — a subtle
+   glossy, luxurious shimmer rather than a static flat box. */
+.demo-reel-video::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(115deg,
+    transparent 0%,
+    rgba(255,255,255,0) 38%,
+    rgba(255,236,190,0.28) 50%,
+    rgba(255,255,255,0) 62%,
+    transparent 100%);
+  background-size:220% 100%;
+  background-position:130% 0;
+  transition:background-position .9s ease;
+}
+.demo-reel-wrapper:hover .demo-reel-video::after,
+.demo-reel-wrapper:focus-within .demo-reel-video::after{
+  background-position:-30% 0;
+}
+.demo-reel-video.is-playing::after{display:none;}
 
 /* ==========================================================================
    GENERIC CLICK-TO-PLAY VIDEO FACADE (reused by demo reel, show reels,
@@ -492,6 +648,7 @@ button:focus-visible{
 
 .play-btn{
   position:absolute;
+  z-index:2;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:64px;height:64px;
@@ -499,8 +656,11 @@ button:focus-visible{
   background:rgba(76,29,149,0.85);
   color:var(--white);
   border:2px solid rgba(255,255,255,0.85);
+  box-shadow:
+    0 0 0 3px rgba(216,178,92,0.55),
+    0 6px 18px rgba(20,8,32,0.45);
   display:flex;align-items:center;justify-content:center;
-  transition:background .2s ease, transform .2s ease;
+  transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 .reel-video:hover .play-btn,
 .reel-video:focus-visible .play-btn{
@@ -508,6 +668,31 @@ button:focus-visible{
   transform:translate(-50%,-50%) scale(1.06);
 }
 .reel-video.is-playing .play-btn{display:none;}
+
+/* Close button shown only while a reel video is playing — lets a visitor
+   stop it and return to the poster/thumbnail without switching to a
+   different card first. */
+.reel-close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+  width:36px;height:36px;
+  border-radius:50%;
+  background:rgba(58,31,76,0.75);
+  color:var(--white);
+  border:2px solid rgba(255,255,255,0.85);
+  font-size:20px;
+  line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s ease, transform .2s ease;
+}
+.reel-close:hover,
+.reel-close:focus-visible{
+  background:var(--title-purple);
+  transform:scale(1.08);
+}
 
 /* ==========================================================================
    PROFESSIONAL PROFILE BUTTONS
@@ -981,6 +1166,52 @@ button:focus-visible{
   .lightbox-next{right:6px;width:40px;height:40px;}
 }
 
+/* Full-screen PDF viewer (Bio / Resume "View Full Screen") — opens in-page
+   rather than a new browser tab, with an explicit close (X) button so a
+   visitor always has a clear, obvious way back to the page underneath. */
+.pdf-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(20,8,32,0.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+.pdf-lightbox.open{display:flex;}
+
+.pdf-lightbox iframe{
+  width:min(1000px, 92vw);
+  height:88vh;
+  border:0;
+  border-radius:8px;
+  background:#FFFFFF;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.pdf-lightbox-close{
+  position:absolute;
+  top:24px;right:24px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  border-radius:50%;
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.pdf-lightbox-close:hover,
+.pdf-lightbox-close:focus-visible{background:rgba(255,255,255,0.28);}
+
+@media (max-width:600px){
+  .pdf-lightbox{padding:16px;}
+  .pdf-lightbox-close{top:10px;right:10px;width:40px;height:40px;}
+  .pdf-lightbox iframe{height:82vh;}
+}
+
 /* Media / interview cards */
 .media-grid{
   display:grid;
@@ -1047,6 +1278,29 @@ button:focus-visible{
   box-shadow:
     0 11px 20px rgba(58,31,76,0.24),
     inset 0 1px 1px rgba(255,255,255,0.80);
+}
+
+/* Explicit way to leave the full-page PDF preview and return to Home,
+   beyond just clicking the nav again. */
+.pdf-back-row{
+  display:flex;
+  justify-content:center;
+  margin:28px 0 8px;
+}
+
+.pdf-back-link{
+  font-family:'Montserrat', sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  color:var(--title-purple);
+  padding:10px 4px;
+  border-bottom:2px solid transparent;
+  transition:border-color .2s ease;
+}
+.pdf-back-link:hover,
+.pdf-back-link:focus-visible{
+  border-bottom-color:var(--title-purple);
 }
 
 .pdf-frame{
@@ -1283,6 +1537,37 @@ button:focus-visible{
   width:28px;
   height:28px;
   flex-shrink:0;
+}
+
+/* Contact button — shown alongside the social icons in the footer, so it
+   appears on every page/tab of the site, not just as a plain text link. */
+.social-contact-btn{
+  display:inline-block;
+  margin:0 auto 22px;
+  padding:12px 34px;
+  font-family:'Montserrat', sans-serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#3A1F4C;
+  background:linear-gradient(145deg, #F5ECFF 0%, #D7C3EE 55%, #B99AD9 100%);
+  border:1px solid #8E68B8;
+  border-radius:30px;
+  box-shadow:
+    0 8px 16px rgba(58,31,76,0.20),
+    0 0 0 1px rgba(216,178,92,0.55),
+    inset 0 1px 1px rgba(255,255,255,0.80);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.social-contact-btn:hover,
+.social-contact-btn:focus-visible{
+  transform:translateY(-3px);
+  color:#3A1F4C;
+  box-shadow:
+    0 12px 22px rgba(58,31,76,0.26),
+    0 0 0 1px rgba(216,178,92,0.75),
+    inset 0 1px 1px rgba(255,255,255,0.80);
 }
 
 .footer-copy{
