@@ -8,9 +8,9 @@
 :root{
   --main-background: #EFE5FF;
 
-  /* header — darker lavender per FINAL COMPLETE revision */
-  --header-background: #E4D3F4;
-  --header-border: #C9B2E3;
+  /* header — FINAL banner colors: deeper lavender bg + richer border */
+  --header-background: #D8C3EC;
+  --header-border: #BFA3DA;
 
   --deep-plum: #3A1F4C;
   --title-purple: #4C1D95;
@@ -239,9 +239,9 @@ button:focus-visible{
 
 .hero-title{
   font-family:'Great Vibes', cursive;
-  font-size:clamp(120px, 13vw, 190px);
+  font-size:clamp(112px, 13vw, 190px);
   font-weight:700;
-  line-height:0.88;
+  line-height:1.02;
   color:var(--title-purple);
   -webkit-text-stroke:1.7px var(--title-purple);
   text-shadow:
@@ -250,7 +250,8 @@ button:focus-visible{
     3px 4px 3px rgba(90,14,50,0.35),
     4px 7px 10px rgba(90,14,50,0.30);
   margin:0;
-  padding:0;
+  padding:.12em .04em .04em;
+  overflow:visible;
 }
 
 .role-line{
@@ -319,28 +320,28 @@ button:focus-visible{
 .hero-flank{
   position:relative;
   z-index:1;
-  width:190px;
+  width:210px;
   flex-shrink:0;
 }
 
 .hero-flank-left{
   text-align:right;
-  font-family:'Montserrat', sans-serif;
-  font-weight:700;
-  font-size:19px;
-  line-height:1.4;
-  letter-spacing:1px;
-  color:var(--title-purple);
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600;
+  font-size:23px;
+  line-height:1.55;
+  letter-spacing:2px;
+  color:#7B4BC4;
   text-transform:uppercase;
 }
 .hero-flank-left .rule-mini{margin-left:auto;}
 
 .hero-flank-right{
   text-align:left;
-  font-family:'Great Vibes', cursive;
-  font-size:38px;
-  line-height:1.15;
-  color:var(--title-purple);
+  font-family:'Allura', cursive;
+  font-size:42px;
+  line-height:1.25;
+  color:#2C0B63;
 }
 
 .rule-mini{
@@ -361,45 +362,48 @@ button:focus-visible{
 .portrait-stage{
   position:relative;
   z-index:1;
-  width:min(480px, 78vw);
-  aspect-ratio:4 / 5;
+  width:min(440px, 78vw);
+  aspect-ratio:2 / 3;
   flex-shrink:0;
 }
 
+/* Soft lavender/purple halo — exact stops from the approved FINAL home-page
+   spec. No hard circle, no hard rectangle: the transparent portrait simply
+   sits on top of this glow. */
 .portrait-halo{
   position:absolute;
-  inset:-34%;
+  inset:-30%;
   z-index:0;
   background:
     radial-gradient(
       circle at center,
-      rgba(149,101,201,0.55) 0%,
-      rgba(170,128,209,0.38) 30%,
-      rgba(195,177,225,0.22) 52%,
-      rgba(239,229,255,0) 74%
+      rgba(185,154,217,0.60) 0%,
+      rgba(195,177,225,0.35) 35%,
+      rgba(239,229,255,0) 72%
     );
   pointer-events:none;
 }
 .portrait-halo::before{
   content:"";
   position:absolute;
-  inset:-25%;
+  inset:-20%;
   background:radial-gradient(
     circle at center,
-    rgba(139,90,191,0.20) 0%,
+    rgba(139,90,191,0.18) 0%,
     rgba(139,90,191,0) 70%
   );
 }
 
+/* Headshot_main_transparent.png already has its background removed, so no
+   mask/crop is needed — it blends straight into the halo behind it. */
 .portrait-stage img{
   position:relative;
   z-index:1;
   width:100%;
   height:100%;
-  object-fit:cover;
-  object-position:top center;
-  -webkit-mask-image:radial-gradient(ellipse 78% 82% at center, black 62%, transparent 100%);
-  mask-image:radial-gradient(ellipse 78% 82% at center, black 62%, transparent 100%);
+  object-fit:contain;
+  object-position:bottom center;
+  filter:drop-shadow(0 18px 26px rgba(43,7,61,0.35));
 }
 
 /* ==========================================================================
@@ -446,7 +450,7 @@ button:focus-visible{
   box-shadow:0 7px 16px rgba(58,31,76,0.22);
   position:relative;
   cursor:pointer;
-  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('Headshot_main.jpg');
+  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('theaterical_1.jpg');
   background-size:cover;
   background-position:top center;
 }
@@ -1198,6 +1202,24 @@ button:focus-visible{
 /* ==========================================================================
    FOOTER — global, reused on every page: FOLLOW YEENA + social row
    ========================================================================== */
+
+/* ==========================================================================
+   BRAND WAVE MOTIF — flowing lavender/plum + thin gold ribbon, the closing
+   Yeena Fisher visual signature at the bottom of the page (spec section 13)
+   ========================================================================== */
+.brand-wave-motif{
+  position:relative;
+  z-index:1;
+  width:100%;
+  line-height:0;
+  margin-bottom:-2px; /* blend seamlessly into the footer below */
+}
+.brand-wave-motif svg{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1440 / 220;
+}
 
 .site-footer{
   background:#F3E8FF;

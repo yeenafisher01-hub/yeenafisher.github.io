@@ -106,6 +106,39 @@ function initReelPlayers() {
   var reelVideos = document.querySelectorAll('.reel-video[data-embed]');
   if (!reelVideos.length) return;
 
+  // ------------------------------------------------------------------------
+  // POSTER / THUMBNAIL — REPAIR
+  // Previously these cards had no background image at all (just CSS
+  // background:#000), so every Show Reel and Media card looked like a
+  // blank/black box until clicked. Fix: pull each video's own official
+  // YouTube thumbnail (img.youtube.com — a public static image, no
+  // youtube.com page load and no sign-in required) and show it behind the
+  // Play button. The Home Demo Reel keeps its own dedicated poster image
+  // set in CSS (.demo-reel-video), so it's skipped here.
+  // ------------------------------------------------------------------------
+  function extractYouTubeId(url) {
+    if (!url) return null;
+    var m = url.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{6,})/);
+    return m ? m[1] : null;
+  }
+
+  reelVideos.forEach(function (container) {
+    if (container.classList.contains('demo-reel-video')) return;
+
+    // Optional manual override: <div class="reel-video" data-poster="file.jpg" ...>
+    var poster = container.getAttribute('data-poster');
+    if (!poster) {
+      var id = extractYouTubeId(container.getAttribute('data-embed'));
+      if (id) poster = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+    }
+    if (poster) {
+      container.style.backgroundImage =
+        'linear-gradient(rgba(20,8,32,0.30), rgba(20,8,32,0.55)), url("' + poster + '")';
+      container.style.backgroundSize = 'cover';
+      container.style.backgroundPosition = 'center';
+    }
+  });
+
   function toEmbedUrl(url) {
     if (!url) return null;
 

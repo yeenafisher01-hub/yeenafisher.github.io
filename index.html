@@ -6,7 +6,7 @@
 <title>Yeena Fisher — Actress, Filmmaker, Writer, Dancer</title>
 <meta name="description" content="Official website of Yeena Fisher — actress, filmmaker, writer and dancer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -109,8 +109,9 @@
 
     <div class="portrait-stage">
       <div class="portrait-halo" aria-hidden="true"></div>
-      <!-- MAIN PORTRAIT: Headshot_main.jpg (updated file — do not alter/AI-regenerate this photo) -->
-      <img src="Headshot_main.jpg" alt="Yeena Fisher, actress, filmmaker, writer and dancer" width="480" height="600">
+      <!-- MAIN PORTRAIT: Headshot_main_transparent.png — background-removed asset supplied by Yeena.
+           Do not crop, regenerate, retouch or otherwise alter this photo. -->
+      <img src="Headshot_main_transparent.png" alt="Yeena Fisher, actress, filmmaker, writer and dancer" width="1024" height="1536">
     </div>
 
     <!-- Authentic / Compelling / Unforgettable -->
@@ -535,6 +536,48 @@
   <button class="lightbox-prev" type="button" aria-label="Previous photo">&#10094;</button>
   <img src="" alt="">
   <button class="lightbox-next" type="button" aria-label="Next photo">&#10095;</button>
+</div>
+
+<!-- ==========================================================================
+     BRAND WAVE MOTIF — flowing lavender/plum satin ribbon with thin gold
+     accents, per the approved reference. Sits above the shared footer, so
+     it appears at the bottom of every page/tab on this one-page site.
+     ========================================================================== -->
+<div class="brand-wave-motif" aria-hidden="true">
+  <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="waveDeep" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#2B073D"/>
+        <stop offset="100%" stop-color="#4C1D6F"/>
+      </linearGradient>
+      <linearGradient id="waveMid" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#4C1D6F"/>
+        <stop offset="55%" stop-color="#7542A8"/>
+        <stop offset="100%" stop-color="#4C1D6F"/>
+      </linearGradient>
+      <linearGradient id="waveLight" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#7542A8"/>
+        <stop offset="50%" stop-color="#B88AD9"/>
+        <stop offset="100%" stop-color="#7542A8"/>
+      </linearGradient>
+      <radialGradient id="goldFlare" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F3D999" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#D6A84B" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <path d="M0,90 C260,150 420,40 720,80 C1020,120 1180,40 1440,90 L1440,220 L0,220 Z" fill="url(#waveDeep)"/>
+    <path d="M0,120 C220,60 460,170 760,120 C1040,74 1240,150 1440,110 L1440,220 L0,220 Z" fill="url(#waveMid)" opacity="0.92"/>
+    <path d="M0,150 C300,190 540,110 820,150 C1100,190 1260,120 1440,150 L1440,220 L0,220 Z" fill="url(#waveLight)" opacity="0.85"/>
+
+    <path d="M0,92 C260,152 420,42 720,82 C1020,122 1180,42 1440,92" fill="none" stroke="#D6A84B" stroke-width="1.4" opacity="0.7"/>
+    <path d="M0,151 C300,191 540,111 820,151 C1100,191 1260,121 1440,151" fill="none" stroke="#D6A84B" stroke-width="1" opacity="0.5"/>
+
+    <circle cx="240" cy="70" r="22" fill="url(#goldFlare)"/>
+    <circle cx="1150" cy="130" r="18" fill="url(#goldFlare)"/>
+    <circle cx="680" cy="60" r="3" fill="#F3D999" opacity="0.8"/>
+    <circle cx="1030" cy="95" r="2.4" fill="#F3D999" opacity="0.7"/>
+  </svg>
 </div>
 
 <!-- ==========================================================================
