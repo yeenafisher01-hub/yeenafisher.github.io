@@ -130,12 +130,13 @@ button:focus-visible{
   display:flex;
   align-items:center;
   gap:30px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
 }
 
 .primary-nav a{
   position:relative;
   display:inline-block;
+  white-space:nowrap;
   font-family:'Montserrat', sans-serif;
   font-size:20px;
   font-weight:600;
@@ -171,6 +172,17 @@ button:focus-visible{
 
 @media (min-width:1400px){
   .primary-nav a{font-size:22px;}
+}
+
+/* Common laptop widths (13"-15" screens, scaled Windows displays, unmaximized
+   browser windows) sit right between the mobile breakpoint and full desktop.
+   Scale the nav down so it still fits on ONE horizontal line instead of
+   wrapping to a second row. */
+@media (min-width:961px) and (max-width:1300px){
+  .nav-wrap{padding:16px 24px;gap:14px;}
+  .logo-mark{font-size:32px;}
+  .primary-nav ul{gap:16px;}
+  .primary-nav a{font-size:15px;letter-spacing:0.4px;}
 }
 
 /* Mobile "MENU ☰" toggle */
