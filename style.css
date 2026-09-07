@@ -8,7 +8,9 @@
 :root{
   --main-background: #EFE5FF;
 
-  /* header — FINAL banner colors: deeper lavender bg + richer border */
+  /* header — per HOME Page FINAL doc §2, the authoritative/latest spec:
+     "UPDATED FINAL top-banner color: #D8C3EC" (supersedes the earlier
+     Homepage Revision doc's darker #E4D3F4 suggestion) */
   --header-background: #D8C3EC;
   --header-border: #BFA3DA;
 
@@ -198,8 +200,11 @@ button:focus-visible{
 /* Common laptop widths (13"-15" screens, scaled Windows displays, unmaximized
    browser windows) sit right between the mobile breakpoint and full desktop.
    Scale the nav down so it still fits on ONE horizontal line instead of
-   wrapping to a second row. */
-@media (min-width:961px) and (max-width:1300px){
+   wrapping to a second row. Lower bound matches the mobile breakpoint below
+   (769px) so the full inline menu never collapses to the hamburger on any
+   desktop/laptop-width window — only genuinely small/mobile screens
+   (≤768px, per spec) get the MENU ☰ toggle. */
+@media (min-width:769px) and (max-width:1300px){
   .nav-wrap{padding:16px 24px;gap:14px;}
   .logo-mark{font-size:32px;}
   .primary-nav ul{gap:16px;}
@@ -224,7 +229,10 @@ button:focus-visible{
 }
 .menu-toggle .bars{font-size:22px;line-height:1;}
 
-@media (max-width:960px){
+/* Mobile threshold matches both spec docs exactly: "approximately 768px
+   and below" gets the YF + MENU ☰ layout; every desktop/laptop width above
+   this keeps the full inline menu (see the 769-1300px rule above). */
+@media (max-width:768px){
   .nav-wrap{padding:14px 22px;}
 
   .menu-toggle{display:flex;}
@@ -309,7 +317,7 @@ button:focus-visible{
 
 .hero-bio{
   max-width:850px;
-  margin:0 auto 40px;
+  margin:0 auto 10px;
   font-family:'Montserrat', sans-serif;
   font-size:20px;
   line-height:1.65;
@@ -331,9 +339,14 @@ button:focus-visible{
    than competing with the photograph.
    ========================================================================== */
 
-/* Shared Hollywood-Hills/sunset/palm-tree scene behind BOTH the name/bio
-   (.hero) and the portrait (.portrait-section), so it reads as one
-   continuous backdrop instead of being boxed around the photo only. */
+/* Real photographic Hollywood backdrop (Yeena's HollywoodbackgroundImage.png:
+   hillside HOLLYWOOD sign, palms, skyline, sunset sky, filmstrip ribbon) runs
+   from the short bio through the Demo Reel. background-size:100% auto (not
+   "cover") keeps the whole width of the photo undisplayed — no side-cropping
+   that would lose the sign or the palms — and lets it sit at its natural
+   height at the top of this section; background-color picks up the photo's
+   own bottom-edge tone so the area below its natural height blends smoothly
+   into the rest of the section instead of a hard color seam. */
 .home-atmosphere{
   position:relative;
   overflow:hidden;
@@ -344,8 +357,41 @@ button:focus-visible{
   inset:0;
   z-index:0;
   pointer-events:none;
+  background-image:url('HollywoodbackgroundImage.png');
+  background-repeat:no-repeat;
+  background-position:top center;
+  background-size:100% auto;
+  background-color:#D9B6F8;
 }
-.home-atmosphere-bg svg{width:100%;height:100%;display:block;}
+
+/* Lavender scrim over the photo: strong at the very top (where it meets the
+   plain-background hero above, and behind the bio paragraph) and again near
+   the bottom (blending into the plain background below the Demo Reel);
+   nearly clear across the middle so the portrait/atmosphere reads clearly.
+   This is what keeps the Hollywood elements "secondary" / "emerging softly"
+   rather than a busy photo dropped behind text. */
+.home-atmosphere-scrim{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(239,229,255,0.94) 0%,
+    rgba(239,229,255,0.60) 8%,
+    rgba(239,229,255,0.20) 20%,
+    rgba(239,229,255,0.04) 34%,
+    rgba(239,229,255,0.04) 72%,
+    rgba(239,229,255,0.55) 92%,
+    rgba(239,229,255,0.92) 100%);
+}
+
+/* Bio paragraph sits in normal flow inside .home-atmosphere; give it its own
+   stacking position so it reliably paints above the absolutely-positioned
+   background/scrim layers rather than beneath them. */
+.home-atmosphere > .container{
+  position:relative;
+  z-index:1;
+}
 
 .atmosphere-tagline{
   position:relative;
@@ -355,7 +401,7 @@ button:focus-visible{
   line-height:1.15;
   color:#5B2E86;
   text-align:left;
-  margin:18px 0 0 32px;
+  margin:4px 0 0 32px;
 }
 
 @media (max-width:900px){
@@ -370,26 +416,39 @@ button:focus-visible{
   justify-content:center;
   gap:36px;
   flex-wrap:wrap;
-  padding:12px 24px 64px;
-  overflow:hidden;
+  padding:0 24px 64px;
+  /* visible, not hidden: the blurred halo intentionally extends beyond the
+     portrait-stage box and must not be clipped. body{overflow-x:hidden}
+     still guards against any horizontal scrollbar. */
+  overflow:visible;
 }
 
 .hero-flank{
+  /* No background panel — text sits directly on the photo backdrop.
+     Legibility comes from color + text-shadow only (see below), not a
+     frosted "box" behind the words. */
   position:relative;
   z-index:1;
   width:210px;
   flex-shrink:0;
+  padding:14px 10px;
 }
 
 .hero-flank-left{
   text-align:right;
-  font-family:'Allura', cursive;
-  font-weight:400;
-  font-size:34px;
-  line-height:1.35;
-  letter-spacing:1px;
-  color:#7B4BC4;
-  text-transform:capitalize;
+  /* Per HOME Page FINAL doc §7: Cormorant Garamond SemiBold, uppercase —
+     the structured/editorial serif side, contrasting with the cursive
+     script on the right (§8). Not Allura/cursive here. */
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600;
+  font-size:26px;
+  line-height:1.5;
+  letter-spacing:2px;
+  /* Dark plum (not the lighter lavender-purple used elsewhere) so the
+     words read clearly with no background box behind them. */
+  color:var(--deep-plum);
+  text-shadow:0 1px 3px rgba(255,255,255,0.75), 0 0 16px rgba(255,255,255,0.6), 0 0 3px rgba(255,255,255,0.9);
+  text-transform:uppercase;
 }
 .hero-flank-left .rule-mini{margin-left:auto;}
 
@@ -399,6 +458,7 @@ button:focus-visible{
   font-size:42px;
   line-height:1.25;
   color:#2C0B63;
+  text-shadow:0 1px 3px rgba(255,255,255,0.75), 0 0 16px rgba(255,255,255,0.6), 0 0 3px rgba(255,255,255,0.9);
 }
 
 .rule-mini{
@@ -424,60 +484,35 @@ button:focus-visible{
   flex-shrink:0;
 }
 
-/* Soft lavender/purple halo — exact stops from the approved FINAL home-page
-   spec. No hard circle, no hard rectangle: the transparent portrait simply
-   sits on top of this glow. */
+/* Soft, round/oval lavender halo BEHIND the headshot — per Yeena's exact
+   spec. A single blurred radial-gradient ellipse, not a hard circle and
+   never a rectangular panel. It sits behind the portrait (z-index:0, the
+   <img> is z-index:1) and its outer edge fades to fully transparent well
+   before the section edge, so it dissolves into the page/photo background
+   rather than reading as a frame. Sized to surround hair/shoulders without
+   reaching the section's own edges. */
 .portrait-halo{
   position:absolute;
-  inset:-42%;
-  z-index:0;
-  background:
-    radial-gradient(circle at center, rgba(255,244,220,0.55) 0%, rgba(255,244,220,0) 26%),
-    radial-gradient(circle at center, rgba(216,178,92,0.35) 0%, rgba(216,178,92,0) 42%),
-    radial-gradient(
-      circle at center,
-      rgba(185,154,217,0.62) 0%,
-      rgba(195,177,225,0.38) 38%,
-      rgba(239,229,255,0) 74%
-    );
-  pointer-events:none;
-}
-
-/* Soft radiating light rays — classic glamour-portrait spotlight effect —
-   fading out from the figure via a mask so it never becomes a hard sunburst. */
-.portrait-halo::before{
-  content:"";
-  position:absolute;
-  inset:-35%;
-  background:repeating-conic-gradient(
-    from 0deg,
-    rgba(255,244,214,0.22) 0deg 3deg,
-    rgba(255,244,214,0) 3deg 16deg
-  );
-  -webkit-mask-image:radial-gradient(circle at center, #000 0%, transparent 68%);
-  mask-image:radial-gradient(circle at center, #000 0%, transparent 68%);
-  pointer-events:none;
-}
-
-/* Slightly darker plum/wine vignette hugging the portrait edges — reads as
-   glamorous studio-light falloff around the figure rather than a flat glow.
-   Sits behind the photo (img is z-index:1) and blends into the halo above. */
-.portrait-halo::after{
-  content:"";
-  position:absolute;
-  inset:-5%;
+  width:125%;
+  height:115%;
+  left:50%;
+  top:52%;
+  transform:translate(-50%, -50%);
+  border-radius:50%;
   background:radial-gradient(
-    circle at center,
-    rgba(58,31,76,0) 38%,
-    rgba(58,31,76,0.34) 64%,
-    var(--wine-shadow) 80%,
-    rgba(58,31,76,0) 100%
+    ellipse at center,
+    rgba(185,154,217,0.65) 0%,
+    rgba(195,177,225,0.45) 35%,
+    rgba(220,195,245,0.25) 55%,
+    rgba(239,229,255,0) 75%
   );
+  filter:blur(18px);
+  z-index:0;
   pointer-events:none;
 }
 
-/* Headshot_main_transparent.png already has its background removed, so no
-   mask/crop is needed — it blends straight into the halo behind it. */
+/* Headshot_main_transparent.png is Yeena's original, already-transparent
+   asset — untouched, uncropped. It simply sits on top of the halo above. */
 .portrait-stage img{
   position:relative;
   z-index:1;
@@ -485,10 +520,7 @@ button:focus-visible{
   height:100%;
   object-fit:contain;
   object-position:bottom center;
-  filter:
-    drop-shadow(0 18px 26px rgba(43,7,61,0.35))
-    drop-shadow(0 0 28px rgba(255,244,214,0.45))
-    drop-shadow(0 0 48px rgba(214,180,110,0.35));
+  filter:drop-shadow(0 18px 26px rgba(43,7,61,0.35));
 }
 
 /* ==========================================================================
@@ -496,6 +528,8 @@ button:focus-visible{
    ========================================================================== */
 
 .demo-reel-section{
+  position:relative;
+  z-index:1;
   text-align:center;
   padding:0 24px 56px;
   perspective:1400px;
@@ -512,9 +546,9 @@ button:focus-visible{
 }
 
 .demo-reel-wrapper{
-  width:min(80vw, 690px);
+  width:min(56vw, 440px);
   margin:0 auto;
-  padding:16px;
+  padding:12px;
   position:relative;
   background:linear-gradient(145deg, #F7F0FF 0%, #E6DAFF 52%, #C9AFE5 100%);
   border:1px solid #B99AD9;
@@ -594,9 +628,13 @@ button:focus-visible{
     inset 0 40px 60px rgba(20,8,32,0.35);
   position:relative;
   cursor:pointer;
-  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('Headshot_main.jpg');
-  background-size:cover;
-  background-position:top center;
+  /* CSS fallback only if JS hasn't applied the real YouTube thumbnail yet
+     (or fails). "contain" keeps the whole frame visible with no cropping,
+     so Yeena's face is never cut off. */
+  background-image:linear-gradient(rgba(20,8,32,0.35), rgba(20,8,32,0.55)), url('theaterical_1.jpg');
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
 }
 
 /* Animated gold light-sweep across the thumbnail on hover — a subtle

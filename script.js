@@ -126,8 +126,18 @@ function initReelPlayers() {
   function applyPoster(container, url) {
     container.style.backgroundImage =
       'linear-gradient(rgba(20,8,32,0.30), rgba(20,8,32,0.55)), url("' + url + '")';
-    container.style.backgroundSize = 'cover';
-    container.style.backgroundPosition = 'center';
+    // The Home page Demo Reel thumbnail (YouTube's hqdefault.jpg, 4:3) sits
+    // inside a 16:9 box. "cover" would crop the top/bottom of the frame and
+    // risk cutting off Yeena's face; "contain" shows the whole thumbnail
+    // untouched, letterboxed on the near-black background instead.
+    if (container.classList.contains('demo-reel-video')) {
+      container.style.backgroundSize = 'contain';
+      container.style.backgroundRepeat = 'no-repeat';
+      container.style.backgroundPosition = 'center';
+    } else {
+      container.style.backgroundSize = 'cover';
+      container.style.backgroundPosition = 'center';
+    }
   }
 
   // Local, always-available photo of Yeena used only if a video's YouTube

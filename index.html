@@ -47,66 +47,30 @@
     <!-- ============================== HOME ============================== -->
     <section id="page-home" class="page">
 <!-- ==========================================================================
-     HOME ATMOSPHERE WRAPPER — one continuous Hollywood-Hills/sunset/palm-tree
-     backdrop behind BOTH the name/bio (.hero) and the portrait (.portrait-
-     section), so the illustrated skyline reads as a single scene instead of
-     being boxed in around the photo only. Nothing inside .hero or
-     .portrait-section was removed or reordered — this only adds a shared
-     background layer behind them.
-     ========================================================================== -->
-  <div class="home-atmosphere">
-    <div class="home-atmosphere-bg" aria-hidden="true">
-      <svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="hwSky2" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#EAD9F5"/>
-            <stop offset="45%" stop-color="#DCB8E6"/>
-            <stop offset="75%" stop-color="#C093D6"/>
-            <stop offset="100%" stop-color="#9A6BC2"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="1200" height="900" fill="url(#hwSky2)"/>
-        <!-- stars/sparkle high in the sky -->
-        <g fill="#FFF3D6" opacity="0.85">
-          <circle cx="120" cy="70" r="2.2"/><circle cx="260" cy="40" r="1.6"/>
-          <circle cx="430" cy="90" r="2"/><circle cx="620" cy="45" r="1.8"/>
-          <circle cx="800" cy="120" r="1.6"/><circle cx="980" cy="60" r="2.2"/>
-          <circle cx="1100" cy="140" r="1.6"/><circle cx="340" cy="150" r="1.4"/>
-        </g>
-        <!-- far hazy hillside -->
-        <path d="M -20 380 Q 260 300 600 360 Q 900 300 1220 360 L 1220 460 L -20 460 Z" fill="#B18BCB" opacity="0.55"/>
-        <!-- HOLLYWOOD sign on the near ridge -->
-        <path d="M 700 420 Q 850 340 1000 410 Q 1120 370 1220 420 L 1220 520 L 700 520 Z" fill="#8E68B8" opacity="0.85"/>
-        <text x="960" y="410" font-family="Montserrat, sans-serif" font-weight="700" font-size="20" letter-spacing="6" fill="#F3E3B8" text-anchor="middle">HOLLYWOOD</text>
-        <!-- near ridge across full width -->
-        <path d="M -20 470 Q 300 400 620 455 Q 900 410 1220 460 L 1220 620 L -20 620 Z" fill="#6E4699" opacity="0.9"/>
-        <!-- palm trees scattered along the base -->
-        <g fill="#3A1F4C" opacity="0.85">
-          <path d="M 70 610 C 60 550 20 530 -10 540 C 30 510 70 530 78 560 C 82 520 60 485 25 475 C 70 465 100 500 95 540 C 110 505 100 465 65 445 C 115 445 135 490 118 530 C 118 530 90 570 70 610 Z"/>
-          <rect x="66" y="530" width="8" height="90" fill="#3A1F4C"/>
-          <path d="M 260 630 C 250 570 210 550 180 560 C 220 530 260 550 268 580 C 272 540 250 505 215 495 C 260 485 290 520 285 560 C 300 525 290 485 255 465 C 305 465 325 510 308 550 C 308 550 280 590 260 630 Z"/>
-          <rect x="256" y="550" width="7" height="90" fill="#3A1F4C"/>
-          <path d="M 950 640 C 940 580 900 560 870 570 C 910 540 950 560 958 590 C 962 550 940 515 905 505 C 950 495 980 530 975 570 C 990 535 980 495 945 475 C 995 475 1015 520 998 560 C 998 560 970 600 950 640 Z"/>
-          <rect x="946" y="560" width="8" height="90" fill="#3A1F4C"/>
-          <path d="M 1140 610 C 1150 550 1190 530 1220 540 C 1180 510 1140 530 1132 560 C 1128 520 1150 485 1185 475 C 1140 465 1110 500 1115 540 C 1100 505 1110 465 1145 445 C 1095 445 1075 490 1092 530 C 1092 530 1120 570 1140 610 Z"/>
-          <rect x="1136" y="530" width="8" height="90" fill="#3A1F4C"/>
-        </g>
-        <!-- ground haze so page content stays legible -->
-        <rect x="0" y="600" width="1200" height="300" fill="#EFE5FF" opacity="0.45"/>
-      </svg>
-    </div>
-
-    <!-- handwritten tagline, upper-left of the whole scene -->
-    <p class="atmosphere-tagline">Stories<br>That<br>Move Us</p>
-
-<!-- ==========================================================================
-       HERO — NAME, ROLE LINE, BIO
+       HERO — NAME, ROLE LINE. Plain page background so the signature
+       always stays fully legible.
        ========================================================================== -->
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">Yeena Fisher</h1>
       <p class="role-line">Actress &bull; Filmmaker &bull; Writer &bull; Dancer</p>
       <div class="role-divider" aria-hidden="true"></div>
+    </div>
+  </section>
+
+<!-- ==========================================================================
+     HOME ATMOSPHERE WRAPPER — real photographic Hollywood backdrop
+     (HollywoodbackgroundImage.png: hillside HOLLYWOOD sign, palms,
+     skyline, sunset sky, filmstrip ribbon) spans from the short bio
+     through the Demo Reel, per Yeena's direct instruction. Top/bottom
+     edges feather into the plain page background so there's no hard
+     seam; a light lavender scrim keeps text legible over the photo.
+     ========================================================================== -->
+  <div class="home-atmosphere">
+    <div class="home-atmosphere-bg" aria-hidden="true"></div>
+    <div class="home-atmosphere-scrim" aria-hidden="true"></div>
+
+    <div class="container">
       <p class="hero-bio">
         Yeena Fisher brings to life unique and compelling women&mdash;captivating, unpredictable and
         spontaneous, yet powerful, charismatic and unforgettable. With emotional depth and an
@@ -114,12 +78,13 @@
         after the story ends. She has worked on 66 Films and Television shows.
       </p>
     </div>
-  </section>
+
+    <!-- handwritten tagline, upper-left of the scene -->
+    <p class="atmosphere-tagline">Stories<br>That<br>Move Us</p>
 
   <!-- ==========================================================================
-       MAIN PORTRAIT — Hollywood/cinematic atmosphere restored per the
-       approved reference image, flanking text left/right, soft lavender
-       halo (no hard circle) behind the portrait itself.
+       MAIN PORTRAIT — flanking text left/right, soft round/oval lavender
+       halo (CSS-only, behind the portrait, never covering hair/face/body).
        ========================================================================== -->
   <section class="portrait-section" aria-label="Portrait">
 
@@ -129,11 +94,11 @@
       <div class="rule-mini" aria-hidden="true"></div>
     </div>
 
-    <div class="portrait-stage">
+    <div class="portrait-stage hero-portrait-wrap">
       <div class="portrait-halo" aria-hidden="true"></div>
-      <!-- MAIN PORTRAIT: Headshot_main_transparent.png — background-removed asset supplied by Yeena.
-           Do not crop, regenerate, retouch or otherwise alter this photo. -->
-      <img src="Headshot_main_transparent.png" alt="Yeena Fisher, actress, filmmaker, writer and dancer" width="1024" height="1536">
+      <!-- MAIN PORTRAIT: Headshot_main_transparent.png — Yeena's original background-removed
+           asset. Do NOT crop, regenerate, retouch, replace or otherwise alter this photo. -->
+      <img class="hero-portrait" src="Headshot_main_transparent.png" alt="Yeena Fisher, actress, filmmaker, writer and dancer" width="1024" height="1536">
     </div>
 
     <!-- Authentic / Compelling / Unforgettable -->
@@ -142,11 +107,12 @@
       <div class="rule-mini" aria-hidden="true"></div>
     </div>
   </section>
-  </div><!-- /.home-atmosphere -->
 
   <!-- ==========================================================================
        DEMO REEL — luxurious layered 3D frame, cover image, click-to-play
-       (Home page Demo Reel — separate from the Show Reels tab)
+       (Home page Demo Reel — separate from the Show Reels tab). Still
+       inside the Hollywood-atmosphere wrapper per Yeena's instruction
+       that the photo backdrop runs through to the Demo Reel.
        ========================================================================== -->
   <section class="demo-reel-section">
     <h2 class="demo-reel-heading">Demo Reel</h2>
@@ -154,13 +120,14 @@
       <!-- DEMO REEL: same confirmed video as the "Full Demo Reel" on the Show
            Reels tab (previously pointed at a different video ID that showed
            a YouTube sign-in/restricted wall on click). -->
-      <div class="reel-video demo-reel-video" data-embed="https://www.youtube.com/embed/3SurBvY-0Xc?start=7" data-poster="Headshot_main.jpg" role="button" tabindex="0" aria-label="Play Yeena Fisher Demo Reel">
+      <div class="reel-video demo-reel-video" data-embed="https://www.youtube.com/embed/3SurBvY-0Xc?start=7" role="button" tabindex="0" aria-label="Play Yeena Fisher Demo Reel">
         <button class="play-btn" type="button" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
       </div>
     </div>
   </section>
+  </div><!-- /.home-atmosphere -->
 
   <!-- ==========================================================================
        PROFESSIONAL PROFILE BUTTONS
