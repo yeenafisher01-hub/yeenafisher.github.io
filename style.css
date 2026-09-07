@@ -276,7 +276,7 @@ button:focus-visible{
 .hero{
   position:relative;
   z-index:1;
-  padding:0 0 40px;
+  padding:0 0 6px;
   text-align:center;
 }
 
@@ -312,7 +312,7 @@ button:focus-visible{
   width:70px;
   height:2px;
   background:var(--medium-lavender);
-  margin:0 auto 34px;
+  margin:0 auto 18px;
 }
 
 .hero-bio{
@@ -468,8 +468,31 @@ button:focus-visible{
   margin-top:14px;
 }
 
+/* Below 900px the flank text no longer sits beside the portrait (it wraps,
+   via .portrait-section's flex-wrap, to its own centered row above/below
+   the portrait) — it must stay VISIBLE, just re-centered and slightly
+   smaller so "STORYTELLING" and the stacked script line don't crowd a
+   narrow screen. Previously this was `display:none`, which is why the
+   left/right wording disappeared entirely on tablets and phones. */
 @media (max-width:900px){
-  .hero-flank{display:none;}
+  .hero-flank{
+    width:100%;
+    max-width:360px;
+    margin:0 auto;
+    padding:4px 10px;
+  }
+  .hero-flank-left,
+  .hero-flank-right{
+    text-align:center;
+  }
+  .hero-flank-left .rule-mini{
+    margin:14px auto 0;
+  }
+}
+
+@media (max-width:480px){
+  .hero-flank-left{font-size:21px;letter-spacing:1.5px;}
+  .hero-flank-right{font-size:32px;}
 }
 
 /* ==========================================================================
