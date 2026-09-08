@@ -1,6 +1,6 @@
 /* ==========================================================================
    YEENA FISHER — Portfolio Website
-   style.css — shared across every page
+   style.css — VERSION 5 — shared across every page
    Reflects: Homepage Revision FINAL COMPLETE, Show Reels FINAL,
    Red Carpets & Media FINAL, Bio & Resume, Contact Page instructions.
    ========================================================================== */
@@ -152,7 +152,7 @@ button:focus-visible{
 .primary-nav ul{
   display:flex;
   align-items:center;
-  gap:24px;
+  gap:18px;
   flex-wrap:nowrap;
 }
 
@@ -161,7 +161,7 @@ button:focus-visible{
   display:inline-block;
   white-space:nowrap;
   font-family:'Montserrat', sans-serif;
-  font-size:18px;
+  font-size:20px;
   font-weight:600;
   letter-spacing:1px;
   color:var(--deep-plum);
@@ -194,7 +194,7 @@ button:focus-visible{
 }
 
 @media (min-width:1400px){
-  .primary-nav a{font-size:22px;}
+  .primary-nav a{font-size:20px;}
 }
 
 /* Common laptop widths (13"-15" screens, scaled Windows displays, unmaximized
@@ -276,7 +276,7 @@ button:focus-visible{
 .hero{
   position:relative;
   z-index:1;
-  padding:18px 0 6px;
+  padding:4px 0 6px;
   text-align:center;
   overflow:visible;
 }
@@ -412,43 +412,32 @@ button:focus-visible{
 .portrait-section{
   position:relative;
   z-index:1;
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(145px,190px) minmax(360px,500px) minmax(145px,190px);
   align-items:center;
   justify-content:center;
-  gap:28px;
-  flex-wrap:wrap;
+  column-gap:18px;
   padding:0 24px 36px;
-  /* visible, not hidden: the blurred halo intentionally extends beyond the
-     portrait-stage box and must not be clipped. body{overflow-x:hidden}
-     still guards against any horizontal scrollbar. */
   overflow:visible;
 }
 
 .hero-flank{
-  /* No background panel — text sits directly on the photo backdrop.
-     Legibility comes from color + text-shadow only (see below), not a
-     frosted "box" behind the words. */
   position:relative;
-  z-index:1;
-  width:210px;
-  flex-shrink:0;
-  padding:14px 10px;
+  z-index:2;
+  width:auto;
+  min-width:0;
+  padding:8px 4px;
 }
 
 .hero-flank-left{
   text-align:right;
-  /* Per HOME Page FINAL doc §7: Cormorant Garamond SemiBold, uppercase —
-     the structured/editorial serif side, contrasting with the cursive
-     script on the right (§8). Not Allura/cursive here. */
   font-family:'Cormorant Garamond', serif;
   font-weight:600;
-  font-size:26px;
-  line-height:1.5;
-  letter-spacing:2px;
-  /* Dark plum (not the lighter lavender-purple used elsewhere) so the
-     words read clearly with no background box behind them. */
-  color:var(--deep-plum);
-  text-shadow:0 1px 3px rgba(255,255,255,0.75), 0 0 16px rgba(255,255,255,0.6), 0 0 3px rgba(255,255,255,0.9);
+  font-size:18px;
+  line-height:1.48;
+  letter-spacing:1.3px;
+  color:#3A1F4C;
+  text-shadow:0 1px 2px rgba(255,255,255,0.65);
   text-transform:uppercase;
 }
 .hero-flank-left .rule-mini{margin-left:auto;}
@@ -456,44 +445,46 @@ button:focus-visible{
 .hero-flank-right{
   text-align:left;
   font-family:'Allura', cursive;
-  font-size:42px;
-  line-height:1.25;
+  font-size:27px;
+  line-height:1.22;
   color:#2C0B63;
-  text-shadow:0 1px 3px rgba(255,255,255,0.75), 0 0 16px rgba(255,255,255,0.6), 0 0 3px rgba(255,255,255,0.9);
+  text-shadow:0 1px 2px rgba(255,255,255,0.65);
 }
 
 .rule-mini{
-  width:44px;
+  width:40px;
   height:1px;
-  background:var(--medium-lavender);
-  margin-top:14px;
+  background:#7542A8;
+  margin-top:12px;
 }
 
-/* Below 900px the flank text no longer sits beside the portrait (it wraps,
-   via .portrait-section's flex-wrap, to its own centered row above/below
-   the portrait) — it must stay VISIBLE, just re-centered and slightly
-   smaller so "STORYTELLING" and the stacked script line don't crowd a
-   narrow screen. Previously this was `display:none`, which is why the
-   left/right wording disappeared entirely on tablets and phones. */
-@media (max-width:900px){
+/* Keep both text treatments beside the portrait on normal desktop/laptop
+   widths. Only stack them on genuinely narrow screens. */
+@media (max-width:800px){
+  .portrait-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
   .hero-flank{
     width:100%;
-    max-width:360px;
+    max-width:340px;
     margin:0 auto;
-    padding:4px 10px;
+    padding:2px 8px;
   }
   .hero-flank-left,
   .hero-flank-right{
     text-align:center;
   }
   .hero-flank-left .rule-mini{
-    margin:14px auto 0;
+    margin:12px auto 0;
   }
 }
 
 @media (max-width:480px){
-  .hero-flank-left{font-size:21px;letter-spacing:1.5px;}
-  .hero-flank-right{font-size:32px;}
+  .hero-flank-left{font-size:16px;letter-spacing:1.1px;}
+  .hero-flank-right{font-size:24px;}
 }
 
 /* ==========================================================================
@@ -517,20 +508,22 @@ button:focus-visible{
    reaching the section's own edges. */
 .portrait-halo{
   position:absolute;
-  width:138%;
-  height:122%;
+  width:146%;
+  height:92%;
   left:50%;
-  top:42%;
+  top:36%;
   transform:translate(-50%, -50%);
   border-radius:50%;
   background:radial-gradient(
     ellipse at center,
-    rgba(185,154,217,0.78) 0%,
-    rgba(195,177,225,0.58) 34%,
-    rgba(220,195,245,0.34) 56%,
-    rgba(239,229,255,0) 75%
+    rgba(178,136,220,0.98) 0%,
+    rgba(190,150,225,0.86) 28%,
+    rgba(203,177,235,0.68) 46%,
+    rgba(220,197,244,0.42) 61%,
+    rgba(239,229,255,0) 79%
   );
-  filter:blur(22px);
+  filter:blur(18px);
+  box-shadow:0 0 42px rgba(123,75,196,0.28);
   z-index:0;
   pointer-events:none;
 }

@@ -1,4 +1,4 @@
-// Yeena Fisher website — shared vanilla JS
+// Yeena Fisher website — VERSION 5 — shared vanilla JS
 // Handles: mobile dropdown nav, footer year, click-to-play video facades
 // (Demo Reel / Show Reels / Media interviews), the photo-gallery lightbox
 // (Red Carpets & Media / Headshots), and the Contact form submission.
@@ -207,6 +207,12 @@ function initReelPlayers() {
     // If the embed URL already has query params, add autoplay with '&', else '?'.
     if (embedUrl.indexOf('autoplay=1') === -1) {
       embedUrl += (embedUrl.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+    }
+    if (embedUrl.indexOf('rel=0') === -1) {
+      embedUrl += (embedUrl.indexOf('?') === -1 ? '?' : '&') + 'rel=0';
+    }
+    if (embedUrl.indexOf('playsinline=1') === -1) {
+      embedUrl += (embedUrl.indexOf('?') === -1 ? '?' : '&') + 'playsinline=1';
     }
 
     var iframe = document.createElement('iframe');
