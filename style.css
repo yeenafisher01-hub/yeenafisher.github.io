@@ -449,6 +449,7 @@ button:focus-visible{
   line-height:1.22;
   color:#2C0B63;
   text-shadow:0 1px 2px rgba(255,255,255,0.65);
+  transform:translateX(28px);
 }
 
 .rule-mini{
@@ -468,7 +469,7 @@ button:focus-visible{
     padding-right:16px;
   }
   .hero-flank-left{font-size:16px;letter-spacing:1.1px;}
-  .hero-flank-right{font-size:24px;}
+  .hero-flank-right{font-size:24px;transform:translateX(16px);}
 }
 
 @media (max-width:760px) and (min-width:561px){
@@ -480,7 +481,7 @@ button:focus-visible{
   }
   .hero-flank{padding:4px 2px;}
   .hero-flank-left{font-size:14px;line-height:1.4;letter-spacing:.8px;}
-  .hero-flank-right{font-size:21px;line-height:1.15;}
+  .hero-flank-right{font-size:21px;line-height:1.15;transform:translateX(8px);}
   .rule-mini{width:30px;}
 }
 
@@ -502,6 +503,7 @@ button:focus-visible{
   .hero-flank-left,
   .hero-flank-right{
     text-align:center;
+    transform:none;
   }
   .hero-flank-left .rule-mini{
     margin:12px auto 0;
@@ -541,18 +543,21 @@ button:focus-visible{
   transform:translate(-50%, -50%);
   border-radius:50%;
   background:
-    radial-gradient(ellipse at 50% 34%,
-      rgba(151,96,205,0.82) 0%,
-      rgba(179,134,220,0.72) 30%,
-      rgba(205,174,235,0.48) 52%,
-      rgba(230,214,248,0.18) 68%,
-      rgba(239,229,255,0) 82%),
-    radial-gradient(ellipse at center,
-      rgba(198,165,232,0.42) 0%,
-      rgba(215,191,240,0.24) 56%,
-      rgba(239,229,255,0) 82%);
-  filter:blur(12px);
-  box-shadow:0 0 46px rgba(123,75,196,0.34);
+    radial-gradient(ellipse at 50% 33%,
+      rgba(117,66,168,0.96) 0%,
+      rgba(143,82,194,0.92) 24%,
+      rgba(171,112,214,0.78) 42%,
+      rgba(200,158,231,0.56) 58%,
+      rgba(225,202,247,0.28) 70%,
+      rgba(239,229,255,0) 84%),
+    radial-gradient(ellipse at 50% 42%,
+      rgba(101,45,155,0.42) 0%,
+      rgba(166,105,210,0.30) 48%,
+      rgba(239,229,255,0) 80%);
+  filter:blur(10px);
+  box-shadow:
+    0 0 34px rgba(76,29,149,0.46),
+    0 0 72px rgba(123,75,196,0.34);
   opacity:1;
   z-index:0;
   pointer-events:none;
@@ -1676,4 +1681,32 @@ button:focus-visible{
     column-gap:26px;
   }
   .social-link{min-height:44px;}
+}
+
+/* ================================================================
+   VERSION 8 — HOME DEMO REEL DIRECT YOUTUBE EMBED
+   Keeps Version 7 visual design intact. Only the Home Demo Reel
+   receives a direct standard YouTube iframe embed.
+   ================================================================ */
+.demo-reel-embed {
+  width: min(58vw, 470px);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 14px 34px rgba(43, 7, 61, 0.22);
+  background: #000;
+}
+
+.demo-reel-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 800px) {
+  .demo-reel-embed {
+    width: min(88vw, 470px);
+  }
 }
