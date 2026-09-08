@@ -1684,29 +1684,39 @@ button:focus-visible{
 }
 
 /* ================================================================
-   VERSION 8 — HOME DEMO REEL DIRECT YOUTUBE EMBED
-   Keeps Version 7 visual design intact. Only the Home Demo Reel
-   receives a direct standard YouTube iframe embed.
+   VERSION 9 - HOME DEMO REEL ONLY
+   Keep approved V8 Home visuals. Inset the player inside the
+   lavender/gold lightbox and use a simple inline YouTube embed.
    ================================================================ */
-.demo-reel-embed {
-  width: min(58vw, 470px);
-  aspect-ratio: 16 / 9;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 14px 34px rgba(43, 7, 61, 0.22);
-  background: #000;
+.demo-reel-wrapper{
+  width:min(58vw,470px);
+  box-sizing:border-box;
+  padding:16px;
+  overflow:hidden;
+  transform:none;
 }
+.demo-reel-wrapper:hover,
+.demo-reel-wrapper:focus-within{transform:translateY(-3px);}
 
-.demo-reel-embed iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.demo-reel-embed{
+  width:100%;
+  aspect-ratio:16 / 9;
+  margin:0;
+  overflow:hidden;
+  border-radius:9px;
+  background:#000;
+  position:relative;
+  z-index:1;
+  box-shadow:inset 0 0 0 1px rgba(58,31,76,.28),
+             0 7px 16px rgba(58,31,76,.20);
 }
-
-@media (max-width: 800px) {
-  .demo-reel-embed {
-    width: min(88vw, 470px);
-  }
+.demo-reel-embed iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  border-radius:9px;
+}
+@media (max-width:800px){
+  .demo-reel-wrapper{width:min(88vw,470px);padding:12px;}
 }
