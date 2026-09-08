@@ -178,7 +178,7 @@ function initReelPlayers() {
     var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
     if (ytMatch) {
       var id = ytMatch[1];
-      var embed = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      var embed = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
       var tMatch = url.match(/[?&]t=(\d+)s?/);
       if (tMatch) embed += '&start=' + tMatch[1];
       return embed;
@@ -214,6 +214,7 @@ function initReelPlayers() {
     iframe.title = container.getAttribute('aria-label') || 'Video';
     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen');
     iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     iframe.loading = 'lazy';
 
     container.appendChild(iframe);
