@@ -460,7 +460,33 @@ button:focus-visible{
 
 /* Keep both text treatments beside the portrait on normal desktop/laptop
    widths. Only stack them on genuinely narrow screens. */
-@media (max-width:800px){
+@media (max-width:1000px) and (min-width:761px){
+  .portrait-section{
+    grid-template-columns:minmax(110px,160px) minmax(330px,430px) minmax(110px,160px);
+    column-gap:12px;
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .hero-flank-left{font-size:16px;letter-spacing:1.1px;}
+  .hero-flank-right{font-size:24px;}
+}
+
+@media (max-width:760px) and (min-width:561px){
+  .portrait-section{
+    grid-template-columns:minmax(82px,120px) minmax(290px,360px) minmax(82px,120px);
+    column-gap:8px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .hero-flank{padding:4px 2px;}
+  .hero-flank-left{font-size:14px;line-height:1.4;letter-spacing:.8px;}
+  .hero-flank-right{font-size:21px;line-height:1.15;}
+  .rule-mini{width:30px;}
+}
+
+/* Only stack on true phone widths. Desktop/laptop and tablet widths keep
+   the approved left / portrait / right composition. */
+@media (max-width:560px){
   .portrait-section{
     display:flex;
     flex-direction:column;
@@ -508,22 +534,26 @@ button:focus-visible{
    reaching the section's own edges. */
 .portrait-halo{
   position:absolute;
-  width:146%;
-  height:92%;
+  width:138%;
+  height:84%;
   left:50%;
-  top:36%;
+  top:34%;
   transform:translate(-50%, -50%);
   border-radius:50%;
-  background:radial-gradient(
-    ellipse at center,
-    rgba(178,136,220,0.98) 0%,
-    rgba(190,150,225,0.86) 28%,
-    rgba(203,177,235,0.68) 46%,
-    rgba(220,197,244,0.42) 61%,
-    rgba(239,229,255,0) 79%
-  );
-  filter:blur(18px);
-  box-shadow:0 0 42px rgba(123,75,196,0.28);
+  background:
+    radial-gradient(ellipse at 50% 34%,
+      rgba(151,96,205,0.82) 0%,
+      rgba(179,134,220,0.72) 30%,
+      rgba(205,174,235,0.48) 52%,
+      rgba(230,214,248,0.18) 68%,
+      rgba(239,229,255,0) 82%),
+    radial-gradient(ellipse at center,
+      rgba(198,165,232,0.42) 0%,
+      rgba(215,191,240,0.24) 56%,
+      rgba(239,229,255,0) 82%);
+  filter:blur(12px);
+  box-shadow:0 0 46px rgba(123,75,196,0.34);
+  opacity:1;
   z-index:0;
   pointer-events:none;
 }
