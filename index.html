@@ -9,67 +9,96 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=9-home-demo">
 
-  <style>
-    /* HOME DEMO REEL — DESKTOP CLICK FIX ONLY.
-       iPhone/tablet keeps the existing YouTube iframe unchanged. */
-    .home-demo-desktop-link { display: none; }
+<style>
+/* ============================================================
+   HOME DEMO REEL — DESKTOP DIRECT-YOUTUBE CLICK FIX ONLY
+   Desktop: static poster + direct YouTube link (NO iframe).
+   iPhone/mobile: existing iframe remains unchanged.
+   ============================================================ */
 
-    @media (min-width: 801px) {
-      .home-demo-click-test { position: relative; }
+.home-demo-reel {
+  position: relative;
+  overflow: hidden;
+}
 
-      .home-demo-click-test iframe { display: none; }
+.home-demo-desktop {
+  display: none;
+}
 
-      .home-demo-desktop-link {
-        display: block;
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-        border-radius: inherit;
-        background: #000;
-        text-decoration: none;
-      }
+.home-demo-mobile {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
-      .home-demo-desktop-link img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-      }
+/* Desktop only */
+@media (min-width: 801px) {
+  .home-demo-mobile {
+    display: none !important;
+  }
 
-      .home-demo-play {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 78px;
-        height: 56px;
-        border-radius: 14px;
-        background: #ff0000;
-        color: #fff;
-        display: grid;
-        place-items: center;
-        font-size: 29px;
-        line-height: 1;
-        box-shadow: 0 5px 16px rgba(0,0,0,.35);
-      }
+  .home-demo-desktop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-      .home-demo-watch {
-        position: absolute;
-        right: 14px;
-        bottom: 12px;
-        padding: 8px 12px;
-        border-radius: 7px;
-        background: rgba(0,0,0,.72);
-        color: #fff;
-        font: 600 13px/1.2 Arial, sans-serif;
-      }
-    }
+  .home-demo-desktop img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    @media (max-width: 800px) {
-      .home-demo-click-test iframe { display: block; }
-      .home-demo-desktop-link { display: none !important; }
-    }
-  </style>
+  .home-demo-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 78px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #ff0000;
+    color: #fff;
+    font: 700 30px/1 Arial, sans-serif;
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    pointer-events: none;
+  }
+
+  .home-demo-watch {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    background: rgba(0,0,0,.74);
+    color: #fff;
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .4px;
+    pointer-events: none;
+  }
+}
+
+/* iPhone / mobile only */
+@media (max-width: 800px) {
+  .home-demo-desktop {
+    display: none !important;
+  }
+
+  .home-demo-mobile {
+    display: block !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -179,8 +208,25 @@
       <!-- DEMO REEL: same confirmed video as the "Full Demo Reel" on the Show
            Reels tab (previously pointed at a different video ID that showed
            a YouTube sign-in/restricted wall on click). -->
-      <div class="demo-reel-embed home-demo-click-test" aria-label="Yeena Fisher Demo Reel">
+      <div class="demo-reel-embed home-demo-reel" aria-label="Yeena Fisher Demo Reel">
+
+        <!-- DESKTOP ONLY: no YouTube iframe. Clicking opens the video directly on YouTube. -->
+        <a class="home-demo-desktop"
+           href="https://www.youtube.com/watch?v=3SurBvY-0Xc&t=7s"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Watch Yeena Fisher Demo Reel on YouTube">
+          <img
+            src="https://img.youtube.com/vi/3SurBvY-0Xc/hqdefault.jpg"
+            alt="Yeena Fisher Demo Reel"
+            loading="lazy">
+          <span class="home-demo-play" aria-hidden="true">▶</span>
+          <span class="home-demo-watch">WATCH DEMO REEL</span>
+        </a>
+
+        <!-- iPhone / mobile ONLY: keep the existing working YouTube iframe unchanged. -->
         <iframe
+          class="home-demo-mobile"
           src="https://www.youtube.com/embed/3SurBvY-0Xc?start=7&rel=0&playsinline=1"
           title="Yeena Fisher Demo Reel"
           loading="lazy"
@@ -188,17 +234,6 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
-
-        <a class="home-demo-desktop-link"
-           href="https://www.youtube.com/watch?v=3SurBvY-0Xc&t=7s"
-           target="_blank"
-           rel="noopener"
-           aria-label="Play Yeena Fisher Demo Reel on YouTube">
-          <img src="https://img.youtube.com/vi/3SurBvY-0Xc/hqdefault.jpg"
-               alt="Yeena Fisher Demo Reel">
-          <span class="home-demo-play" aria-hidden="true">▶</span>
-          <span class="home-demo-watch">Watch Demo Reel</span>
-        </a>
       </div>
     </div>
   </section>
