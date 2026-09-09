@@ -1689,7 +1689,8 @@ button:focus-visible{
    receives a direct standard YouTube iframe embed.
    ================================================================ */
 .demo-reel-embed {
-  width: min(58vw, 470px);
+  width: 100%;
+  max-width: 100%;
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   overflow: hidden;
@@ -1707,7 +1708,8 @@ button:focus-visible{
 
 @media (max-width: 800px) {
   .demo-reel-embed {
-    width: min(88vw, 470px);
+    width: 100%;
+    max-width: 100%;
   }
 }
 
