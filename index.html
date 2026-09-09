@@ -10,17 +10,64 @@
 <link rel="stylesheet" href="style.css?v=9-home-demo">
 
   <style>
-    /* DESKTOP-ONLY TEST: one Show Reel. iPhone/tablet iframe behavior is unchanged. */
-    .desktop-youtube-test-link { display: none; }
+    /* HOME DEMO REEL — DESKTOP CLICK FIX ONLY.
+       iPhone/tablet keeps the existing YouTube iframe unchanged. */
+    .home-demo-desktop-link { display: none; }
+
     @media (min-width: 801px) {
-      .desktop-youtube-test-wrap { position: relative; }
-      .desktop-youtube-test-link {
+      .home-demo-click-test { position: relative; }
+
+      .home-demo-click-test iframe { display: none; }
+
+      .home-demo-desktop-link {
         display: block;
         position: absolute;
         inset: 0;
-        z-index: 20;
-        cursor: pointer;
+        overflow: hidden;
+        border-radius: inherit;
+        background: #000;
+        text-decoration: none;
       }
+
+      .home-demo-desktop-link img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .home-demo-play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 78px;
+        height: 56px;
+        border-radius: 14px;
+        background: #ff0000;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 29px;
+        line-height: 1;
+        box-shadow: 0 5px 16px rgba(0,0,0,.35);
+      }
+
+      .home-demo-watch {
+        position: absolute;
+        right: 14px;
+        bottom: 12px;
+        padding: 8px 12px;
+        border-radius: 7px;
+        background: rgba(0,0,0,.72);
+        color: #fff;
+        font: 600 13px/1.2 Arial, sans-serif;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .home-demo-click-test iframe { display: block; }
+      .home-demo-desktop-link { display: none !important; }
     }
   </style>
 </head>
@@ -132,7 +179,7 @@
       <!-- DEMO REEL: same confirmed video as the "Full Demo Reel" on the Show
            Reels tab (previously pointed at a different video ID that showed
            a YouTube sign-in/restricted wall on click). -->
-      <div class="demo-reel-embed" aria-label="Yeena Fisher Demo Reel">
+      <div class="demo-reel-embed home-demo-click-test" aria-label="Yeena Fisher Demo Reel">
         <iframe
           src="https://www.youtube.com/embed/3SurBvY-0Xc?start=7&rel=0&playsinline=1"
           title="Yeena Fisher Demo Reel"
@@ -141,6 +188,17 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
+
+        <a class="home-demo-desktop-link"
+           href="https://www.youtube.com/watch?v=3SurBvY-0Xc&t=7s"
+           target="_blank"
+           rel="noopener"
+           aria-label="Play Yeena Fisher Demo Reel on YouTube">
+          <img src="https://img.youtube.com/vi/3SurBvY-0Xc/hqdefault.jpg"
+               alt="Yeena Fisher Demo Reel">
+          <span class="home-demo-play" aria-hidden="true">▶</span>
+          <span class="home-demo-watch">Watch Demo Reel</span>
+        </a>
       </div>
     </div>
   </section>
@@ -248,7 +306,7 @@
 
     <!-- REEL 2 — FORGIVENESS — DRAMATIC SCENE -->
     <article class="reel-card">
-      <div class="reel-video desktop-youtube-test-wrap" aria-label="Forgiveness — Dramatic Scene">
+      <div class="reel-video" aria-label="Forgiveness — Dramatic Scene">
         <iframe
           src="https://www.youtube.com/embed/lSzoHAkGFJE?rel=0&playsinline=1"
           title="Forgiveness — Dramatic Scene"
@@ -257,11 +315,6 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
-        <a class="desktop-youtube-test-link"
-           href="https://www.youtube.com/watch?v=lSzoHAkGFJE"
-           target="_blank"
-           rel="noopener"
-           aria-label="Play Forgiveness on YouTube"></a>
       </div>
       <h2 class="reel-title">Forgiveness &mdash; Dramatic Scene</h2>
       <p class="reel-desc">Yeena Fisher portrays a tough, emotionally guarded woman confronting her father during a tense meeting in jail.</p>
