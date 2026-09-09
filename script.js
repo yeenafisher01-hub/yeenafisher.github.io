@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initMobileNav();
   initFooterYear();
   initHomeDesktopDemoFallback();
+  initDesktopVideoFallbacks();
   initReelPlayers();
   initLightbox();
   initPdfLightbox();
@@ -46,6 +47,31 @@ function initHomeDesktopDemoFallback() {
 
   // Desktop only: hide the iframe and reveal the direct YouTube thumbnail link.
   container.classList.add('desktop-fallback-active');
+}
+
+
+
+/* ==========================================================================
+   SHOW REELS + MEDIA — DESKTOP DIRECT-LINK FALLBACK
+   Mirrors the proven Home Demo Reel solution. Desktop visitors see the
+   thumbnail/player facade and click through to the normal YouTube watch page.
+   iPhone/mobile keeps the existing iframe unchanged.
+   ========================================================================== */
+function initDesktopVideoFallbacks() {
+  var ua = navigator.userAgent || '';
+  var mobileUA = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|Mobile/i.test(ua);
+  var coarsePhone = window.matchMedia &&
+    window.matchMedia('(pointer: coarse)').matches &&
+    Math.min(window.screen.width || 9999, window.screen.height || 9999) < 700;
+
+  // Absolutely preserve current iPhone/mobile iframe playback.
+  if (mobileUA || coarsePhone) return;
+
+  document.querySelectorAll('.reel-video').forEach(function (container) {
+    if (container.querySelector('.desktop-video-link')) {
+      container.classList.add('desktop-direct-link-active');
+    }
+  });
 }
 
 function initRouter() {

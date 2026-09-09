@@ -1794,3 +1794,81 @@ button:focus-visible{
 .home-demo-fallback.desktop-fallback-active .home-demo-desktop-link {
   display: block !important;
 }
+
+
+/* ================================================================
+   SHOW REELS + MEDIA — DESKTOP DIRECT-LINK FALLBACK
+   Default/mobile behavior remains the existing YouTube iframe.
+   script.js adds .desktop-direct-link-active only on desktop browsers.
+   ================================================================ */
+.reel-video .desktop-video-link {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.reel-video .desktop-video-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.reel-video .desktop-video-link:hover img,
+.reel-video .desktop-video-link:focus-visible img {
+  transform: scale(1.025);
+}
+
+.desktop-video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  padding-left: 3px;
+  border-radius: 13px;
+  background: rgba(76,29,149,.96);
+  color: #fff;
+  font: 700 27px/1 Arial, sans-serif;
+  box-shadow: 0 7px 20px rgba(0,0,0,.34);
+  transition: transform .2s ease, background .2s ease;
+  pointer-events: none;
+}
+
+.reel-video .desktop-video-link:hover .desktop-video-play,
+.reel-video .desktop-video-link:focus-visible .desktop-video-play {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(58,31,76,.98);
+}
+
+.desktop-video-label {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: rgba(36,16,47,.86);
+  color: #fff;
+  font: 700 11px/1.2 'Montserrat', Arial, sans-serif;
+  letter-spacing: .6px;
+  pointer-events: none;
+}
+
+/* Applied by JS on desktop only. Mobile/iPhone never receives this class. */
+.reel-video.desktop-direct-link-active > iframe {
+  display: none !important;
+}
+
+.reel-video.desktop-direct-link-active > .desktop-video-link {
+  display: block !important;
+}
