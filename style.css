@@ -436,7 +436,7 @@ button:focus-visible{
   font-size:18px;
   line-height:1.48;
   letter-spacing:1.3px;
-  color:#24102F;
+  color:#3A1F4C;
   text-shadow:0 1px 2px rgba(255,255,255,0.65);
   text-transform:uppercase;
 }
@@ -447,9 +447,9 @@ button:focus-visible{
   font-family:'Allura', cursive;
   font-size:27px;
   line-height:1.22;
-  color:#1E043F;
+  color:#2C0B63;
   text-shadow:0 1px 2px rgba(255,255,255,0.65);
-  transform:translateX(70px);
+  transform:translateX(28px);
 }
 
 .rule-mini{
@@ -1689,7 +1689,7 @@ button:focus-visible{
    receives a direct standard YouTube iframe embed.
    ================================================================ */
 .demo-reel-embed {
-  width: 100%;
+  width: min(58vw, 470px);
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   overflow: hidden;
@@ -1707,6 +1707,88 @@ button:focus-visible{
 
 @media (max-width: 800px) {
   .demo-reel-embed {
-    width: 100%;
+    width: min(88vw, 470px);
   }
+}
+
+
+/* ================================================================
+   HOME DEMO REEL — DESKTOP DIRECT-LINK FALLBACK
+   Desktop uses a custom thumbnail/player facade that opens the normal
+   YouTube watch page. Mobile/iPhone keeps the working iframe unchanged.
+   JS adds .desktop-fallback-active only on non-mobile desktop browsers.
+   ================================================================ */
+.home-demo-fallback {
+  position: relative;
+}
+
+.home-demo-desktop-link {
+  display: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home-demo-desktop-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.home-demo-desktop-link:hover img,
+.home-demo-desktop-link:focus-visible img {
+  transform: scale(1.025);
+}
+
+.home-demo-custom-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 76px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  padding-left: 4px;
+  border-radius: 14px;
+  background: rgba(76, 29, 149, .96);
+  color: #fff;
+  font: 700 30px/1 Arial, sans-serif;
+  box-shadow: 0 8px 22px rgba(0,0,0,.34);
+  transition: transform .2s ease, background .2s ease;
+  pointer-events: none;
+}
+
+.home-demo-desktop-link:hover .home-demo-custom-play,
+.home-demo-desktop-link:focus-visible .home-demo-custom-play {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(58, 31, 76, .98);
+}
+
+.home-demo-custom-label {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  background: rgba(36, 16, 47, .86);
+  color: #fff;
+  font: 700 12px/1.2 'Montserrat', Arial, sans-serif;
+  letter-spacing: .7px;
+  pointer-events: none;
+}
+
+/* This class is applied by script.js only on desktop/non-mobile devices. */
+.home-demo-fallback.desktop-fallback-active .home-demo-mobile-player {
+  display: none !important;
+}
+
+.home-demo-fallback.desktop-fallback-active .home-demo-desktop-link {
+  display: block !important;
 }

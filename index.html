@@ -8,97 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=9-home-demo">
-
-<style>
-/* ============================================================
-   HOME DEMO REEL — DESKTOP DIRECT-YOUTUBE CLICK FIX ONLY
-   Desktop: static poster + direct YouTube link (NO iframe).
-   iPhone/mobile: existing iframe remains unchanged.
-   ============================================================ */
-
-.home-demo-reel {
-  position: relative;
-  overflow: hidden;
-}
-
-.home-demo-desktop {
-  display: none;
-}
-
-.home-demo-mobile {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Desktop only */
-@media (min-width: 801px) {
-  .home-demo-mobile {
-    display: none !important;
-  }
-
-  .home-demo-desktop {
-    display: block;
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    border-radius: inherit;
-    background: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .home-demo-desktop img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .home-demo-play {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 78px;
-    height: 56px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: #ff0000;
-    color: #fff;
-    font: 700 30px/1 Arial, sans-serif;
-    box-shadow: 0 6px 18px rgba(0,0,0,.35);
-    pointer-events: none;
-  }
-
-  .home-demo-watch {
-    position: absolute;
-    right: 14px;
-    bottom: 12px;
-    padding: 8px 12px;
-    border-radius: 7px;
-    background: rgba(0,0,0,.74);
-    color: #fff;
-    font: 700 13px/1.2 Arial, sans-serif;
-    letter-spacing: .4px;
-    pointer-events: none;
-  }
-}
-
-/* iPhone / mobile only */
-@media (max-width: 800px) {
-  .home-demo-desktop {
-    display: none !important;
-  }
-
-  .home-demo-mobile {
-    display: block !important;
-  }
-}
-</style>
-
 </head>
 <body>
 
@@ -208,25 +117,10 @@
       <!-- DEMO REEL: same confirmed video as the "Full Demo Reel" on the Show
            Reels tab (previously pointed at a different video ID that showed
            a YouTube sign-in/restricted wall on click). -->
-      <div class="demo-reel-embed home-demo-reel" aria-label="Yeena Fisher Demo Reel">
-
-        <!-- DESKTOP ONLY: no YouTube iframe. Clicking opens the video directly on YouTube. -->
-        <a class="home-demo-desktop"
-           href="https://www.youtube.com/watch?v=3SurBvY-0Xc&t=7s"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Watch Yeena Fisher Demo Reel on YouTube">
-          <img
-            src="https://img.youtube.com/vi/3SurBvY-0Xc/hqdefault.jpg"
-            alt="Yeena Fisher Demo Reel"
-            loading="lazy">
-          <span class="home-demo-play" aria-hidden="true">▶</span>
-          <span class="home-demo-watch">WATCH DEMO REEL</span>
-        </a>
-
-        <!-- iPhone / mobile ONLY: keep the existing working YouTube iframe unchanged. -->
+      <div class="demo-reel-embed home-demo-fallback" id="homeDemoFallback" aria-label="Yeena Fisher Demo Reel">
+        <!-- Mobile/iPhone: keep the working YouTube iframe exactly as before. -->
         <iframe
-          class="home-demo-mobile"
+          class="home-demo-mobile-player"
           src="https://www.youtube.com/embed/3SurBvY-0Xc?start=7&rel=0&playsinline=1"
           title="Yeena Fisher Demo Reel"
           loading="lazy"
@@ -234,6 +128,20 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
+
+        <!-- Desktop: JS activates this hard-coded direct-link fallback. No YouTube iframe is used. -->
+        <a class="home-demo-desktop-link"
+           href="https://www.youtube.com/watch?v=3SurBvY-0Xc&t=7s"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Watch Yeena Fisher Demo Reel directly on YouTube">
+          <img
+            src="https://img.youtube.com/vi/3SurBvY-0Xc/hqdefault.jpg"
+            alt="Yeena Fisher Demo Reel thumbnail"
+            loading="lazy">
+          <span class="home-demo-custom-play" aria-hidden="true">▶</span>
+          <span class="home-demo-custom-label">WATCH DEMO REEL</span>
+        </a>
       </div>
     </div>
   </section>

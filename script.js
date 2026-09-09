@@ -15,11 +15,38 @@ document.addEventListener('DOMContentLoaded', function () {
   initRouter();
   initMobileNav();
   initFooterYear();
+  initHomeDesktopDemoFallback();
   initReelPlayers();
   initLightbox();
   initPdfLightbox();
   initContactForm();
 });
+
+
+
+/* ==========================================================================
+   HOME DEMO REEL — DESKTOP DIRECT-LINK FALLBACK
+   YouTube's embedded player can trigger an anti-bot sign-in loop on desktop.
+   On desktop/non-mobile browsers only, replace that iframe visually with a
+   hard-coded thumbnail link to the normal YouTube watch page. iPhone/mobile
+   are deliberately left on the existing working iframe.
+   ========================================================================== */
+function initHomeDesktopDemoFallback() {
+  var container = document.getElementById('homeDemoFallback');
+  if (!container) return;
+
+  var ua = navigator.userAgent || '';
+  var mobileUA = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|Mobile/i.test(ua);
+  var coarsePhone = window.matchMedia &&
+    window.matchMedia('(pointer: coarse)').matches &&
+    Math.min(window.screen.width || 9999, window.screen.height || 9999) < 700;
+
+  // Keep the existing iframe exactly as-is on iPhone and other mobile devices.
+  if (mobileUA || coarsePhone) return;
+
+  // Desktop only: hide the iframe and reveal the direct YouTube thumbnail link.
+  container.classList.add('desktop-fallback-active');
+}
 
 function initRouter() {
   var pages = document.querySelectorAll('.page');
