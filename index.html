@@ -8,6 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=9-home-demo">
+
+  <style>
+    /* DESKTOP-ONLY TEST: one Show Reel. iPhone/tablet iframe behavior is unchanged. */
+    .desktop-youtube-test-link { display: none; }
+    @media (min-width: 801px) {
+      .desktop-youtube-test-wrap { position: relative; }
+      .desktop-youtube-test-link {
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        cursor: pointer;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -233,7 +248,7 @@
 
     <!-- REEL 2 — FORGIVENESS — DRAMATIC SCENE -->
     <article class="reel-card">
-      <div class="reel-video" aria-label="Forgiveness — Dramatic Scene">
+      <div class="reel-video desktop-youtube-test-wrap" aria-label="Forgiveness — Dramatic Scene">
         <iframe
           src="https://www.youtube.com/embed/lSzoHAkGFJE?rel=0&playsinline=1"
           title="Forgiveness — Dramatic Scene"
@@ -242,6 +257,11 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
+        <a class="desktop-youtube-test-link"
+           href="https://www.youtube.com/watch?v=lSzoHAkGFJE"
+           target="_blank"
+           rel="noopener"
+           aria-label="Play Forgiveness on YouTube"></a>
       </div>
       <h2 class="reel-title">Forgiveness &mdash; Dramatic Scene</h2>
       <p class="reel-desc">Yeena Fisher portrays a tough, emotionally guarded woman confronting her father during a tense meeting in jail.</p>
