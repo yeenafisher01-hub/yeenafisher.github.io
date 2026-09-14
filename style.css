@@ -1219,15 +1219,10 @@ button:focus-visible{
 .lightbox.open{display:flex;}
 
 .lightbox img{
-  /* Fill the available lightbox area while preserving the entire photo.
-     Using an explicit viewport-sized box allows smaller source images to
-     enlarge instead of remaining at their thumbnail/natural dimensions. */
-  width:min(90vw, 1200px);
-  height:min(88vh, 1100px);
   max-width:90vw;
-  max-height:88vh;
-  object-fit:contain;
-  object-position:center;
+  max-height:85vh;
+  width:auto;
+  height:auto;
   border-radius:6px;
   box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
@@ -1694,8 +1689,7 @@ button:focus-visible{
    receives a direct standard YouTube iframe embed.
    ================================================================ */
 .demo-reel-embed {
-  width: 100%;
-  max-width: 100%;
+  width: min(58vw, 470px);
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   overflow: hidden;
@@ -1713,167 +1707,35 @@ button:focus-visible{
 
 @media (max-width: 800px) {
   .demo-reel-embed {
-    width: 100%;
-    max-width: 100%;
+    width: min(88vw, 470px);
   }
 }
 
+/* ==========================================================
+   HEADSHOT CROPPING FIX
+   Applies ONLY to Headshot galleries + Home preview cards.
+   Red Carpet remains unchanged.
+   ========================================================== */
 
-/* ================================================================
-   HOME DEMO REEL — DESKTOP DIRECT-LINK FALLBACK
-   Desktop uses a custom thumbnail/player facade that opens the normal
-   YouTube watch page. Mobile/iPhone keeps the working iframe unchanged.
-   JS adds .desktop-fallback-active only on non-mobile desktop browsers.
-   ================================================================ */
-.home-demo-fallback {
-  position: relative;
+/* HEADSHOTS TAB — Theatrical + Commercial gallery thumbnails */
+#page-headshots .photo-grid button {
+    aspect-ratio: 4 / 5;
+    background: #E6DAFF;
 }
 
-.home-demo-desktop-link {
-  display: none;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: inherit;
-  background: #000;
-  text-decoration: none;
-  cursor: pointer;
+#page-headshots .photo-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
 }
 
-.home-demo-desktop-link img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .25s ease;
+/* HOME PAGE — Theatrical + Commercial preview images */
+.headshot-preview-section .preview-card img {
+    width: 220px;
+    height: 290px;
+    object-fit: contain;
+    object-position: center top;
+    background: #E6DAFF;
 }
 
-.home-demo-desktop-link:hover img,
-.home-demo-desktop-link:focus-visible img {
-  transform: scale(1.025);
-}
-
-.home-demo-custom-play {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 76px;
-  height: 56px;
-  display: grid;
-  place-items: center;
-  padding-left: 4px;
-  border-radius: 14px;
-  background: rgba(76, 29, 149, .96);
-  color: #fff;
-  font: 700 30px/1 Arial, sans-serif;
-  box-shadow: 0 8px 22px rgba(0,0,0,.34);
-  transition: transform .2s ease, background .2s ease;
-  pointer-events: none;
-}
-
-.home-demo-desktop-link:hover .home-demo-custom-play,
-.home-demo-desktop-link:focus-visible .home-demo-custom-play {
-  transform: translate(-50%, -50%) scale(1.08);
-  background: rgba(58, 31, 76, .98);
-}
-
-.home-demo-custom-label {
-  position: absolute;
-  right: 14px;
-  bottom: 12px;
-  padding: 8px 12px;
-  border-radius: 7px;
-  background: rgba(36, 16, 47, .86);
-  color: #fff;
-  font: 700 12px/1.2 'Montserrat', Arial, sans-serif;
-  letter-spacing: .7px;
-  pointer-events: none;
-}
-
-/* This class is applied by script.js only on desktop/non-mobile devices. */
-.home-demo-fallback.desktop-fallback-active .home-demo-mobile-player {
-  display: none !important;
-}
-
-.home-demo-fallback.desktop-fallback-active .home-demo-desktop-link {
-  display: block !important;
-}
-
-
-/* ================================================================
-   SHOW REELS + MEDIA — DESKTOP DIRECT-LINK FALLBACK
-   Default/mobile behavior remains the existing YouTube iframe.
-   script.js adds .desktop-direct-link-active only on desktop browsers.
-   ================================================================ */
-.reel-video .desktop-video-link {
-  display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  overflow: hidden;
-  border-radius: inherit;
-  background: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.reel-video .desktop-video-link img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .25s ease;
-}
-
-.reel-video .desktop-video-link:hover img,
-.reel-video .desktop-video-link:focus-visible img {
-  transform: scale(1.025);
-}
-
-.desktop-video-play {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 68px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  padding-left: 3px;
-  border-radius: 13px;
-  background: rgba(76,29,149,.96);
-  color: #fff;
-  font: 700 27px/1 Arial, sans-serif;
-  box-shadow: 0 7px 20px rgba(0,0,0,.34);
-  transition: transform .2s ease, background .2s ease;
-  pointer-events: none;
-}
-
-.reel-video .desktop-video-link:hover .desktop-video-play,
-.reel-video .desktop-video-link:focus-visible .desktop-video-play {
-  transform: translate(-50%, -50%) scale(1.08);
-  background: rgba(58,31,76,.98);
-}
-
-.desktop-video-label {
-  position: absolute;
-  right: 10px;
-  bottom: 9px;
-  padding: 7px 10px;
-  border-radius: 6px;
-  background: rgba(36,16,47,.86);
-  color: #fff;
-  font: 700 11px/1.2 'Montserrat', Arial, sans-serif;
-  letter-spacing: .6px;
-  pointer-events: none;
-}
-
-/* Applied by JS on desktop only. Mobile/iPhone never receives this class. */
-.reel-video.desktop-direct-link-active > iframe {
-  display: none !important;
-}
-
-.reel-video.desktop-direct-link-active > .desktop-video-link {
-  display: block !important;
-}
